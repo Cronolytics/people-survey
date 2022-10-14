@@ -1,0 +1,89 @@
+.container {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .container form {
+    font-family: Arial, Helvetica, sans-serif;
+    max-width: 100%;
+    background: rgb(57, 173, 191);
+    background: linear-gradient(0deg, rgba(57, 173, 191, 1) 35%, rgba(103, 98, 188, 1) 100%);
+    border-radius: 20px;
+    padding: 50px 26px;
+    box-sizing: border-box;
+    box-shadow: rgb(0 0 0 / 35%) 0px 5px 15px;
+  }
+  
+  .campo-texto {
+    margin: 25px 25px;
+  }
+  
+  .campo-texto label {
+    display: block;
+    margin-bottom: 0px;
+    font-size: 14px;
+    color: #FFFF;
+    padding: 4px 0;
+  }
+  
+  .campo-texto input {
+    border-radius: 1px;
+    font-size: 17px;
+    padding: 9px 6px;
+    width: 300px;
+    border: none;
+  }
+  
+  .campo-texto placeholder {
+    padding: 10px 10px;
+  }
+  
+  .botao-login {
+    display: flex;
+    justify-content: center;
+    border: none;
+    border-radius: 6px;
+    font-size: 18px;
+    line-height: 50px;
+    width: 312px;
+    box-shadow: 0px 17px 5px -10px rgba(0, 0, 0, 0.29);
+    margin-top: 80px;
+    background-color: #01FFC3;
+    margin-left: 28px;
+    cursor: pointer;
+  }
+  
+  .div-texto {
+    display: flex;
+    justify-content: center;
+    color: #FFF;
+    font-weight: bold;
+    font-size: 26px;
+    margin-bottom: 50px;
+    margin-right: 10px;
+  }
+  
+  .div-cadastro {
+    margin-top: 2%;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .div-cadastro u {
+    color: #6762BC;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
+  .img-logo {
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .img-logo img {
+    width: 12%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+  }
