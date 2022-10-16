@@ -1,0 +1,30 @@
+.partners-title{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 64px;
+}
+
+.partners-title h2{
+    font-size: 32px;
+    color: #181818;
+}
+
+.box-partners{
+    display: flex;
+    justify-content: space-around;
+    margin: 0px 0px 80px 0px;
+}
+
+.partner-logo{
+    width: 160px;
+    height: 160px;
+    border-radius: 15%;
+    background-image: linear-gradient( to right, #01FFC3, #6762BC);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #FFFFFF;
+    font-weight: 700;
+}

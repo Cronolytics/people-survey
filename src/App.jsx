@@ -1,12 +1,12 @@
-import '../src/assets/css/reset.css';
-import Login from './pages/Login'
+import './assets/css/reset.css';
+import Home from './pages/Home.jsx'
 
 
 function App() {
   
   return (
     <>
-      <Login />
+      <Home />
     </>
   );
 }

@@ -1,0 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
+html{
+    font-family: 'Montserrat' !important;
+}
+
+button{
+    cursor: pointer;
+}
+
+.flex-centralization{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container{
+    width: 80%;
+    /*background-color: aquamarine;*/
+}

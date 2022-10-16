@@ -1,0 +1,118 @@
+.banner{
+    width: 100%;
+    height: 85vh;  
+    background-image: url("../../../assets/images/home/friends-banner.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.banner-content{
+    color: #FFFFFF;
+}
+
+.banner-content h1{
+    font-size: 48px;
+    font-weight: 700;
+    margin: 5px;
+}
+
+.gradient-text{
+    width: fit-content;
+    padding: 5px 5px;
+    background-color: #181818;
+}
+
+.gradient-text h2{
+    font-size: 48px;
+    font-weight: 700;
+    background-image: linear-gradient(to right, #01FFC3, #6762BC);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent; 
+    -moz-background-clip: text;
+    -moz-text-fill-color: transparent;
+}
+
+.banner-content h3{
+    font-size: 32px;
+    font-weight: 400;
+    margin: 5px;
+}
+
+.banner-title{
+
+}
+
+.banner-options{
+    display: flex;
+    flex-direction: column;
+    height: 160px;
+    justify-content: space-around;
+    padding-top: 32px;
+}
+
+.button{
+    width: 200px;
+    font-size: 24px;
+    padding: 8px;
+    border: none;
+    border-radius: 5%;
+    font-family: 'Montserrat';
+}
+
+.normal{
+    color: #FFFFFF;
+    background-color: #464375;
+    transition-duration: 0.8s;
+}
+
+.normal:hover{
+    background-color: #6762BC;
+}
+
+.fishing{
+    color: #FFFFFF;
+    background-color: #00C093;
+    font-weight: 700;
+    transition-duration: 0.8s;
+}
+
+.fishing:hover{
+    color: #FFFFFF;
+    background-color: #01FFC3;
+}
+
+.card-banner{
+    position: absolute;
+    width: 480px;
+    height: 660px;
+    right: 0px;
+    top: 120px;
+    background: rgba(72, 143, 189, 0.72);
+}
+
+.card-baloons{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.baloon{
+    width: 400px;
+    margin-top: 40px;
+}
+
+.card-message{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30%;
+}
+
+.card-message p{
+    color: #FFFFFF;
+    font-size: 32px;
+}
