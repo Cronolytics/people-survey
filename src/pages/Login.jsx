@@ -1,28 +1,47 @@
-import '../assets/css/style.css'
-import '../assets/css/reset.css'
-import Formulario from "../components/Formulario";
+
+import '../assets/css/login-cadastro.css'
+import CampoTexto from "../components/component-login-cadastro/input-login-component/input-login";
+import Botao from "../components/component-login-cadastro/login-button-component/button-login";
 import logo_survey from '../assets/images/logo-survey.png'
+import { Link } from 'react-router-dom';
 
 
 const Login = () => {
 
-    function mudar_cadastro() {
-        window.location.href = "../pages/Cadastro"
-    }
-
     return (
         <>
             <div className="img-logo">
-                <img src={logo_survey} />
+                 <img src={logo_survey} />
             </div>
 
-            <Formulario />
+
+            <div className='div-container'>
+                <form >
+                    <div className="div-texto">
+                        <p>Acesse sua conta</p>
+                    </div>
+
+                    <CampoTexto label="Email" placeholder="peoplesurvey@gmail.com" />
+                    <CampoTexto label="Senha" placeholder="*******" type="password" />
+
+                    <div className="forget-pass">
+                        
+                        <u>Esqueci minha senha</u>
+                       
+                    </div>
+                    
+                    <Botao>
+                        Entrar
+                    </Botao>
+                </form>
+            </div>
+
 
             <div className='div-cadastro'>
-                <p>Ainda não possui conta? <u onClick={mudar_cadastro}>Faça o cadastro!</u></p>
+                Ainda não possui conta? <Link to="/cadastro"><u>Faça o cadastro!</u></Link>
             </div>
         </>
     );
 }
 
-export default Login;
+export default Login

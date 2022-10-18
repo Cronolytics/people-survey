@@ -1,5 +1,5 @@
 import './banner-style.css'
-import '../home-style.css'
+import '../../../assets/css/home-style.css'
 import '../../../assets/css/reset.css';
 
 import BannerGreenBaloon from '../../../assets/images/home/banner-green-baloon.png'

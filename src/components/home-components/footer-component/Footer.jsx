@@ -1,5 +1,5 @@
 import './footer-style.css'
-import '../home-style.css'
+import '../../../assets/css/home-style.css'
 import '../../../assets/css/reset.css';
 
 function Footer(){

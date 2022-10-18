@@ -1,5 +1,5 @@
 import './call-to-action-style.css'
-import '../home-style.css'
+import '../../../assets/css/home-style.css'
 import '../../../assets/css/reset.css';
 
 import CtaPurpleBaloon from '../../../assets/images/home/call-to-action-purple-baloon.png'

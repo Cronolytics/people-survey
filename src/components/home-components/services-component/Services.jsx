@@ -1,5 +1,5 @@
 import './services-style.css'
-import '../home-style.css'
+import '../../../assets/css/home-style.css'
 import '../../../assets/css/reset.css';
 
 import PeopleSurveyIcon from '../../../assets/images/home/people-survey-icon.png'
