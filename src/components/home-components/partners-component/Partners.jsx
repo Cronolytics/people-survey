@@ -1,9 +1,13 @@
 import './partners-style.css'
 import '../../../assets/css/home-style.css'
 import '../../../assets/css/reset.css';
+import NikeLogo from '../../../assets/images/home/nike-logo.png'
+import ValeLogo from '../../../assets/images/home/valemobi-logo.png'
+import StefaniniLogo from '../../../assets/images/home/stefanini-logo.png'
+import NetshoesLogo from '../../../assets/images/home/netshoes-logo.png'
 
-function Partners(){
-    return(
+function Partners() {
+    return (
         <>
             <div className="flex-centralization">
                 <div className="container">
@@ -12,16 +16,16 @@ function Partners(){
                     </div>
                     <div className="box-partners">
                         <div className="partner-logo">
-                            Parceiro 01
-                        </div>            
-                        <div className="partner-logo">
-                            Parceiro 02
+                            <img src={NikeLogo} />
                         </div>
                         <div className="partner-logo">
-                            Parceiro 03
+                            <img src={ValeLogo} />
                         </div>
                         <div className="partner-logo">
-                            Parceiro 04
+                            <img src={StefaniniLogo} />
+                        </div>
+                        <div className="partner-logo">
+                            <img src={NetshoesLogo} />
                         </div>
                     </div>
                 </div>

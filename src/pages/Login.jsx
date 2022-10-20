@@ -11,7 +11,9 @@ const Login = () => {
     return (
         <>
             <div className="img-logo">
-                 <img src={logo_survey} />
+                <Link to="/">
+                    <img src={logo_survey} />
+                </Link>
             </div>
 
 
@@ -25,11 +27,11 @@ const Login = () => {
                     <CampoTexto label="Senha" placeholder="*******" type="password" />
 
                     <div className="forget-pass">
-                        
+
                         <u>Esqueci minha senha</u>
-                       
+
                     </div>
-                    
+
                     <Botao>
                         Entrar
                     </Botao>

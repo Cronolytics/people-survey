@@ -21,10 +21,9 @@
     width: 160px;
     height: 160px;
     border-radius: 15%;
-    background-image: linear-gradient( to right, #01FFC3, #6762BC);
     display: flex;
     justify-content: center;
     align-items: center;
-    color: #FFFFFF;
-    font-weight: 700;
+
 }
+
