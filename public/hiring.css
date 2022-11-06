@@ -1,0 +1,163 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, b, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
+html{
+    font-family: 'Montserrat', sans-serif !important;
+}
+
+body{
+    background-color: #181818;
+}
+
+.background{
+    background-color: #181818;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.container{
+    width: 80%;
+}
+
+.centralization{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.vertical{
+    flex-direction: column;
+}
+
+.header{
+    color: #FFFFFF;
+    margin: 32px 0px;;
+}
+
+.vagas{
+    width: 100%;
+    background-color: #FFFFFF;
+    padding-bottom: 32px;
+}
+
+.vagasDescricao{
+    background-color: #488FBD;
+    color: #FFFFFF;
+    font-family: 'Montserrat', sans-serif;
+    padding: 32px 0px;
+}
+
+.vagasConteudo{
+    width: 100%;
+}
+
+.tituloVagas{
+    color: #181818;
+    margin: 16px 0px;
+}
+
+.subtituloVagas{
+    color: #181818;
+}
+
+.boxVaga{
+    background-color: #D7D7D7;
+    padding: 5px 16px;
+    margin-bottom: 4px;
+}
+
+.curriculo{
+    background-image: url("./background-img.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding-bottom: 64px;
+}
+
+.curriculoTitulo{
+    color: #FFFFFF;
+    margin: 32px 0px;
+}
+
+.curriculoForms{
+    display: flex;
+    flex-direction: column;
+    background-color: #488FBD;
+    width: 500px;
+
+}
+
+.inputCurriculo{
+    width: 100px;
+}
+
+.boxImportacao{
+    background-color: #488FBD;
+    width: 500px;
+}
+
+.importacaoTitulo{
+    margin: 32px 0px 0px 0px
+}
+
+.inputFileBox{
+    margin: 32px 0px;
+}
+
+.buttonBoxImportação{
+    display: flex;
+    justify-content: end;
+}
+
+.Emptyfooter{
+    height: 100px;
+    width: 100%;
+    padding-bottom: 200px;
+}

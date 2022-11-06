@@ -1,0 +1,141 @@
+
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
+html{
+    font-family: 'Montserrat', sans-serif !important;
+}
+
+.background{
+    background-color: #181818;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.logo{
+    height: 56px;
+    margin-bottom: 16px;
+}
+
+.container{
+    width: 80%;
+}
+
+.centralization{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.vertical{
+    flex-direction: column;
+}
+
+.header{
+    color: #FFFFFF;
+    margin: 32px 0px;;
+}
+
+.vagas{
+    width: 100%;
+    background-color: #FFFFFF;
+    padding-bottom: 32px;
+    border-top-left-radius:15px;
+    border-top-right-radius:15px;
+}
+
+.vagasDescricao{
+    background-color: #488FBD;
+    color: #FFFFFF;
+    font-family: 'Montserrat', sans-serif;
+    padding: 32px 0px;
+    border-top-left-radius:15px;
+    border-top-right-radius:15px;
+}
+
+.vagasConteudo{
+    width: 100%;
+}
+
+.tituloVagas{
+    color: #181818;
+    font-size: 32px;
+    font-weight: 700;
+    margin: 16px 0px;
+}
+
+.subtituloVagas{
+    color: #181818;
+}
+
+.boxVaga{
+    background-color: #D7D7D7;
+    padding: 5px 16px;
+    margin-bottom: 4px;
+}
+
+.curriculo{
+    background-image: url("../../assets/images/hotsite/background-img.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding-bottom: 64px;
+    border-bottom-left-radius:15px;
+    border-bottom-right-radius:15px;
+}
+
+.curriculoTitulo{
+    color: #FFFFFF;
+    font-size: 32px;
+    font-weight: 700;
+    margin: 32px 0px;
+}
+
+.curriculoForms{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 32px;
+    background-color: #488FBD;
+    width: 500px;
+    border-radius: 15px;
+
+}
+
+label{
+    align-self: flex-start;
+    color: #FFFFFF;
+}
+
+.inputCurriculo{
+    width: 100%;
+    border-style: none;
+    margin-bottom: 18px;
+}
+
+.boxImportacao{
+    background-color: #488FBD;
+    width: 500px;
+}
+
+.importacaoTitulo{
+    margin: 32px 0px 0px 0px
+}
+
+.inputFileBox{
+    margin: 32px 0px;
+}
+
+.buttonBoxImportação{
+    display: flex;
+    justify-content: end;
+}
+
+.Emptyfooter{
+    height: 100px;
+    width: 100%;
+}

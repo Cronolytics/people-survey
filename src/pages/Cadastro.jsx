@@ -11,7 +11,7 @@ const Cadastro = () => {
 
     return (
         <>
-           <div className="img-logo">
+            <div className="img-logo">
                 <Link to="/">
                     <img src={logo_survey} />
                 </Link>

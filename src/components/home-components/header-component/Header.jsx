@@ -15,6 +15,9 @@ function Header() {
                     <div className="nav-content">
                         <img src={PeopleSurveyLogotipo} alt={"People Survey Logotipo"} style={{ height: '40px' }} />
                         <div className="nav-final-itens">
+                            <Link to= "/hotsite">
+                                <button className="button-login"> Hotsite </button>
+                            </Link>
                             <Link to="/login">
                                 <button className="button-login"> Login </button>
                             </Link>
