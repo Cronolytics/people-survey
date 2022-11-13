@@ -5,7 +5,7 @@ const Botao = (props) => {
     
     return (
         <>
-            <button  className='botao-login'>{props.children}</button>
+            <button className='botao-login'>{props.children}</button>
         </>
     );
 

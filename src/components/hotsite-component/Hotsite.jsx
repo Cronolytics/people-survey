@@ -1,12 +1,14 @@
 import React from 'react'
-import { Form, Link } from 'react-router-dom';
-import { Input, Icon } from 'semantic-ui-react'
+import { useNavigate } from 'react-router-dom';
 import '../../assets/css/reset.css'
 import './hotsite-style.css'
 import 'semantic-ui-css/semantic.min.css'
 import PeopleSurveyLogotipo from '../../assets/images/hotsite/people-survey-white-logo.png'
 
 function HotsitePage(){
+
+    const navigate = useNavigate();
+
     return(
         <div className="background">
 
@@ -14,9 +16,7 @@ function HotsitePage(){
                 <div className="container">
                     <div className="centralization vertical">
                         <div className="centralization">
-                            <Link to="/">
-                                <img src={PeopleSurveyLogotipo} className="logo" />
-                            </Link>
+                            <img onClick={() => navigate("/")} src={PeopleSurveyLogotipo} className="logo" />
                         </div>
                         <div className="centralization">
                             Venha trabalhar conosco!
@@ -91,9 +91,9 @@ function HotsitePage(){
                                 <label>Breve descrição</label>
                                 <div class="ui left icon input inputCurriculo"><i aria-hidden="true" class="text cursor icon"/><input type="text" placeholder="Breve descrição"/></div>
 
-                                <div>
-                                    <button>Gerar CSV</button>
-                                    <button>Gerar TXT</button>
+                                <div class="buttonArea">
+                                    <button className="ui button">Gerar CSV</button>
+                                    <button className="ui button">Gerar TXT</button>
                                 </div>
                             </div>                              
                         </form>
@@ -107,11 +107,11 @@ function HotsitePage(){
                                     Selecione um arquivo
                                 </div>
                                 <div className="inputFileBox">
-                                    <input type="file" />
-                                </div>                                                      
-                            </div>
-                            <div className="buttonBoxImportação">
-                                <button>Salvar</button>
+                                    <div class="ui left icon input inputCurriculo"><i aria-hidden="true" class="file outline icon"/><input type="file" placeholder="Arquivo de importação"/></div>
+                                </div>   
+                                <div className="buttonBoxImportação">
+                                    <button className="ui button">Salvar</button>
+                                </div>                                                   
                             </div>
                         </div>
                     </div>

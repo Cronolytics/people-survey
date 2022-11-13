@@ -4,9 +4,12 @@ import '../../../assets/css/home-style.css'
 import '../../../assets/css/reset.css';
 
 import PeopleSurveyLogotipo from '../../../assets/images/home/peopleSurveyLogotipo.png'
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 function Header() {
+
+    const navigate = useNavigate();
+
     return (
         <>
 
@@ -15,15 +18,9 @@ function Header() {
                     <div className="nav-content">
                         <img src={PeopleSurveyLogotipo} alt={"People Survey Logotipo"} style={{ height: '40px' }} />
                         <div className="nav-final-itens">
-                            <Link to= "/hotsite">
-                                <button className="button-login"> Hotsite </button>
-                            </Link>
-                            <Link to="/login">
-                                <button className="button-login"> Login </button>
-                            </Link>
-                            <Link to="/cadastro">
-                                <button className="button-cadastro"> Testar grátis </button>
-                            </Link>
+                                <button onClick={() => navigate("/hotsite")} className="button-login"> Hotsite </button>
+                                <button onClick={() => navigate("/login")} className="button-login"> Login </button>
+                                <button onClick={() => navigate("/cadastro")} className="button-cadastro"> Testar grátis </button>
                         </div>
                     </div>
                 </div>

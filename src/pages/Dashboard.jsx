@@ -1,11 +1,11 @@
 import React from "react";
 import '../assets/css/reset.css'
-import { Header } from "semantic-ui-react";
+import ScrollCards from "../components/dashboard-components/scroll-survey-cards-component/ScrollCards";
 
-const Dashboard = () =>{
+function Dashboard(pesquisas){
     return (
-        <>  
-            <Header />
+        <>          
+            <ScrollCards />
         </>
     );
 }

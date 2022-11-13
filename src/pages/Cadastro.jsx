@@ -4,17 +4,17 @@ import '../assets/css/login-cadastro.css'
 import logo_survey from '../assets/images/logo-survey.png'
 import CampoTexto from '../components/component-login-cadastro/input-cadastro-component/input-register';
 import BotaoCadastro from '../components/component-login-cadastro/cadastro-button-component/button-register'
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 
 const Cadastro = () => {
 
+    const navigate = useNavigate();
+
     return (
         <>
             <div className="img-logo">
-                <Link to="/">
-                    <img src={logo_survey} />
-                </Link>
+                <img onClick={() => navigate("/")} src={logo_survey} />
             </div>
             
             <div className='container-cadastro'>
@@ -43,7 +43,7 @@ const Cadastro = () => {
 
 
             <div className='div-cadastro'>
-                Ja sou cadastrado. <Link to="/login"><u>Fazer login</u></Link>
+                Ja sou cadastrado.<u onClick={() => navigate("/login")}>Fazer login</u>
             </div>
 
 
