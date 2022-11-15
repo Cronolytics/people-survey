@@ -14,7 +14,7 @@ const Cadastro = () => {
     return (
         <>
             <div className="img-logo">
-                <img onClick={() => navigate("/")} src={logo_survey} />
+                <img onClick={() => navigate("/")} src={logo_survey} alt='' />
             </div>
             
             <div className='container-cadastro'>

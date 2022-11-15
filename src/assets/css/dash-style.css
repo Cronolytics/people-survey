@@ -1,0 +1,94 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
+.sup-navbar{
+    width: 100vw;
+    height: 50px;
+    background-color: #488FBD;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.avatar{
+    width: 35px;
+    height: 35px;
+    background-color: #FFFFFF;
+    border-radius: 100%;
+    margin-right: 15px;
+}
+
+.dash-background{
+    width: 100vw;
+    height: 100vh;
+    background-color: #E7E7E7;
+    font-family: 'Montserrat' !important;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.container{
+    width: 80%;
+}
+
+.card-content{
+    padding: 0px 32px 32px 32px;
+    margin-top: 32px;
+    background-color: #FFFFFF;
+    border-radius: 15px 15px;
+}
+
+.title{
+    font-size: 32px;
+    padding: 32px 0px 32px 0px;
+}
+
+.scroll-card-box{
+    width: 100%;
+    background-color: #D9D9D9;
+    display: flex;
+    align-items: center;
+    overflow-x: auto;
+    padding: 16px;
+}
+
+.card-responses-charts-area{
+    margin-top: 32px;
+}
+
+.card-responses-charts-box{
+    width: 100%;
+    background-image: linear-gradient(#488FBD, #2C546F);
+    display: flex;
+    align-items: center;
+    overflow-x: auto;
+    padding: 16px;
+    
+}
+
+.responses-box{
+    width: 60%;
+}
+
+.charts-box{
+    width: 40%;
+}
+
+.card-responses-charts-box .title{
+    color: #FFFFFF;
+}
+
+.seletor-perguntas-box{
+    width: 40%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.square{
+    width: 38px;
+}
+
+.contador-pergunta{
+    padding: 16px;
+}

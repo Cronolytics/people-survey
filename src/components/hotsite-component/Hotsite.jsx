@@ -16,7 +16,7 @@ function HotsitePage(){
                 <div className="container">
                     <div className="centralization vertical">
                         <div className="centralization">
-                            <img onClick={() => navigate("/")} src={PeopleSurveyLogotipo} className="logo" />
+                            <img onClick={() => navigate("/")} src={PeopleSurveyLogotipo} className="logo" alt=''/>
                         </div>
                         <div className="centralization">
                             Venha trabalhar conosco!
@@ -57,25 +57,25 @@ function HotsitePage(){
                         <form className="ui form">
                             <div className='curriculoForms'>
                             <label>Nome Completo</label>
-                                <div class="ui left icon input inputCurriculo"><i aria-hidden="true" class="user plus icon"/><input type="text" placeholder="Nome Completo"/></div>
+                                <div className="ui left icon input inputCurriculo"><i aria-hidden="true" className="user plus icon"/><input type="text" placeholder="Nome Completo"/></div>
 
                                 <label>CPF</label>
-                                <div class="ui left icon input inputCurriculo"><i aria-hidden="true" class="file outline icon"/><input type="text" placeholder="CPF"/></div>
+                                <div className="ui left icon input inputCurriculo"><i aria-hidden="true" className="file outline icon"/><input type="text" placeholder="CPF"/></div>
 
                                 <label>Data de nascimento</label>
-                                <div class="ui left icon input inputCurriculo"><i aria-hidden="true" class="birthday cake icon"/><input type="text" placeholder="Data de nascimento"/></div>
+                                <div className="ui left icon input inputCurriculo"><i aria-hidden="true" className="birthday cake icon"/><input type="text" placeholder="Data de nascimento"/></div>
 
                                 <label>Celular</label>
-                                <div class="ui left icon input inputCurriculo"><i aria-hidden="true" class="text telephone icon"/><input type="text" placeholder="Celular"/></div>
+                                <div className="ui left icon input inputCurriculo"><i aria-hidden="true" className="text telephone icon"/><input type="text" placeholder="Celular"/></div>
 
                                 <label>E-mail</label>
-                                <div class="ui left icon input inputCurriculo"><i aria-hidden="true" class="at icon"/><input type="text" placeholder="Email"/></div>
+                                <div className="ui left icon input inputCurriculo"><i aria-hidden="true" className="at icon"/><input type="text" placeholder="Email"/></div>
 
                                 <label>Endereço</label>
-                                <div class="ui left icon input inputCurriculo"><i aria-hidden="true" class="location arrow icon"/><input type="text" placeholder="Endereço"/></div>
+                                <div className="ui left icon input inputCurriculo"><i aria-hidden="true" className="location arrow icon"/><input type="text" placeholder="Endereço"/></div>
 
                                 <label>Vaga</label>
-                                <div class="ui left icon input inputCurriculo"><i aria-hidden="true" class="add icon"/><input type="text" list="vagas" placeholder="Vaga escolhida"/></div>
+                                <div className="ui left icon input inputCurriculo"><i aria-hidden="true" className="add icon"/><input type="text" list="vagas" placeholder="Vaga escolhida"/></div>
                                 <datalist id="vagas">
                                     <option value="English">English</option>
                                     <option value="Chinese">Chinese</option>
@@ -83,15 +83,15 @@ function HotsitePage(){
                                 </datalist>
 
                                 <label>Estado Civil</label>
-                                <div class="ui left icon input inputCurriculo"><i aria-hidden="true" class="user plus icon"/><input type="text" placeholder="Estado civil"/></div>
+                                <div className="ui left icon input inputCurriculo"><i aria-hidden="true" className="user plus icon"/><input type="text" placeholder="Estado civil"/></div>
 
                                 <label>Perfil do Linkedin</label>
-                                <div class="ui left icon input inputCurriculo"><i aria-hidden="true" class="user plus icon"/><input type="text" placeholder="linkedin.com/seu-perfil"/></div>
+                                <div className="ui left icon input inputCurriculo"><i aria-hidden="true" className="user plus icon"/><input type="text" placeholder="linkedin.com/seu-perfil"/></div>
 
                                 <label>Breve descrição</label>
-                                <div class="ui left icon input inputCurriculo"><i aria-hidden="true" class="text cursor icon"/><input type="text" placeholder="Breve descrição"/></div>
+                                <div className="ui left icon input inputCurriculo"><i aria-hidden="true" className="text cursor icon"/><input type="text" placeholder="Breve descrição"/></div>
 
-                                <div class="buttonArea">
+                                <div className="buttonArea">
                                     <button className="ui button">Gerar CSV</button>
                                     <button className="ui button">Gerar TXT</button>
                                 </div>

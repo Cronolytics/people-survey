@@ -16,16 +16,16 @@ function Partners() {
                     </div>
                     <div className="box-partners">
                         <div className="partner-logo">
-                            <img src={NikeLogo} />
+                            <img src={NikeLogo} alt=''/>
                         </div>
                         <div className="partner-logo">
-                            <img src={ValeLogo} />
+                            <img src={ValeLogo} alt=''/>
                         </div>
                         <div className="partner-logo">
-                            <img src={StefaniniLogo} />
+                            <img src={StefaniniLogo} alt=''/>
                         </div>
                         <div className="partner-logo">
-                            <img src={NetshoesLogo} />
+                            <img src={NetshoesLogo} alt=''/>
                         </div>
                     </div>
                 </div>

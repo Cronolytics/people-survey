@@ -11,7 +11,7 @@ function CallToAction(){
                 <div className="container">
                     <div className="cta-content">
                         <div className="call-to-action-baloon">
-                            <img style={{width: '100%'}} src={CtaPurpleBaloon} alt={"Agora chegou a hora de você criar sua pesquisa!"}/>
+                            <img style={{width: '100%'}} src={CtaPurpleBaloon} alt="Agora chegou a hora de você criar sua pesquisa!"/>
                         </div>
 
                         <div className="button-area">
