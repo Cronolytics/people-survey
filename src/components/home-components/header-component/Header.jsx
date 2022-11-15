@@ -26,8 +26,8 @@ function Header() {
                 </div>
             </nav>
 
-            <nav class="navbar secundaria flex-centralization">
-                <div class="container">
+            <nav className="navbar secundaria flex-centralization">
+                <div className="container">
                     Que tal descobrir algo novo ?
                 </div>
             </nav>

@@ -107,7 +107,7 @@ function HotsitePage(){
                                     Selecione um arquivo
                                 </div>
                                 <div className="inputFileBox">
-                                    <div class="ui left icon input inputCurriculo"><i aria-hidden="true" class="file outline icon"/><input type="file" placeholder="Arquivo de importação"/></div>
+                                    <div className="ui left icon input inputCurriculo"><i aria-hidden="true" className="file outline icon"/><input type="file" placeholder="Arquivo de importação"/></div>
                                 </div>   
                                 <div className="buttonBoxImportação">
                                     <button className="ui button">Salvar</button>

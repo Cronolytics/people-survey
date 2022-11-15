@@ -2,6 +2,7 @@ import React from "react";
 import '../assets/css/reset.css'
 import '../assets/css/dash-style.css'
 import CardPesquisa from "../components/dashboard-components/card-pesquisa-component/CardPesquisa";
+import { Pie } from 'react-chartjs-2';
 
 function Dashboard(){
 
@@ -58,67 +59,67 @@ function Dashboard(){
         }
     ]
 
-    var respostasPesquisas = [
-        {
-            id: 1,
-            perguntas: [
-                {
-                    id: 1,
-                    titulo: "Qual a capital de São Paulo ?",
-                    componente: {
-                        nomeComponente: "alternativa",
-                        multiEsc: false
-                    },
-                    respostas:[
-                        {
-                            label: "São Paulo",
-                            qtdRespostas: 200
-                        },
-                        {
-                            label: "Diadema",
-                            qtdRespostas: 80
-                        }
-                    ]
-                },
-                {
-                    id: 2,
-                    titulo: "Você compra criptomoedas ?",
-                    componente: {
-                        nomeComponente: "alternativa",
-                        multiEsc: false
-                    },
-                    respostas:[
-                        {
-                            label: "Sim",
-                            qtdRespostas: 80
-                        },
-                        {
-                            label: "Não",
-                            qtdRespostas: 200
-                        }
-                    ]
-                },
-                {
-                    id: 3,
-                    titulo: "Você está desempregado ?",
-                    componente: {
-                        nomeComponente: "alternativa",
-                        multiEsc: false
-                    },
-                    respostas:[
-                        {
-                            label: "Sim",
-                            qtdRespostas: 95
-                        },
-                        {
-                            label: "Não",
-                            qtdRespostas: 95
-                        }
-                    ]
-                },
-            ]
-        }
-    ];
+    //var respostasPesquisas = [
+    //    {
+    //        id: 1,
+    //        perguntas: [
+    //            {
+    //                id: 1,
+    //                titulo: "Qual a capital de São Paulo ?",
+    //                componente: {
+    //                    nomeComponente: "alternativa",
+    //                    multiEsc: false
+    //                },
+    //                respostas:[
+    //                    {
+    //                        label: "São Paulo",
+    //                        qtdRespostas: 200
+    //                    },
+    //                    {
+    //                        label: "Diadema",
+    //                        qtdRespostas: 80
+    //                    }
+    //                ]
+    //            },
+    //            {
+    //                id: 2,
+    //                titulo: "Você compra criptomoedas ?",
+    //                componente: {
+    //                    nomeComponente: "alternativa",
+    //                    multiEsc: false
+    //                },
+    //                respostas:[
+    //                    {
+    //                        label: "Sim",
+    //                        qtdRespostas: 80
+    //                    },
+    //                    {
+    //                        label: "Não",
+    //                        qtdRespostas: 200
+    //                    }
+    //                ]
+    //            },
+    //            {
+    //                id: 3,
+    //                titulo: "Você está desempregado ?",
+    //                componente: {
+    //                    nomeComponente: "alternativa",
+    //                    multiEsc: false
+    //                },
+    //                respostas:[
+    //                    {
+    //                        label: "Sim",
+    //                        qtdRespostas: 95
+    //                    },
+    //                    {
+    //                        label: "Não",
+    //                        qtdRespostas: 95
+    //                    }
+    //                ]
+    //            },
+    //        ]
+    //    }
+    //];
 
     return (
         <>
@@ -162,14 +163,37 @@ function Dashboard(){
                             </div>
                             <div className="card-responses-charts-box">
                                 <div className="responses-box">
-                                    <button className="square ui icon button"><i aria-hidden="true" class="left arrow icon"></i></button>
+                                    <button className="square ui icon button"><i aria-hidden="true" className="left arrow icon"></i></button>
                                         <span className="title contador-pergunta">Pergunta 01</span>
-                                    <button className="square ui icon button"><i aria-hidden="true" class="right arrow icon"></i></button>
+                                    <button className="square ui icon button"><i aria-hidden="true" className="right arrow icon"></i></button>
                                 </div>
 
                                 <div className="chart-box">
                                     <div>
-
+                                    <Pie    data={{
+                                                labels: ['Red', 'Blue', 'Yellow'],
+                                                datasets: [{ 
+                                                    label: '# of votes',                             
+                                                    data: [300, 50, 100],
+                                                    backgroundColor: [
+                                                        'rgb(255, 99, 132)',
+                                                        'rgb(54, 162, 235)',
+                                                        'rgb(255, 205, 86)'
+                                                    ],
+                                                    borderColor: [
+                                                        'rgb(255, 99, 132)',
+                                                        'rgb(54, 162, 235)',
+                                                        'rgb(255, 205, 86)'
+                                                    ],
+                                                    hoverOffset: 4
+                                                }]
+                                            }}
+                                            height={300}
+                                            width={300}
+                                            options={{
+                                                maintainAspectRatio: false,
+                                            }}
+                                        />
                                     </div>
                                 </div>                                
                             </div>                         
