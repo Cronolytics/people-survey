@@ -2,9 +2,13 @@ import React from "react";
 import '../assets/css/reset.css'
 import '../assets/css/dash-style.css'
 import CardPesquisa from "../components/dashboard-components/card-pesquisa-component/CardPesquisa";
+import Navbar from "../components/menu-conponents/NavbarMenu";
+import { Routes, Route } from 'react-router-dom';
+import CriarPesquisa from "./CriarPesquisa";
+import MinhasPesquisas from "./MinhasPesquisas";
 //import { Pie } from 'react-chartjs-2';
 
-function Dashboard(){
+function Dashboard() {
 
     const pesquisasResumidas = [
         {
@@ -123,9 +127,19 @@ function Dashboard(){
 
     return (
         <>
-            <div className="sup-navbar">
+            {/* <div className="sup-navbar">
                 <div className="avatar"></div>
+            </div> */}
+
+            <div>
+                <Navbar />
+                <Routes>
+                    <Route path='/minhasPesquisas' component={MinhasPesquisas} />
+                    <Route path='/criarPesquisa' component={CriarPesquisa} />
+                </Routes>
             </div>
+
+
 
             <div className="dash-background">
                 <div className="container">
@@ -133,25 +147,25 @@ function Dashboard(){
                         <div className="title">
                             Pesquisas em andamento
                         </div>
-                        <div className="scroll-card-box">              
+                        <div className="scroll-card-box">
                             {
                                 pesquisasResumidas.map((pesquisa, index) => {
-                                    return (  
+                                    return (
                                         <>
-                                        <div>
-                                            <CardPesquisa
-                                                key={pesquisa.id}
-                                                isSelecionado={pesquisasResumidas[0] === pesquisa ? true : false}
-                                                id={pesquisa.id}
-                                                tipo={pesquisa.tipo}
-                                                titulo={pesquisa.titulo}
-                                                qtdPerguntas={pesquisa.qtdPerguntas}
-                                                qtdPessoas={pesquisa.qtdPessoas}
-                                                qtdRespostas={pesquisa.qtdRespostas}
-                                                status={pesquisa.status}
-                                            />     
-                                        </div>
-                                        </>                                                   
+                                            <div>
+                                                <CardPesquisa
+                                                    key={pesquisa.id}
+                                                    isSelecionado={pesquisasResumidas[0] === pesquisa ? true : false}
+                                                    id={pesquisa.id}
+                                                    tipo={pesquisa.tipo}
+                                                    titulo={pesquisa.titulo}
+                                                    qtdPerguntas={pesquisa.qtdPerguntas}
+                                                    qtdPessoas={pesquisa.qtdPessoas}
+                                                    qtdRespostas={pesquisa.qtdRespostas}
+                                                    status={pesquisa.status}
+                                                />
+                                            </div>
+                                        </>
                                     );
                                 })
                             }
@@ -164,18 +178,18 @@ function Dashboard(){
                             <div className="card-responses-charts-box">
                                 <div className="responses-box">
                                     <button className="square ui icon button"><i aria-hidden="true" className="left arrow icon"></i></button>
-                                        <span className="title contador-pergunta">Pergunta 01</span>
+                                    <span className="title contador-pergunta">Pergunta 01</span>
                                     <button className="square ui icon button"><i aria-hidden="true" className="right arrow icon"></i></button>
                                 </div>
 
                                 <div className="chart-box">
                                     <div>
-                                        
+
                                     </div>
-                                </div>                                
-                            </div>                         
+                                </div>
+                            </div>
                         </div>
-                    </div>               
+                    </div>
                 </div>
             </div>
         </>

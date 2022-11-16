@@ -16,35 +16,49 @@ const Cadastro = () => {
             <div className="img-logo">
                 <img onClick={() => navigate("/")} src={logo_survey} alt='' />
             </div>
-            
+
             <div className='container-cadastro'>
                 <form >
                     <div className="div-texto-cadastro">
                         <p>Crie sua conta</p>
                     </div>
 
+                    <label>E-mail</label>
+                    <div className="ui left icon input inputCurriculo"><i aria-hidden="true" /><input onChange={(e) => setEmail(e.target.value)} type="text" placeholder="Email" /></div>
 
-                    <CampoTexto label="Nome" placeholder="Nome" />
-                    <CampoTexto label="Email" placeholder="Email" />
-                    <CampoTexto label="Cep" placeholder="13165-000" />
-                    <CampoTexto label="Senha" placeholder="*****" />
-                    <CampoTexto label="Confirme sua senha" placeholder="*****" />
-                    <CampoTexto label="Conta Bâncaria" placeholder="123456-78" />
-                    <CampoTexto label="Agência" placeholder="11" />
-                    <CampoTexto label="CNPJ*" placeholder="XX.XXX.XXX/0001-XX" />
+                    <label>Senha</label>
+                    <div className="ui left icon input inputCurriculo"><i aria-hidden="true" /><input onChange={(e) => setSenha(e.target.value)} type="password" placeholder="Senha" /></div>
 
+                    <label>E-mail</label>
+                    <div className="ui left icon input inputCurriculo"><i aria-hidden="true" /><input onChange={(e) => setEmail(e.target.value)} type="text" placeholder="Email" /></div>
 
-                    <BotaoCadastro>
-                        Cadastrar
-                    </BotaoCadastro>
+                    <label>Senha</label>
+                    <div className="ui left icon input inputCurriculo"><i aria-hidden="true" /><input onChange={(e) => setSenha(e.target.value)} type="password" placeholder="Senha" /></div>
+
+                    <label>Senha</label>
+                    <div className="ui left icon input inputCurriculo"><i aria-hidden="true" /><input onChange={(e) => setSenha(e.target.value)} type="password" placeholder="Senha" /></div>
+
+                    <label>Senha</label>
+                    <div className="ui left icon input inputCurriculo"><i aria-hidden="true" /><input onChange={(e) => setSenha(e.target.value)} type="password" placeholder="Senha" /></div>
+
+                    <label>Senha</label>
+                    <div className="ui left icon input inputCurriculo"><i aria-hidden="true" /><input onChange={(e) => setSenha(e.target.value)} type="password" placeholder="Senha" /></div>
+
+                    <label>Senha</label>
+                    <div className="ui left icon input inputCurriculo"><i aria-hidden="true" /><input onChange={(e) => setSenha(e.target.value)} type="password" placeholder="Senha" /></div>
+
+                    <label>Senha</label>
+                    <div className="ui left icon input inputCurriculo"><i aria-hidden="true" /><input onChange={(e) => setSenha(e.target.value)} type="password" placeholder="Senha" /></div>
+
+                    <div>
+                        <button onClick={() => verifyCredentials()} className="botao-login">Entrar</button>
+                    </div>
 
                 </form>
             </div>
 
 
-            <div className='div-cadastro'>
-                Ja sou cadastrado.<u onClick={() => navigate("/login")}>Fazer login</u>
-            </div>
+
 
 
 

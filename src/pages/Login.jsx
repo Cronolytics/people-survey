@@ -68,14 +68,14 @@ const Login = () => {
                     <div className="ui left icon input inputCurriculo"><i aria-hidden="true" className="at icon" /><input onChange={(e) => setEmail(e.target.value)} type="text" placeholder="Email" /></div>
 
                     <label>Senha</label>
-                    <div className="ui left icon input inputCurriculo"><i aria-hidden="true" className="at icon" /><input onChange={(e) => setSenha(e.target.value)} type="password" placeholder="Senha" /></div>
+                    <div className="ui left icon input inputCurriculo"><i aria-hidden="true" className="lock icon" /><input onChange={(e) => setSenha(e.target.value)} type="password" placeholder="Senha" /></div>
 
                     <div className="forget-pass">
                         <u>Esqueci minha senha</u>
                     </div>
 
                     <div>
-                        <button onClick={() => verifyCredentials()} className="ui button">Entrar</button>
+                        <button onClick={() => verifyCredentials()} className="botao-login">Entrar</button>
                     </div>
 
                 </div>
