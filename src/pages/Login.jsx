@@ -1,13 +1,37 @@
-
 import '../assets/css/login-cadastro.css'
-import CampoTexto from "../components/component-login-cadastro/input-login-component/input-login";
-import Botao from "../components/component-login-cadastro/login-button-component/button-login";
+//import CampoTexto from "../components/component-login-cadastro/input-login-component/input-login";
+//import Botao from "../components/component-login-cadastro/login-button-component/button-login";
 import logo_survey from '../assets/images/logo-survey.png'
 import { useNavigate} from 'react-router-dom';
+import apiDev from '../api'
+import { useState } from 'react';
 
 const Login = () => {
 
     const navigate = useNavigate();
+
+    const [email, setEmail] = useState("");
+    const [senha, setSenha] = useState("");
+
+    //pesquisas toastfy para alertas.
+
+    async function verifyCredentials() {
+        try {
+            const user = await apiDev.post('/empresa/login', {email,senha});
+    
+        sessionStorage.clear();
+        sessionStorage.setItem("survey-manager", JSON.stringify(user.data));
+        alert("login deu certo.")
+        navigate('/dashboard');
+        }
+        catch (error) {
+            console.error(error);
+            alert(email)
+            alert(senha)
+            alert("login deu errado.")
+            //setOpenFailedAlert(true);
+        }
+    }
 
     return (
         <>
@@ -22,15 +46,18 @@ const Login = () => {
                         <p>Acesse sua conta</p>
                     </div>
 
-                    <CampoTexto label="Email" placeholder="peoplesurvey@gmail.com" />
-                    <CampoTexto label="Senha" placeholder="*******" type="password" />
+                    <label>E-mail</label>
+                    <div className="ui left icon input inputCurriculo"><i aria-hidden="true" className="at icon"/><input onChange={(e) => setEmail(e.target.value)} type="text" placeholder="Email"/></div>
+
+                    <label>Senha</label>
+                    <div className="ui left icon input inputCurriculo"><i aria-hidden="true" className="at icon"/><input onChange={(e) => setSenha(e.target.value)} type="password" placeholder="Senha"/></div>
 
                     <div className="forget-pass">
                         <u>Esqueci minha senha</u>
                     </div>
 
-                    <div onClick={() => navigate("/dashboard")}>
-                    <Botao>Entrar</Botao>
+                    <div>
+                        <button onClick={() => verifyCredentials()} className="ui button">Entrar</button>
                     </div>
                     
                 </div>
