@@ -2,9 +2,12 @@ import '../assets/css/login-cadastro.css'
 //import CampoTexto from "../components/component-login-cadastro/input-login-component/input-login";
 //import Botao from "../components/component-login-cadastro/login-button-component/button-login";
 import logo_survey from '../assets/images/logo-survey.png'
-import { useNavigate} from 'react-router-dom';
-import apiDev from '../api'
+import { useNavigate } from 'react-router-dom';
+import api from '../api'
 import { useState } from 'react';
+
+import Toastify from 'toastify-js'
+import "toastify-js/src/toastify.css"
 
 const Login = () => {
 
@@ -13,23 +16,38 @@ const Login = () => {
     const [email, setEmail] = useState("");
     const [senha, setSenha] = useState("");
 
-    //pesquisas toastfy para alertas.
-
     async function verifyCredentials() {
         try {
-            const user = await apiDev.post('/empresa/login', {email,senha});
-    
-        sessionStorage.clear();
-        sessionStorage.setItem("survey-manager", JSON.stringify(user.data));
-        alert("login deu certo.")
-        navigate('/dashboard');
-        }
-        catch (error) {
-            console.error(error);
-            alert(email)
-            alert(senha)
-            alert("login deu errado.")
-            //setOpenFailedAlert(true);
+            const user = await api.post('/empresa/login', {
+                email,
+                senha
+            });
+
+            sessionStorage.clear();
+            sessionStorage.setItem("survey-manager", JSON.stringify(user.data));
+
+            Toastify({
+                text: "Login bem sucedido!",
+                duration: 3000,
+                close: true,
+                gravity: "top", // `top` or `bottom`
+                position: "right", // `left`, `center` or `right`
+                stopOnFocus: true, // Prevents dismissing of toast on hover
+                style: { background: "linear-gradient(to right, #00b09b, #96c93d)" }
+            }).showToast();
+
+            navigate('/dashboard');
+        } catch (error) {
+
+            Toastify({
+                text: "Ops! E-mail ou senha inválidos...",
+                duration: 3000,
+                close: true,
+                gravity: "top", // `top` or `bottom`
+                position: "right", // `left`, `center` or `right`
+                stopOnFocus: true, // Prevents dismissing of toast on hover
+                style: { background: "linear-gradient(to right, #a8323c, #e00d1f)" }
+            }).showToast();
         }
     }
 
@@ -47,10 +65,10 @@ const Login = () => {
                     </div>
 
                     <label>E-mail</label>
-                    <div className="ui left icon input inputCurriculo"><i aria-hidden="true" className="at icon"/><input onChange={(e) => setEmail(e.target.value)} type="text" placeholder="Email"/></div>
+                    <div className="ui left icon input inputCurriculo"><i aria-hidden="true" className="at icon" /><input onChange={(e) => setEmail(e.target.value)} type="text" placeholder="Email" /></div>
 
                     <label>Senha</label>
-                    <div className="ui left icon input inputCurriculo"><i aria-hidden="true" className="at icon"/><input onChange={(e) => setSenha(e.target.value)} type="password" placeholder="Senha"/></div>
+                    <div className="ui left icon input inputCurriculo"><i aria-hidden="true" className="at icon" /><input onChange={(e) => setSenha(e.target.value)} type="password" placeholder="Senha" /></div>
 
                     <div className="forget-pass">
                         <u>Esqueci minha senha</u>
@@ -59,10 +77,9 @@ const Login = () => {
                     <div>
                         <button onClick={() => verifyCredentials()} className="ui button">Entrar</button>
                     </div>
-                    
+
                 </div>
             </div>
-
 
             <div className='div-cadastro'>
                 Ainda não possui conta? <u onClick={() => navigate("/cadastro")}>Faça o cadastro!</u>
