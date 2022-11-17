@@ -6,7 +6,7 @@ import { IconContext } from 'react-icons';
 import './NavbarMenu.css';
 import LogoSurvey from '../../assets/images/logo-survey-black-white.png'
 
-function Navbar() {
+function Menu() {
   const [sidebar, setSidebar] = useState(false);
 
   const showSidebar = () => setSidebar(!sidebar);
@@ -16,11 +16,10 @@ function Navbar() {
   return (
     <>
       <IconContext.Provider value={{ color: '#fff' }}>
-        <div className='navbar-menu'>
+
           <Link to='#' className='menu-bars'>
             <FaIcons.FaBars onClick={showSidebar} />
           </Link>
-        </div>
 
         <nav className={sidebar ? 'nav-menu active' : 'nav-menu'}>
           <ul className='nav-menu-items' onClick={showSidebar}>
@@ -41,4 +40,4 @@ function Navbar() {
   );
 }
 
-export default Navbar;
+export default Menu;

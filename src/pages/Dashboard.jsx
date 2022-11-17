@@ -1,8 +1,9 @@
 import React from "react";
 import '../assets/css/reset.css'
 import '../assets/css/dash-style.css'
+import '../assets/css/style.css'
 import CardPesquisa from "../components/dashboard-components/card-pesquisa-component/CardPesquisa";
-import Navbar from "../components/menu-conponents/NavbarMenu";
+import Menu from "../components/menu-conponents/NavbarMenu";
 
 //import { Pie } from 'react-chartjs-2';
 
@@ -125,8 +126,8 @@ function Dashboard() {
 
     return (
         <>
-            <div>
-                <Navbar />
+            <div className="navbar-menu-dashboard">
+                <Menu />
             </div>
 
             <div className="dash-background">

@@ -31,8 +31,13 @@ html{
     width: 200px;
     display: flex;
     justify-content: space-between;
-}
-
+}.navbar-menu {
+    background-color: #488FBD;
+    height: 80px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
 .button-login{
     width: fit-content;
     font-size: 16px;
@@ -341,3 +346,18 @@ html{
     margin: 10px;
 }
 
+.navbar-menu {
+    background-color: #488FBD;
+    height: 80px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
+
+  .navbar-menu-dashboard {
+    background-color: #488FBD;
+    height: 80px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
