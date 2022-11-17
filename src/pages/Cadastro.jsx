@@ -19,43 +19,46 @@ function Cadastro(){
     const [cnpj, setCnpj] = useState("");
 
     async function cadastrarEmpresa() {
-        try {
-            const user = await api.post("/empresa", {
-            nome,
-            email,
-            senha,
-            telefone,
-            cep,
-            cnpj,
-        });
 
-        console.log(user.data);
-        sessionStorage.clear();
-        sessionStorage.setItem("survey-manager", JSON.stringify(user.data));
-
-        Toastify({
-            text: "Cadastro bem sucedido!",
-            duration: 3000,
-            close: true,
-            gravity: "top", // `top` or `bottom`
-            position: "right", // `left`, `center` or `right`
-            stopOnFocus: true, // Prevents dismissing of toast on hover
-            style: { background: "linear-gradient(to right, #00b09b, #96c93d)" },
-        }).showToast();
-
-        navigate("/login");
-        } catch (error) {
-            console.log(error);
+        if(confirmarsenha === senha){
+            try {
+                const user = await api.post("/empresa", {
+                nome,
+                email,
+                senha,
+                telefone,
+                cep,
+                cnpj,
+            });
+    
+            console.log(user.data);
+            sessionStorage.clear();
+            sessionStorage.setItem("survey-manager", JSON.stringify(user.data));
+    
             Toastify({
-                text: "Ops! Algo deu errado...",
+                text: "Cadastro bem sucedido!",
                 duration: 3000,
                 close: true,
                 gravity: "top", // `top` or `bottom`
                 position: "right", // `left`, `center` or `right`
                 stopOnFocus: true, // Prevents dismissing of toast on hover
-                style: { background: "linear-gradient(to right, #a8323c, #e00d1f)" },
+                style: { background: "linear-gradient(to right, #00b09b, #96c93d)" },
             }).showToast();
-        }
+    
+            navigate("/login");
+            } catch (error) {
+                console.log(error);
+                Toastify({
+                    text: "Ops! Algo deu errado...",
+                    duration: 3000,
+                    close: true,
+                    gravity: "top", // `top` or `bottom`
+                    position: "right", // `left`, `center` or `right`
+                    stopOnFocus: true, // Prevents dismissing of toast on hover
+                    style: { background: "linear-gradient(to right, #a8323c, #e00d1f)" },
+                }).showToast();
+            }
+        }       
     }
 
     

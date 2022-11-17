@@ -3,9 +3,7 @@ import '../assets/css/reset.css'
 import '../assets/css/dash-style.css'
 import CardPesquisa from "../components/dashboard-components/card-pesquisa-component/CardPesquisa";
 import Navbar from "../components/menu-conponents/NavbarMenu";
-import { Routes, Route } from 'react-router-dom';
-import CriarPesquisa from "./CriarPesquisa";
-import MinhasPesquisas from "./MinhasPesquisas";
+
 //import { Pie } from 'react-chartjs-2';
 
 function Dashboard() {
@@ -127,19 +125,9 @@ function Dashboard() {
 
     return (
         <>
-            {/* <div className="sup-navbar">
-                <div className="avatar"></div>
-            </div> */}
-
             <div>
                 <Navbar />
-                <Routes>
-                    <Route path='/minhasPesquisas' component={MinhasPesquisas} />
-                    <Route path='/criarPesquisa' component={CriarPesquisa} />
-                </Routes>
             </div>
-
-
 
             <div className="dash-background">
                 <div className="container">

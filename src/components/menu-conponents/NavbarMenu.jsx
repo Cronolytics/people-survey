@@ -29,10 +29,10 @@ function Navbar() {
                 <AiIcons.AiOutlineClose />
               </Link>
             </li>
-              <img src={LogoSurvey} onClick={() => navigate('/')} className='logo-menu' />
+              <img src={LogoSurvey} onClick={() => navigate('/')} className='logo-menu' alt=''/>
             <div className="opt-box">
-                <div className="txt-opt" onClick={() => navigate('/criarpesquisa')}> <a> Criar pesquisa</a> </div>
-                <div className="txt-opt" onClick={() => navigate('/minhaspesquisas')}><a>Minhas Pesquisas</a> </div>
+                <div className="txt-opt" onClick={() => navigate('/criar-pesquisa')}><span>Criar pesquisa</span> </div>
+                <div className="txt-opt" onClick={() => navigate('/minhas-pesquisas')}><span>Minhas Pesquisas</span></div>
             </div>
           </ul>
         </nav>
