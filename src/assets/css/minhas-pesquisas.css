@@ -1,0 +1,13 @@
+.navbar-menu {
+    background-color: #488FBD;
+    height: 80px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
+
+  .titlle-nav h1{
+    color: white;
+    margin-left: 9em;
+  }
+  
