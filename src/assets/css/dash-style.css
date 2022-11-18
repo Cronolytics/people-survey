@@ -1,11 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
 
-.sup-navbar{
-    width: 100vw;
-    height: 50px;
+.navbar-menu-dashboard{
     background-color: #488FBD;
+    height: 80px;
     display: flex;
-    justify-content: flex-end;
+    justify-content: flex-start;
     align-items: center;
 }
 
@@ -17,7 +16,7 @@
     margin-right: 15px;
 }
 
-.dash-background{
+.gray-background{
     width: 100vw;
     height: 100vh;
     background-color: #E7E7E7;
@@ -26,6 +25,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    box-sizing: border-box;
 }
 
 .container{

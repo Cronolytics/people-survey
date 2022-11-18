@@ -69,7 +69,7 @@ function Cadastro(){
             </div>
 
             <div className="container-cadastro">
-                <form>
+                <form className="cadastroForm">
                     <div className="div-texto-cadastro">
                         <p>Crie sua conta</p>
                     </div>

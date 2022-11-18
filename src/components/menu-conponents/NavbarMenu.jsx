@@ -30,6 +30,7 @@ function Menu() {
             </li>
               <img src={LogoSurvey} onClick={() => navigate('/')} className='logo-menu' alt=''/>
             <div className="opt-box">
+                <div className="txt-opt" onClick={() => navigate('/dashboard')}><span>Dashboard</span> </div>
                 <div className="txt-opt" onClick={() => navigate('/criar-pesquisa')}><span>Criar pesquisa</span> </div>
                 <div className="txt-opt" onClick={() => navigate('/minhas-pesquisas')}><span>Minhas Pesquisas</span></div>
             </div>

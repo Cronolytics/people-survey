@@ -1,0 +1,20 @@
+.np-container{
+    width: 80%;
+}
+
+.card-conteudo{
+    width: 100%;
+    background-color: #FFFFFF;
+    margin-top: 32px;
+    padding: 32px;
+}
+
+.area-tipo-pesquisa{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.area-tipo-item{
+    margin: 8px 8px 8px 0px;
+}

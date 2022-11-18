@@ -130,7 +130,7 @@ function Dashboard() {
                 <Menu />
             </div>
 
-            <div className="dash-background">
+            <div className="gray-background">
                 <div className="container">
                     <div className="card-content">
                         <div className="title">
