@@ -2,23 +2,31 @@
 
 .card{
     background-color: #FFFFFF;
-    width: 200px;
-    min-width: 200px;
-    max-width: 200px;
-    height: 200px;
+    width: 270px;
+    min-width: 270px;
+    max-width: 270px;
+    height: 270px;
     font-family: 'Montserrat', sans-serif;
 }
 
 .selecionado{
-    margin-right: 16px;
+    margin-right: 56px;
+    margin-top: 46px;
     padding: 4px;
+    /* width: 200px; */
+    min-width: 290px;
+    max-width: 220px;
     cursor: pointer;
     border: 6px solid #488FBD;
 }
 
 .outside{
-    margin-right: 16px;
+    margin-right: 56px;
+    margin-top: 46px;
     padding: 4px;
+    /* width: 200px; */
+    min-width: 290px;
+    max-width: 220px;
     cursor: pointer;
     border: 6px solid #D9D9D9;
 }

@@ -1,13 +1,66 @@
+ /* topo:     margem de 10px */
+ /* direita:  margem de 3px  */
+/* inferior: margem de 30px */
+/* esquerda: margem de 5px  */
+
+.container-minhas-pesquisas {
+    height: 100vh;
+    background-color: #D9D9D9;
+    overflow-y: auto;
+}
+
 .navbar-menu {
     background-color: #488FBD;
     height: 80px;
     display: flex;
     justify-content: flex-start;
     align-items: center;
-  }
+}
 
-  .titlle-nav h1{
+.titlle-nav h1 {
     color: white;
-    margin-left: 9em;
-  }
-  
+    /* margin-left: 7.6em; */
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 2.5em;
+}
+
+.pesquisas-box {
+    padding-top: 50px;
+    padding-left: 400px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.input-box {
+    /* border-top: 10px solid white; */
+    margin-left: 40px;
+    display: flex;
+    flex-wrap: wrap;
+}
+.border{
+    padding-left: 70px;
+    margin-top: 20px;
+    border-width: 5px;
+    border-width: 0.1vh;
+    border-left: solid;
+    border-color: #FFF;
+    height: 5vh;
+}
+
+.ui.form .field>label {
+    display: block;
+    /* margin: 0 0 0.28571429rem 0; */
+    color: white;
+    font-size: .92857143em;
+    font-weight: 700;
+    font-family: Arial, Helvetica, sans-serif;
+    text-transform: none;
+}
+.content-minhas-pesquisas{
+    margin-left: 345px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}

@@ -66,9 +66,7 @@ function Dashboard() {
     //    {
     //        id: 1,
     //        perguntas: [
-    //            {
-    //                id: 1,
-    //                titulo: "Qual a capital de São Paulo ?",
+    //            {18titulo: "Qual a capital de São Paulo ?",
     //                componente: {
     //                    nomeComponente: "alternativa",
     //                    multiEsc: false
@@ -129,7 +127,6 @@ function Dashboard() {
             <div className="navbar-menu-dashboard">
                 <Menu />
             </div>
-
             <div className="gray-background">
                 <div className="container">
                     <div className="card-content">
