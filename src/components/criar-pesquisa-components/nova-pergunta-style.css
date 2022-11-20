@@ -11,6 +11,36 @@
     border-bottom: 1px solid #E7E7E7;
 }
 
+.titulo-textarea{
+    columns: #181818;
+    font-weight: 700;
+}
+
+.field-resposta{
+    display: flex;
+    margin-right: 16px;
+    height: 100%;
+    justify-content: center;
+    font-weight: 700;
+}
+
+.contador-area{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+}
+
+.contador{
+    padding: 0px 16px;
+}
+
+.respostas-area{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-bottom: 16px;
+}
 .resposta-input{
     width: 70%;
     border: none;
@@ -27,6 +57,7 @@
 .resposta-box{
     width: 100%;
     display: flex;
+    margin-bottom: 8px;
 }
 
 .contador-box{
@@ -34,4 +65,8 @@
     display: flex;
     justify-content: flex-start;
     align-items: center;
+}
+
+.pergunta-box{
+    margin-bottom: 32px;
 }

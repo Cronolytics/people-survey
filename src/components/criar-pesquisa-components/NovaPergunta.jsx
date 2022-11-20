@@ -1,38 +1,94 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useState } from 'react';
 import { Form } from 'semantic-ui-react'
 import './nova-pergunta-style.css'
+import Toastify from 'toastify-js'
+import "toastify-js/src/toastify.css"
 
-function NovaPergunta(){
+function NovaPergunta(props){
 
-    function novaResposta(){
-        alert("teste")
+    const [contador, setContador] = useState(2);
+    const [qtdRespostas, setQtdRespostas] = useState([1, 2]);
+
+    useEffect(() => {
+        var novoArray = [];
+        for (let index = 1; index <= contador; index++) {
+            novoArray.push(index);       
+        }
+        setQtdRespostas(novoArray);
+    }, [contador])
+
+    function listarQtdRespostas(){
+        var novoArray = [];
+        for (let index = 1; index <= contador; index++) {
+            novoArray.push(index);       
+        }
+        setQtdRespostas(novoArray);
+    }
+
+    function incrementarResposta(){
+        var aux = contador + 1;
+        setContador(aux);
+        listarQtdRespostas();
+    }
+
+    function decrementarResposta(){
+        if(contador === 2){
+            Toastify({
+                text: "Não é possível ter menos de 2 respostas!",
+                duration: 3000,
+                close: true,
+                gravity: "top", // `top` or `bottom`
+                position: "right", // `left`, `center` or `right`
+                stopOnFocus: true, // Prevents dismissing of toast on hover
+                style: { background: "linear-gradient(to right, #a8323c, #e00d1f)" }
+            }).showToast();
+        }
+        else{
+            var aux = contador - 1;
+            setContador(aux);
+            listarQtdRespostas();
+        }
     }
 
     return(
         <>
         <div className="card-pergunta">
-            <div className="card-box">         
-                <Form.Field label='Pergunta' control='textarea' />
+            <div className="card-box">
+                <div className='titulo-textarea'>{props.id}° - Pergunta</div>     
+                <Form.Field control='textarea' />
             </div>
             <div className="card-box">            
-                <form className="ui form">
-                    <div className="field"><b>Respostas:</b></div>
-                    <div className="field w-100">                    
-                        <div className='resposta-box'>
-                            <div className='contador-box'>
-                                1
-                            </div>
-                            <div className="ui fluid icon input">
-                                <div className="ui transparent input">
-                                    <input onDragEnter={novaResposta} type="text" placeholder="Digite uma opção de resposta."/>
-                                </div>
-                                <button className="ui icon button button-limiter">
-                                    <i aria-hidden="true" className="delete icon button-limiter"></i>
-                                </button>
-                            </div>                           
-                        </div>
-                    </div>                  
-                </form>
+                <div className="ui form">                   
+                    <div className='respostas-area'>
+                        <div className="field-resposta">Respostas:</div>
+                        <div className="contador-area">
+                            <button onClick={decrementarResposta} className="ui icon button button-limiter"><i aria-hidden="true" className="minus icon"></i></button>
+                            <div className='contador'>{qtdRespostas[qtdRespostas.length - 1]}</div>
+                            <button onClick={incrementarResposta} className="ui icon button button-limiter"><i aria-hidden="true" className="add center icon"></i></button>
+                        </div>                        
+                    </div>
+                    <div className="field w-100">   
+                        {
+                            qtdRespostas.map((resposta, index) => {
+                                return (
+                                    <>
+                                        <div id={resposta} key={resposta} className='resposta-box'>
+                                            <div className='contador-box'>
+                                                {resposta}
+                                            </div>
+                                            <div className="ui fluid icon input">
+                                                <div className="ui transparent input">
+                                                    <input type="text"  placeholder="Digite uma opção de resposta."/>
+                                                </div>
+                                            </div>                           
+                                        </div>
+                                    </>
+                                );
+                            })
+                        }                                        
+                    </div>                                       
+                </div>               
             </div>
         </div>
         </>

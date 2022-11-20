@@ -18,7 +18,8 @@
 
 .gray-background{
     width: 100vw;
-    height: 100vh;
+    min-height: 100vh;
+    height: auto;
     background-color: #E7E7E7;
     font-family: 'Montserrat' !important;
     width: 100vw;

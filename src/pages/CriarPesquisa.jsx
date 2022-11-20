@@ -1,12 +1,56 @@
-import React from "react";
-import FormNovaPesquisa from "../components/criar-pesquisa-components/FormNovaPesquisa";
+import React, { useEffect, useState } from "react";
 import NovaPergunta from '../components/criar-pesquisa-components/NovaPergunta'
 import { Form } from 'semantic-ui-react'
 import Menu from "../components/menu-conponents/NavbarMenu";
-
 import '../assets/css/criar-pesquisa.css'
+import Toastify from 'toastify-js'
+import "toastify-js/src/toastify.css"
 
 function CriarPesquisa(){
+
+    const [contadorPerguntas, setContadorPerguntas] = useState(1);
+    const [qtdPerguntas, setQtdPerguntas] = useState([1]);
+    useEffect(() => {
+        var novoArray = [];
+        for (let index = 1; index <= contadorPerguntas; index++) {
+            novoArray.push(index);       
+        }
+        setQtdPerguntas(novoArray);
+    }, [contadorPerguntas])
+
+    function listarQtdPerguntas(){
+        var novoArray = [];
+        for (let index = 1; index <= contadorPerguntas; index++) {
+            novoArray.push(index);       
+        }
+        setQtdPerguntas(novoArray);
+    }
+
+    function incrementarPergunta(){
+        var aux = contadorPerguntas + 1;
+        setContadorPerguntas(aux);
+        listarQtdPerguntas();
+    }
+
+    function decrementarPergunta(){
+        if(contadorPerguntas === 1){
+            Toastify({
+                text: "Não é possível ter menos de 1 Pergunta!",
+                duration: 3000,
+                close: true,
+                gravity: "top", // `top` or `bottom`
+                position: "right", // `left`, `center` or `right`
+                stopOnFocus: true, // Prevents dismissing of toast on hover
+                style: { background: "linear-gradient(to right, #a8323c, #e00d1f)" }
+            }).showToast();
+        }
+        else{
+            var aux = contadorPerguntas - 1;
+            setContadorPerguntas(aux);
+            listarQtdPerguntas();
+        }
+    }
+
     return(
         <>
             <div className="navbar-menu-dashboard">
@@ -16,31 +60,63 @@ function CriarPesquisa(){
             <div className="gray-background">
                 <div className="container">
                     <div className="card-conteudo">
-                        <div className="">
+                        <div className="page-titulo">
                             <h1>Criar uma nova pesquisa</h1>
+                            <div class="ui button-or-limiter">
+                                <button class="ui button">Cancel</button>
+                                <div class="or"></div>
+                                <button class="ui positive button">Save</button>
+                            </div>
                         </div>
                         <Form>
-                            <div className="area-tipo-pesquisa">
-                                <div className="area-tipo-item">
-                                    Esta pesquisa será:
+                            <div className="pesquisa-config">
+                                <div className="area-titulo">
+                                    <div className="titulo-box">
+                                        Título:
+                                    </div>
+                                        <div className="ui transparent input input-titulo-size">
+                                            <input type="text"  placeholder="Digite o título da pesquisa."/>
+                                        </div>
+                                    </div>
+                                <div className="area-tipo-pesquisa">
+                                    <div className="area-tipo-item">
+                                        Esta pesquisa será:
+                                    </div>
+                                    <div className="area-tipo-item">
+                                        <Form.Field control='select' className="select-limiter">
+                                            <option value='01'>Pesquisa Interna</option>
+                                            <option value='02'>Pesquisa Externa</option>
+                                        </Form.Field>
+                                    </div>                               
                                 </div>
-                                <div className="area-tipo-item">
-                                    <Form.Field control='select'>
-                                        <option value='01'>Pesquisa Interna</option>
-                                        <option value='02'>Pesquisa Externa</option>
-                                    </Form.Field>
-                                </div>                                 
                             </div>
-                            <div className="area-tipo-pesquisa">
-                                <div className="area-tipo-item">
-                                    <NovaPergunta/>
-                                </div>
-                            </div>
-                        </Form> 
-                        
-                        <FormNovaPesquisa />
-                    </div>
+                            
 
+                            <div className="respostas-area">
+                                <div className="field-resposta">Perguntas:</div>
+                                <div className="contador-area">
+                                    <button onClick={decrementarPergunta} className="ui icon button button-limiter"><i aria-hidden="true" className="minus icon"></i></button>
+                                    <div className='contador'>{qtdPerguntas[qtdPerguntas.length - 1]}</div>
+                                    <button onClick={incrementarPergunta} className="ui icon button button-limiter"><i aria-hidden="true" className="add center icon"></i></button>
+                                </div> 
+                            </div>                          
+                            <div className="area-content">
+                                <div className="area-tipo-item">
+                                {
+                                    qtdPerguntas.map((pergunta, index) => {
+                                        return (
+                                            <>
+                                                <div className="pergunta-box">
+                                                    <NovaPergunta key={pergunta} id={pergunta}/>
+                                                </div>
+                                            </>
+                                        );
+                                        })
+                                    }  
+                                </div>
+                            </div>
+                        </Form>                        
+                    </div>
                 </div>
             </div>           
         </>

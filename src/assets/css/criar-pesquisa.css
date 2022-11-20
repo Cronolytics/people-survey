@@ -7,9 +7,58 @@
     background-color: #FFFFFF;
     margin-top: 32px;
     padding: 32px;
+    margin-bottom: 32px;
+}
+
+.button-or-limiter{
+    width: 200px;
+    display: flex;
+}
+
+.page-titulo{
+    border-bottom: 1px solid #E7E7E7;
+    padding-bottom: 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.page-titulo h1{
+    margin: 0px;
+}
+
+.pesquisa-config{
+    border-bottom: 1px solid #E7E7E7;
+    margin-bottom: 16px;
+}
+
+.area-titulo{
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    margin: 8px 0px 8px 0px;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.titulo-box{
+    margin-right: 16px;
+    display: flex;
+    align-items: center;
+}
+
+.input-titulo-size{
+    width: 100%;
 }
 
 .area-tipo-pesquisa{
+    width: 320px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.area-content{
     width: 100%;
     display: flex;
     align-items: center;
@@ -19,4 +68,8 @@
 .area-tipo-item{
     width: 100%;
     margin: 8px 8px 8px 0px;
+}
+
+.select-limiter{
+    width: 170px;
 }
