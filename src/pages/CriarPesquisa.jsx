@@ -8,6 +8,15 @@ import "toastify-js/src/toastify.css"
 
 function CriarPesquisa(){
 
+    const [perguntas, setPerguntas] = useState([]);
+
+    useEffect(() =>
+        setPerguntas([{
+            descricao: "",
+            respostas: []
+        }])
+    , [])
+
     const [contadorPerguntas, setContadorPerguntas] = useState(1);
     const [qtdPerguntas, setQtdPerguntas] = useState([1]);
     useEffect(() => {
@@ -26,13 +35,59 @@ function CriarPesquisa(){
         setQtdPerguntas(novoArray);
     }
 
-    function incrementarPergunta(){
-        var aux = contadorPerguntas + 1;
-        setContadorPerguntas(aux);
-        listarQtdPerguntas();
+    function atualizarPergunta (valor, index) {
+        var novasPerguntas = perguntas;
+
+        novasPerguntas = novasPerguntas.map((el, i) => {
+            if (i == index) {
+                el = valor;
+            }
+            return el;
+        })
+
+        setPerguntas(novasPerguntas)
     }
 
-    function decrementarPergunta(){
+    class Pergunta {
+        constructor (descricao, respostas) {
+            this.descricao = descricao || "";
+            this.respostas = respostas || new Array;
+        }
+    }
+
+    function incrementarPergunta(){
+        // var aux = contadorPerguntas + 1;
+        var novasPerguntas = [...perguntas, new Pergunta]
+
+        console.log("PERGUNTAS: ", novasPerguntas);
+
+        setPerguntas(novasPerguntas)
+
+        // setContadorPerguntas(aux);
+        // listarQtdPerguntas();
+    }
+
+    function decrementarPergunta () {
+        if(perguntas.length === 1){
+            Toastify({
+                text: "Não é possível ter menos de 1 Pergunta!",
+                duration: 3000,
+                close: true,
+                gravity: "top", // `top` or `bottom`
+                position: "right", // `left`, `center` or `right`
+                stopOnFocus: true, // Prevents dismissing of toast on hover
+                style: { background: "linear-gradient(to right, #a8323c, #e00d1f)" }
+            }).showToast();
+        }
+        else{
+            var novasPerguntas = [...perguntas];
+            novasPerguntas.pop();
+    
+            setPerguntas(novasPerguntas);
+        }
+    }
+
+    function decrementarPerguntaOld(){
         if(contadorPerguntas === 1){
             Toastify({
                 text: "Não é possível ter menos de 1 Pergunta!",
@@ -96,20 +151,18 @@ function CriarPesquisa(){
                                 <div className="field-resposta">Perguntas:</div>
                                 <div className="contador-area">
                                     <button onClick={decrementarPergunta} className="ui icon button button-limiter"><i aria-hidden="true" className="minus icon"></i></button>
-                                    <div className='contador'>{qtdPerguntas[qtdPerguntas.length - 1]}</div>
+                                    <div className='contador'>{perguntas.length}</div>
                                     <button onClick={incrementarPergunta} className="ui icon button button-limiter"><i aria-hidden="true" className="add center icon"></i></button>
                                 </div> 
                             </div>                          
                             <div className="area-content">
                                 <div className="area-tipo-item">
                                 {
-                                    qtdPerguntas.map((pergunta, index) => {
+                                    perguntas.map((pergunta, index) => {
                                         return (
-                                            <>
-                                                <div className="pergunta-box">
-                                                    <NovaPergunta key={pergunta} id={pergunta}/>
-                                                </div>
-                                            </>
+                                            <div key={index} className="pergunta-box">
+                                                <NovaPergunta atualizar={atualizarPergunta} pergunta={pergunta} id={index} />
+                                            </div>
                                         );
                                         })
                                     }  

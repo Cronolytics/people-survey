@@ -5,6 +5,8 @@ import '../assets/css/style.css'
 import CardPesquisa from "../components/dashboard-components/card-pesquisa-component/CardPesquisa";
 import Menu from "../components/menu-conponents/NavbarMenu";
 
+import PieChart from "../components/dashboard-components/pie-chart-component/PieChart";
+
 //import { Pie } from 'react-chartjs-2';
 
 function Dashboard() {
@@ -163,14 +165,20 @@ function Dashboard() {
                             </div>
                             <div className="card-responses-charts-box">
                                 <div className="responses-box">
-                                    <button className="square ui icon button"><i aria-hidden="true" className="left arrow icon"></i></button>
-                                    <span className="title contador-pergunta">Pergunta 01</span>
-                                    <button className="square ui icon button"><i aria-hidden="true" className="right arrow icon"></i></button>
+                                    <button className="square">
+                                        <i aria-hidden="true" className="left arrow icon"></i>
+                                    </button>
+
+                                    <div className="title contador-pergunta">Pergunta 01</div>
+                                    
+                                    <button className="square">
+                                        <i aria-hidden="true" className="right arrow icon"></i>
+                                    </button>
                                 </div>
 
                                 <div className="chart-box">
                                     <div>
-
+                                        <PieChart />
                                     </div>
                                 </div>
                             </div>

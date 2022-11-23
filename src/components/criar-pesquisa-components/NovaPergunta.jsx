@@ -7,6 +7,7 @@ import "toastify-js/src/toastify.css"
 
 function NovaPergunta(props){
 
+    
     const [contador, setContador] = useState(2);
     const [qtdRespostas, setQtdRespostas] = useState([1, 2]);
 
@@ -51,12 +52,36 @@ function NovaPergunta(props){
         }
     }
 
+    function atualizarDesc (param) {
+        var valor = {
+            descricao: param,
+            ...props.pergunta
+        }
+
+        props.atualizar(valor, props.id)
+    }
+    function atualizarResp (param) {
+
+        //var old = ...props.value;
+        //old[1] = {}
+
+        var valor = {
+            ...props.pergunta,
+            respostas: [
+                
+                ...props.pergunta.respostas
+            ]
+        }
+
+        props.atualizar(valor, props.id)
+    }
+
     return(
         <>
         <div className="card-pergunta">
             <div className="card-box">
-                <div className='titulo-textarea'>{props.id}° - Pergunta</div>     
-                <Form.Field control='textarea' />
+                <div className='titulo-textarea'>{props.id + 1}° - Pergunta</div>     
+                <Form.Field onInput={(e) => atualizarDesc(e.target.value)} control='textarea' />
             </div>
             <div className="card-box">            
                 <div className="ui form">                   
