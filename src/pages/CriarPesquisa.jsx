@@ -6,68 +6,80 @@ import '../assets/css/criar-pesquisa.css'
 import Toastify from 'toastify-js'
 import "toastify-js/src/toastify.css"
 
+//=====================================================================
+// === CLASSES ========================================================
+//=====================================================================
+class Pesquisa {
+    constructor (nome, desc, participantesAlvo, empresa, interna, perguntas) {
+        this.nome = nome;
+        this.desc = desc;
+        this.participantesAlvo = participantesAlvo;
+        this.empresa = empresa;
+        this.interna = interna;
+        this.perguntas = perguntas;
+    }
+}
+class Pergunta {
+    constructor (descricao, respostas) {
+        this.descricao = descricao || "";
+        this.respostas = respostas || new Array();
+    }
+}
+
 function CriarPesquisa(){
+    //=====================================================================
+    // === ESTADOS ========================================================
+    //=====================================================================
 
-    const [perguntas, setPerguntas] = useState([]);
+    const [pesquisa,     setPesquisa    ] = useState(new Pesquisa());
+    const [nomePesquisa, setNomePesquisa] = useState([]);
+    const [perguntas,    setPerguntas   ] = useState([]);
+    const [qtdPerguntas, setQtdPerguntas] = useState(1);
 
-    useEffect(() =>
+    //=====================================================================
+    //=== USE EFFECT'S ====================================================
+    //=====================================================================
+    useEffect(() => {
         setPerguntas([{
             descricao: "",
-            respostas: []
-        }])
+            respostas: ["",""]
+        }]);
+        console.log(pesquisa);
+        var user = sessionStorage.getItem("usuarioLogado");
+        console.log("USER ID: " + user.id)
+        }       
     , [])
 
-    const [contadorPerguntas, setContadorPerguntas] = useState(1);
-    const [qtdPerguntas, setQtdPerguntas] = useState([1]);
     useEffect(() => {
-        var novoArray = [];
-        for (let index = 1; index <= contadorPerguntas; index++) {
-            novoArray.push(index);       
-        }
-        setQtdPerguntas(novoArray);
-    }, [contadorPerguntas])
+        var user = sessionStorage.getItem("usuarioLogado");
+        var pesquisaAux = new Pesquisa(nomePesquisa, "teste", 5, user.id, false, perguntas);
+        setPesquisa(pesquisaAux); 
+        console.log(JSON.stringify(pesquisa, null, 4));
+    }, [nomePesquisa,perguntas])
 
-    function listarQtdPerguntas(){
-        var novoArray = [];
-        for (let index = 1; index <= contadorPerguntas; index++) {
-            novoArray.push(index);       
-        }
-        setQtdPerguntas(novoArray);
-    }
-
-    function atualizarPergunta (valor, index) {
+    //=====================================================================
+    //=== FUNCTIONS =======================================================
+    //=====================================================================
+    function atualizarPergunta(valor, index) {
         var novasPerguntas = perguntas;
-
         novasPerguntas = novasPerguntas.map((el, i) => {
-            if (i == index) {
+            if (i === index) {
                 el = valor;
-            }
+            }           
             return el;
         })
-
-        setPerguntas(novasPerguntas)
-    }
-
-    class Pergunta {
-        constructor (descricao, respostas) {
-            this.descricao = descricao || "";
-            this.respostas = respostas || new Array;
-        }
+        setPerguntas(novasPerguntas);
+        //console.log(JSON.stringify(pesquisa, null, 4));
     }
 
     function incrementarPergunta(){
-        // var aux = contadorPerguntas + 1;
-        var novasPerguntas = [...perguntas, new Pergunta]
-
-        console.log("PERGUNTAS: ", novasPerguntas);
-
-        setPerguntas(novasPerguntas)
-
-        // setContadorPerguntas(aux);
-        // listarQtdPerguntas();
+        var arrayPerguntasAtualizadoAuxiliar = [...perguntas, new Pergunta()]
+        setPerguntas(arrayPerguntasAtualizadoAuxiliar)
+        setQtdPerguntas(qtdPerguntas + 1);
+        //console.log(JSON.stringify(pesquisa, null, 4));
     }
 
-    function decrementarPergunta () {
+    function decrementarPergunta() {
         if(perguntas.length === 1){
             Toastify({
                 text: "Não é possível ter menos de 1 Pergunta!",
@@ -80,29 +92,10 @@ function CriarPesquisa(){
             }).showToast();
         }
         else{
-            var novasPerguntas = [...perguntas];
-            novasPerguntas.pop();
-    
-            setPerguntas(novasPerguntas);
-        }
-    }
-
-    function decrementarPerguntaOld(){
-        if(contadorPerguntas === 1){
-            Toastify({
-                text: "Não é possível ter menos de 1 Pergunta!",
-                duration: 3000,
-                close: true,
-                gravity: "top", // `top` or `bottom`
-                position: "right", // `left`, `center` or `right`
-                stopOnFocus: true, // Prevents dismissing of toast on hover
-                style: { background: "linear-gradient(to right, #a8323c, #e00d1f)" }
-            }).showToast();
-        }
-        else{
-            var aux = contadorPerguntas - 1;
-            setContadorPerguntas(aux);
-            listarQtdPerguntas();
+            var arrayPerguntasAtualizadoAuxiliar = [...perguntas];
+            arrayPerguntasAtualizadoAuxiliar.pop();   
+            setPerguntas(arrayPerguntasAtualizadoAuxiliar);
+            //console.log(JSON.stringify(pesquisa, null, 4));
         }
     }
 
@@ -115,22 +108,23 @@ function CriarPesquisa(){
             <div className="gray-background">
                 <div className="container">
                     <div className="card-conteudo">
-                        <div className="page-titulo">
-                            <h1>Criar uma nova pesquisa</h1>
-                            <div class="ui button-or-limiter">
-                                <button class="ui button">Cancel</button>
-                                <div class="or"></div>
-                                <button class="ui positive button">Save</button>
-                            </div>
-                        </div>
                         <Form>
+                            <div className="page-titulo">
+                                <h1>Criar uma nova pesquisa</h1>
+                                <div className="ui button-or-limiter">
+                                    <button className="ui button">Cancel</button>
+                                    <div className="or"></div>
+                                    <button className="ui positive button">Save</button>
+                                </div>
+                            </div>
+                        
                             <div className="pesquisa-config">
                                 <div className="area-titulo">
                                     <div className="titulo-box">
                                         Título:
                                     </div>
                                         <div className="ui transparent input input-titulo-size">
-                                            <input type="text"  placeholder="Digite o título da pesquisa."/>
+                                            <input onChange={(e) => setNomePesquisa(e.target.value)} type="text"  placeholder="Digite o título da pesquisa."/>
                                         </div>
                                     </div>
                                 <div className="area-tipo-pesquisa">

@@ -16,38 +16,34 @@ const Login = () => {
     const [senha, setSenha] = useState("");
 
     async function verifyCredentials() {
-        try {
-            const user = await api.post('/empresa/login', {
+            api.post('/empresa/login', {
                 email,
                 senha
-            });
-
-            sessionStorage.clear();
-            sessionStorage.setItem("survey-manager", JSON.stringify(user.data));
-
-            Toastify({
-                text: "Login bem sucedido!",
-                duration: 3000,
-                close: true,
-                gravity: "top", // `top` or `bottom`
-                position: "right", // `left`, `center` or `right`
-                stopOnFocus: true, // Prevents dismissing of toast on hover
-                style: { background: "linear-gradient(to right, #00b09b, #96c93d)" }
-            }).showToast();
-
-            navigate('/dashboard');
-        } catch (error) {
-
-            Toastify({
-                text: "Ops! E-mail ou senha inválidos...",
-                duration: 3000,
-                close: true,
-                gravity: "top", // `top` or `bottom`
-                position: "right", // `left`, `center` or `right`
-                stopOnFocus: true, // Prevents dismissing of toast on hover
-                style: { background: "linear-gradient(to right, #a8323c, #e00d1f)" }
-            }).showToast();
-        }
+            }).then(function (user){
+                console.log("USER DATA: " + user.data);
+                sessionStorage.clear();
+                sessionStorage.setItem("usuarioLogado", JSON.stringify(user.data));
+                Toastify({
+                    text: "Login bem sucedido!",
+                    duration: 3000,
+                    close: true,
+                    gravity: "top", // `top` or `bottom`
+                    position: "right", // `left`, `center` or `right`
+                    stopOnFocus: true, // Prevents dismissing of toast on hover
+                    style: { background: "linear-gradient(to right, #00b09b, #96c93d)" }
+                }).showToast();
+                navigate('/dashboard');
+            }).catch((error) => {
+                Toastify({
+                    text: "Ops! E-mail ou senha inválidos...",
+                    duration: 3000,
+                    close: true,
+                    gravity: "top", // `top` or `bottom`
+                    position: "right", // `left`, `center` or `right`
+                    stopOnFocus: true, // Prevents dismissing of toast on hover
+                    style: { background: "linear-gradient(to right, #a8323c, #e00d1f)" }
+                }).showToast();
+            });      
     }
 
     return (

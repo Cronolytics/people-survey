@@ -18,8 +18,8 @@ function Cadastro(){
     const [cep, setCep] = useState("");
     const [cnpj, setCnpj] = useState("");
 
-    async function cadastrarEmpresa() {
-
+    async function cadastrarEmpresa(event) {
+        event.preventDefault();
         if(confirmarsenha === senha){
             try {
                 const user = await api.post("/empresa", {
@@ -69,7 +69,7 @@ function Cadastro(){
             </div>
 
             <div className="container-cadastro">
-                <form className="cadastroForm">
+                <form className="cadastroForm" onSubmit={(event) => cadastrarEmpresa(event)}>
                     <div className="div-texto-cadastro">
                         <p>Crie sua conta</p>
                     </div>
@@ -157,9 +157,7 @@ function Cadastro(){
                         </div>
 
                         <div>
-                            <button
-                                onClick={() => cadastrarEmpresa()}
-                                className="botao-cadastro">
+                            <button className="botao-cadastro">
                                 Cadastrar
                             </button>
                         </div>

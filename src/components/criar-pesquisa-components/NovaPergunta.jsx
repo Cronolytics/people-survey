@@ -7,34 +7,36 @@ import "toastify-js/src/toastify.css"
 
 function NovaPergunta(props){
 
-    
-    const [contador, setContador] = useState(2);
-    const [qtdRespostas, setQtdRespostas] = useState([1, 2]);
+    //=====================================================================
+    // === ESTADOS ========================================================
+    //=====================================================================
+    const [descricao,    setDescricao]    = useState("");
+    const [respostas,    setRespostas]    = useState(["", ""]);
+    const [qtdRespostas, setQtdRespostas] = useState(2);
 
+    //=====================================================================
+    //=== USE EFFECT'S ====================================================
+    //=====================================================================
     useEffect(() => {
-        var novoArray = [];
-        for (let index = 1; index <= contador; index++) {
-            novoArray.push(index);       
+        var objPerguntaAuxiliar = {
+            descricao,
+            respostas
         }
-        setQtdRespostas(novoArray);
-    }, [contador])
+        props.atualizar(objPerguntaAuxiliar, props.id);
+    }, [descricao, respostas])
 
-    function listarQtdRespostas(){
-        var novoArray = [];
-        for (let index = 1; index <= contador; index++) {
-            novoArray.push(index);       
-        }
-        setQtdRespostas(novoArray);
-    }
-
+    //=====================================================================
+    //=== FUNCTIONS =======================================================
+    //=====================================================================
     function incrementarResposta(){
-        var aux = contador + 1;
-        setContador(aux);
-        listarQtdRespostas();
+        var arrayRespostasAtualizadoAuxiliar = [...respostas];
+        arrayRespostasAtualizadoAuxiliar.push("");
+        setRespostas(arrayRespostasAtualizadoAuxiliar);
+        setQtdRespostas(qtdRespostas + 1)
     }
 
     function decrementarResposta(){
-        if(contador === 2){
+        if(qtdRespostas === 2){
             Toastify({
                 text: "Não é possível ter menos de 2 respostas!",
                 duration: 3000,
@@ -46,34 +48,21 @@ function NovaPergunta(props){
             }).showToast();
         }
         else{
-            var aux = contador - 1;
-            setContador(aux);
-            listarQtdRespostas();
+            var arrayRespostasAtualizadoAuxiliar = [...respostas];
+            arrayRespostasAtualizadoAuxiliar.pop();
+            setQtdRespostas(arrayRespostasAtualizadoAuxiliar);
+            setQtdRespostas(qtdRespostas - 1);
         }
     }
 
     function atualizarDesc (param) {
-        var valor = {
-            descricao: param,
-            ...props.pergunta
-        }
-
-        props.atualizar(valor, props.id)
+        setDescricao(param);
     }
-    function atualizarResp (param) {
 
-        //var old = ...props.value;
-        //old[1] = {}
-
-        var valor = {
-            ...props.pergunta,
-            respostas: [
-                
-                ...props.pergunta.respostas
-            ]
-        }
-
-        props.atualizar(valor, props.id)
+    function atualizarResp (param, key) {
+        var arrayRespostasAtualizadoAuxiliar = [...respostas];
+        arrayRespostasAtualizadoAuxiliar[key] = param;
+        setRespostas(arrayRespostasAtualizadoAuxiliar);
     }
 
     return(
@@ -87,24 +76,24 @@ function NovaPergunta(props){
                 <div className="ui form">                   
                     <div className='respostas-area'>
                         <div className="field-resposta">Respostas:</div>
-                        <div className="contador-area">
+                        <div className="respostas-area">
                             <button onClick={decrementarResposta} className="ui icon button button-limiter"><i aria-hidden="true" className="minus icon"></i></button>
-                            <div className='contador'>{qtdRespostas[qtdRespostas.length - 1]}</div>
+                            <div className='contador'>{qtdRespostas}</div>
                             <button onClick={incrementarResposta} className="ui icon button button-limiter"><i aria-hidden="true" className="add center icon"></i></button>
                         </div>                        
                     </div>
                     <div className="field w-100">   
                         {
-                            qtdRespostas.map((resposta, index) => {
+                            respostas.map((resposta, index) => {
                                 return (
                                     <>
-                                        <div id={resposta} key={resposta} className='resposta-box'>
+                                        <div key={index} className='resposta-box'>
                                             <div className='contador-box'>
-                                                {resposta}
+                                                {index + 1}
                                             </div>
                                             <div className="ui fluid icon input">
                                                 <div className="ui transparent input">
-                                                    <input type="text"  placeholder="Digite uma opção de resposta."/>
+                                                    <input onChange={(e) => atualizarResp(e.target.value, index)} type="text" placeholder="Digite uma opção de resposta."/>
                                                 </div>
                                             </div>                           
                                         </div>

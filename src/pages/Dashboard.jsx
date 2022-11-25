@@ -140,9 +140,8 @@ function Dashboard() {
                                 pesquisasResumidas.map((pesquisa, index) => {
                                     return (
                                         <>
-                                            <div>
+                                            <div key={pesquisa.id}>
                                                 <CardPesquisa
-                                                    key={pesquisa.id}
                                                     isSelecionado={pesquisasResumidas[0] === pesquisa ? true : false}
                                                     id={pesquisa.id}
                                                     tipo={pesquisa.tipo}

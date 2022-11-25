@@ -146,19 +146,18 @@ function MinhasPesquisas() {
             minhasPesquisasResumidas.map((pesquisa, index) => {
               return (
                 <>
-
-                  <CardPesquisa
-                    key={pesquisa.id}
-                    isSelecionado={minhasPesquisasResumidas[0] === pesquisa ? true : false}
-                    id={pesquisa.id}
-                    tipo={pesquisa.tipo}
-                    titulo={pesquisa.titulo}
-                    qtdPerguntas={pesquisa.qtdPerguntas}
-                    qtdPessoas={pesquisa.qtdPessoas}
-                    qtdRespostas={pesquisa.qtdRespostas}
-                    status={pesquisa.status}
-                  />
-
+                  <div key={pesquisa.id}>
+                    <CardPesquisa                    
+                      isSelecionado={minhasPesquisasResumidas[0] === pesquisa ? true : false}
+                      id={pesquisa.id}
+                      tipo={pesquisa.tipo}
+                      titulo={pesquisa.titulo}
+                      qtdPerguntas={pesquisa.qtdPerguntas}
+                      qtdPessoas={pesquisa.qtdPessoas}
+                      qtdRespostas={pesquisa.qtdRespostas}
+                      status={pesquisa.status}
+                    />
+                  </div>                 
                 </>
               );
             })
