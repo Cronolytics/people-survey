@@ -31,7 +31,7 @@ function CriarPesquisa(){
     // === ESTADOS ========================================================
     //=====================================================================
 
-    const [pesquisa,     setPesquisa    ] = useState(new Pesquisa());
+    const [pesquisa,     setPesquisa    ] = useState();
     const [nomePesquisa, setNomePesquisa] = useState([]);
     const [perguntas,    setPerguntas   ] = useState([]);
     const [qtdPerguntas, setQtdPerguntas] = useState(1);
@@ -49,6 +49,11 @@ function CriarPesquisa(){
         console.log("USER ID: " + user.id)
         }       
     , [])
+
+    useEffect(() => {
+        var user = sessionStorage.getItem("usuarioLogado");
+        new Pesquisa("", "teste", 5, user.id, false, perguntas);
+    }, [])
 
     useEffect(() => {
         var user = sessionStorage.getItem("usuarioLogado");
