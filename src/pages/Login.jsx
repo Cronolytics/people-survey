@@ -20,9 +20,10 @@ const Login = () => {
                 email,
                 senha
             }).then(function (user){
-                console.log("USER DATA: " + user.data);
+                console.log("USER DATA: " + JSON.stringify(user.data));
                 sessionStorage.clear();
                 sessionStorage.setItem("usuarioLogado", JSON.stringify(user.data));
+                sessionStorage.setItem("id", user.data.id);
                 Toastify({
                     text: "Login bem sucedido!",
                     duration: 3000,
@@ -34,6 +35,7 @@ const Login = () => {
                 }).showToast();
                 navigate('/dashboard');
             }).catch((error) => {
+                console.log(error);
                 Toastify({
                     text: "Ops! E-mail ou senha inválidos...",
                     duration: 3000,

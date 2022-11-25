@@ -5,6 +5,8 @@ import Menu from "../components/menu-conponents/NavbarMenu";
 import '../assets/css/criar-pesquisa.css'
 import Toastify from 'toastify-js'
 import "toastify-js/src/toastify.css"
+import api from '../api'
+import { useNavigate } from "react-router-dom";
 
 //=====================================================================
 // === CLASSES ========================================================
@@ -22,19 +24,20 @@ class Pesquisa {
 class Pergunta {
     constructor (descricao, respostas) {
         this.descricao = descricao || "";
-        this.respostas = respostas || new Array();
+        this.respostas = respostas || [];
     }
 }
 
 function CriarPesquisa(){
+    const navigate = useNavigate();
     //=====================================================================
     // === ESTADOS ========================================================
     //=====================================================================
-
-    const [pesquisa,     setPesquisa    ] = useState();
-    const [nomePesquisa, setNomePesquisa] = useState([]);
-    const [perguntas,    setPerguntas   ] = useState([]);
-    const [qtdPerguntas, setQtdPerguntas] = useState(1);
+    const [isPesquisaValida, setIsPesquisaValida] = useState(false);
+    const [pesquisa,         setPesquisa        ] = useState();
+    const [nomePesquisa,     setNomePesquisa    ] = useState([]);
+    const [perguntas,        setPerguntas       ] = useState([]);
+    const [qtdPerguntas,     setQtdPerguntas    ] = useState(1);
 
     //=====================================================================
     //=== USE EFFECT'S ====================================================
@@ -45,19 +48,19 @@ function CriarPesquisa(){
             respostas: ["",""]
         }]);
         console.log(pesquisa);
-        var user = sessionStorage.getItem("usuarioLogado");
-        console.log("USER ID: " + user.id)
+        var id = sessionStorage.getItem("id");
+        console.log("USER ID: " + id)
         }       
     , [])
 
     useEffect(() => {
-        var user = sessionStorage.getItem("usuarioLogado");
-        new Pesquisa("", "teste", 5, user.id, false, perguntas);
+        var userID = sessionStorage.getItem("id");
+        new Pesquisa("", "teste", 5, userID, false, perguntas);
     }, [])
 
     useEffect(() => {
-        var user = sessionStorage.getItem("usuarioLogado");
-        var pesquisaAux = new Pesquisa(nomePesquisa, "teste", 5, user.id, false, perguntas);
+        var userID = sessionStorage.getItem("id");
+        var pesquisaAux = new Pesquisa(nomePesquisa, "teste", 5, userID, true, perguntas);
         setPesquisa(pesquisaAux); 
         console.log(JSON.stringify(pesquisa, null, 4));
     }, [nomePesquisa,perguntas])
@@ -65,6 +68,73 @@ function CriarPesquisa(){
     //=====================================================================
     //=== FUNCTIONS =======================================================
     //=====================================================================
+    function salvarPesquisa(event){
+        event.preventDefault();
+
+        var perguntasAux = [...perguntas]
+        console.log(JSON.stringify(perguntasAux));
+        for (let i = 0; i < perguntasAux.length; i++){
+            if(perguntasAux[i].descricao === ""){
+                setIsPesquisaValida(false);
+                break;
+            }
+            else{
+                setIsPesquisaValida(true);
+                console.log(perguntasAux.respostas);
+                var respostasAux = [...perguntasAux[i].respostas];
+                console.log(perguntasAux);
+                for (let j = 0; j < respostasAux.length; j++) {
+                    if(respostasAux[i].descricao === ""){
+                        setIsPesquisaValida(false);
+                        break;
+                    }
+                    else{
+                        setIsPesquisaValida(true);
+                    }
+                }
+                break;
+            }                 
+        }           
+        if(isPesquisaValida){
+            api.post("/pesquisas/gravar", pesquisa
+            ).then(function(){
+                console.log("Cadastro de pesquisa requisitado...")
+                Toastify({
+                    text: "Nova pesquisa cadastrada!",
+                    duration: 3000,
+                    close: true,
+                    gravity: "top", // `top` or `bottom`
+                    position: "right", // `left`, `center` or `right`
+                    stopOnFocus: true, // Prevents dismissing of toast on hover
+                    style: { background: "linear-gradient(to right, #00b09b, #96c93d)" }
+                }).showToast();
+                navigate('/dashboard');
+            }).catch((error) => {
+                console.log(error);
+                Toastify({
+                    text: "Erro ao tentar cadastrar pesquisa...",
+                    duration: 3000,
+                    close: true,
+                    gravity: "top", // `top` or `bottom`
+                    position: "right", // `left`, `center` or `right`
+                    stopOnFocus: true, // Prevents dismissing of toast on hover
+                    style: { background: "linear-gradient(to right, #a8323c, #e00d1f)" }
+                }).showToast();
+            })
+        }
+        else{
+            Toastify({
+                text: "Sua pesquisa não está formatada corretamente! Verifique todos os campos",
+                duration: 3000,
+                close: true,
+                gravity: "top", // `top` or `bottom`
+                position: "right", // `left`, `center` or `right`
+                stopOnFocus: true, // Prevents dismissing of toast on hover
+                style: { background: "linear-gradient(to right, #a8323c, #e00d1f)" }
+            }).showToast();
+        }
+    }
+
     function atualizarPergunta(valor, index) {
         var novasPerguntas = perguntas;
         novasPerguntas = novasPerguntas.map((el, i) => {
@@ -73,15 +143,13 @@ function CriarPesquisa(){
             }           
             return el;
         })
-        setPerguntas(novasPerguntas);
-        //console.log(JSON.stringify(pesquisa, null, 4));
+        setPerguntas(novasPerguntas);       
     }
 
     function incrementarPergunta(){
         var arrayPerguntasAtualizadoAuxiliar = [...perguntas, new Pergunta()]
         setPerguntas(arrayPerguntasAtualizadoAuxiliar)
-        setQtdPerguntas(qtdPerguntas + 1);
-        //console.log(JSON.stringify(pesquisa, null, 4));
+        setQtdPerguntas(qtdPerguntas + 1);       
     }
 
     function decrementarPergunta() {
@@ -100,7 +168,6 @@ function CriarPesquisa(){
             var arrayPerguntasAtualizadoAuxiliar = [...perguntas];
             arrayPerguntasAtualizadoAuxiliar.pop();   
             setPerguntas(arrayPerguntasAtualizadoAuxiliar);
-            //console.log(JSON.stringify(pesquisa, null, 4));
         }
     }
 
@@ -113,7 +180,7 @@ function CriarPesquisa(){
             <div className="gray-background">
                 <div className="container">
                     <div className="card-conteudo">
-                        <Form>
+                        <Form onSubmit={(event) => salvarPesquisa(event)}>
                             <div className="page-titulo">
                                 <h1>Criar uma nova pesquisa</h1>
                                 <div className="ui button-or-limiter">

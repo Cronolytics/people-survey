@@ -29,16 +29,30 @@ function NovaPergunta(props){
     //=== FUNCTIONS =======================================================
     //=====================================================================
     function incrementarResposta(){
-        var arrayRespostasAtualizadoAuxiliar = [...respostas];
-        arrayRespostasAtualizadoAuxiliar.push("");
-        setRespostas(arrayRespostasAtualizadoAuxiliar);
-        setQtdRespostas(qtdRespostas + 1)
+        if(respostas.length === 10){
+            Toastify({
+                text: "Não é possível ultrapassar o limite de 10 respostas por pergunta!",
+                duration: 3000,
+                close: true,
+                gravity: "top", // `top` or `bottom`
+                position: "right", // `left`, `center` or `right`
+                stopOnFocus: true, // Prevents dismissing of toast on hover
+                style: { background: "linear-gradient(to right, #a8323c, #e00d1f)" }
+            }).showToast(); 
+        }
+        else{
+            var arrayRespostasAtualizadoAuxiliar = [...respostas];
+            arrayRespostasAtualizadoAuxiliar.push("");
+            setRespostas(arrayRespostasAtualizadoAuxiliar);
+            setQtdRespostas(qtdRespostas + 1)
+        }
+        
     }
 
     function decrementarResposta(){
         if(qtdRespostas === 2){
             Toastify({
-                text: "Não é possível ter menos de 2 respostas!",
+                text: "Não é possível ter menos de 2 respostas por pergunta!",
                 duration: 3000,
                 close: true,
                 gravity: "top", // `top` or `bottom`
@@ -50,7 +64,7 @@ function NovaPergunta(props){
         else{
             var arrayRespostasAtualizadoAuxiliar = [...respostas];
             arrayRespostasAtualizadoAuxiliar.pop();
-            setQtdRespostas(arrayRespostasAtualizadoAuxiliar);
+            setRespostas(arrayRespostasAtualizadoAuxiliar);
             setQtdRespostas(qtdRespostas - 1);
         }
     }

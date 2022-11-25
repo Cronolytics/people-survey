@@ -68,7 +68,7 @@ function Dashboard() {
     //    {
     //        id: 1,
     //        perguntas: [
-    //            {18titulo: "Qual a capital de São Paulo ?",
+    //            {titulo: "Qual a capital de São Paulo ?",
     //                componente: {
     //                    nomeComponente: "alternativa",
     //                    multiEsc: false
@@ -163,17 +163,34 @@ function Dashboard() {
                                 Resultados
                             </div>
                             <div className="card-responses-charts-box">
-                                <div className="responses-box">
-                                    <button className="square">
-                                        <i aria-hidden="true" className="left arrow icon"></i>
-                                    </button>
+                                <div className="responses-area">
+                                    <div className="responses-box">
+                                        <button className="square">
+                                            <i aria-hidden="true" className="left arrow icon"></i>
+                                        </button>
 
-                                    <div className="title contador-pergunta">Pergunta 01</div>
-                                    
-                                    <button className="square">
-                                        <i aria-hidden="true" className="right arrow icon"></i>
-                                    </button>
+                                        <div className="title contador-pergunta">Pergunta 01</div>
+
+                                        <button className="square">
+                                            <i aria-hidden="true" className="right arrow icon"></i>
+                                        </button>
+                                    </div>
+                                    <div>
+                                        Pergunta 01 pipipi popopo
+                                    </div>
+                                    <div>
+                                        <div>
+                                            <b>A - </b>Primeira opção.
+                                        </div>
+                                        <div>
+                                            <b>B - </b>Segunda opção.
+                                        </div>
+                                        <div>
+                                            <b>C - </b>Terceira opção.
+                                        </div>
+                                    </div>
                                 </div>
+                                
 
                                 <div className="chart-box">
                                     <div>

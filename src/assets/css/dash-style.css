@@ -60,22 +60,38 @@
 
 .card-responses-charts-box{
     width: 100%;
+    height: 100%;
     background-image: linear-gradient(#488FBD, #2C546F);
     display: flex;
-    align-items: center;
+    align-items: flex-start;
+    justify-content: space-between;
     overflow-x: auto;
     padding: 16px;
-    
+    border-radius: 10px;
+}
+
+.responses-area{
+    width: 50%;
+    min-height: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    border-right: 2px solid #FFFFFF;
 }
 
 .responses-box{
-    width: 50%;
+    width: 100%;
     display: flex;
     align-items: center;
+    justify-content: flex-start;
 }
 
 .charts-box{
-    width: 40%;
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .card-responses-charts-box .title{
