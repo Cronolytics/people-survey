@@ -8,6 +8,7 @@ import Hotsite from './components/hotsite-component/Hotsite';
 import Dashboard from './pages/Dashboard';
 import MinhasPesquisas from './pages/MinhasPesquisas';
 import CriarPesquisa from './pages/CriarPesquisa';
+import ResponderResquisa from './pages/ResponderPesquisa';
 
 
 
@@ -17,13 +18,14 @@ function App() {
     <>
         <Router>
           <Routes>
-                <Route path='/' element={<Home />} />
-                <Route path='/cadastro' element={<Cadastro />} />
-                <Route path='/login' element={<Login />} />
-                <Route path='/hotsite' element={<Hotsite />} />
+                <Route path='/' element={<Home />}/>
+                <Route path='/cadastro' element={<Cadastro />}/>
+                <Route path='/login' element={<Login />}/>
+                <Route path='/hotsite' element={<Hotsite />}/>
                 <Route path='/dashboard' element={<Dashboard />}/>
-                <Route path='/minhas-pesquisas' element={<MinhasPesquisas />} />
-                <Route path='/criar-pesquisa' element={<CriarPesquisa />} />
+                <Route path='/minhas-pesquisas' element={<MinhasPesquisas />}/>
+                <Route path='/criar-pesquisa' element={<CriarPesquisa />}/>
+                <Route path='responder-pesquisa/id' element={<ResponderResquisa />}/>
           </Routes>
         </Router>
     </>

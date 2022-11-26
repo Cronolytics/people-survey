@@ -9,66 +9,29 @@ import PieChart from "../components/dashboard-components/pie-chart-component/Pie
 import { useState } from "react";
 import { useEffect } from "react";
 
-class PesquisaResumida{
-    constructor(id, selecionado, nome, qtdPerguntas, qtdRespostas, qtdPessoas, ativa, interna, exploratoria){
-        this.id           = id;
-        this.selecionado  = selecionado;
-        this.nome         = nome;
-        this.qtdPerguntas = qtdPerguntas;
-        this.qtdRespostas = qtdRespostas;
-        this.qtdPessoas   = qtdPessoas;
-        this.ativa        = ativa;
-        this.interna      = interna;
-        this.exploratoria = exploratoria;
-    }
-}
-
 function Dashboard() {
-
-    var userID = sessionStorage.getItem("id");
 
     const [isPesquisasVazia,   setIsPesquisaVazia]    = useState(false)
     const [pesquisasResumidas, setPesquisasResumidas] = useState(["", ""]);
 
     useEffect(function(){
+        var userID = sessionStorage.getItem("id");
         api.get(`/pesquisas/pesquisas-simples?idEmpresa=${userID}`
         ).then(function(pesquisasResumidasAPI){
         setPesquisasResumidas(pesquisasResumidasAPI.data);
-        }).catch((error) => {
-        console.log(error);
-        })
-
-        if(!pesquisasResumidas){
+        if(pesquisasResumidasAPI.status === 204){
             setIsPesquisaVazia(true);
         }
         else{
             setIsPesquisaVazia(false);
         }
+        }).catch((error) => {
+        console.log(error);
+        })
     }, [])
 
     console.log(JSON.stringify(pesquisasResumidas));  
-    // const pesquisasResumidasAux = [
-    //     {
-    //         id: 1,
-    //         isSelecionado: true,
-    //         tipo: "Pesquisa interna",
-    //         titulo: "Avaliação de liderança - Financeiro",
-    //         qtdPerguntas: 3,
-    //         qtdPessoas: 280,
-    //         qtdRespostas: 840,
-    //         status: "Em andamento"
-    //     },
-    //     {
-    //         id: 2,
-    //         isSelecionado: false,
-    //         tipo: "Pesquisa interna",
-    //         titulo: "Avaliação de liderança - Tecnologia da informação",
-    //         qtdPerguntas: 2,
-    //         qtdPessoas: 180,
-    //         qtdRespostas: 360,
-    //         status: "Em andamento"
-    //     }
-    // ]
+    
     return (
         <>
             <div className="tela-toda">
@@ -87,7 +50,7 @@ function Dashboard() {
                             </div>
                             <div className="scroll-card-box">
                                 {
-                                    !isPesquisasVazia ? 
+                                    isPesquisasVazia ? <><div></div></> : 
                                     pesquisasResumidas.map((pesquisa, index) => {
                                         return (
                                             <>                                           
@@ -104,8 +67,8 @@ function Dashboard() {
                                                     />
                                                 </div>
                                             </>
-                                        ); 
-                                    }) : (<><div></div></>)
+                                        )
+                                    })
                                 }
                             </div>
                             <div className="card-responses-charts-area">

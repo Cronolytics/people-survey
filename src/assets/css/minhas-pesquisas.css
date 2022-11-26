@@ -1,7 +1,3 @@
- /* topo:     margem de 10px */
- /* direita:  margem de 3px  */
-/* inferior: margem de 30px */
-/* esquerda: margem de 5px  */
 .tela-toda{
     width: 100vw;
     display: flex;
@@ -13,10 +9,6 @@
     padding-bottom: 32px;
     max-height: 100vh;
     overflow-y: auto;
-}
-
-.container-minhas-pesquisas {
-    
 }
 
 .menu{
