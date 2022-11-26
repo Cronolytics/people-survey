@@ -1,9 +1,9 @@
 import React from 'react'
 import '../assets/css/reset.css'
 import '../assets/css/minhas-pesquisas.css'
-import Menu from '../components/menu-conponents/NavbarMenu'
 import CardPesquisa from '../components/dashboard-components/card-pesquisa-component/CardPesquisa'
 import { Form } from 'semantic-ui-react'
+import Menu from '../components/menu-conponents/Menu'
 
 function MinhasPesquisas() {
 
@@ -114,7 +114,7 @@ function MinhasPesquisas() {
     <>
 
       <div className="navbar-menu">
-        <Menu />
+      <Menu />
         <div className="content-minhas-pesquisas">
           <div className="titlle-nav">
             <h1>Minhas pesquisas</h1>
@@ -132,7 +132,7 @@ function MinhasPesquisas() {
                   </Form.Field>
 
                   <Form.Field label='Período:' control='input' type="date" />
-                  <Form.Field label='Pesquisar:' control='input' />
+                  <Form.Field label='Pesquisar:' control='input' placeholder="Pesquisar..." />
                 </Form.Group>
               </Form>
             </div>

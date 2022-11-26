@@ -3,7 +3,7 @@ import '../assets/css/reset.css'
 import '../assets/css/dash-style.css'
 import '../assets/css/style.css'
 import CardPesquisa from "../components/dashboard-components/card-pesquisa-component/CardPesquisa";
-import Menu from "../components/menu-conponents/NavbarMenu";
+
 import api from '../api'
 import PieChart from "../components/dashboard-components/pie-chart-component/PieChart";
 import { useState } from "react";
@@ -72,7 +72,7 @@ function Dashboard() {
     return (
         <>
             <div className="navbar-menu-dashboard">
-                <Menu />
+                
             </div>
             <div className="gray-background">
                 <div className="container">

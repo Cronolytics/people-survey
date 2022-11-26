@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import NovaPergunta from '../components/criar-pesquisa-components/NovaPergunta'
 import { Form } from 'semantic-ui-react'
-import Menu from "../components/menu-conponents/NavbarMenu";
 import '../assets/css/criar-pesquisa.css'
 import Toastify from 'toastify-js'
 import "toastify-js/src/toastify.css"
@@ -188,7 +187,7 @@ function CriarPesquisa(){
     return(
         <>
             <div className="navbar-menu-dashboard">
-                <Menu />
+               
             </div>         
 
             <div className="gray-background">
