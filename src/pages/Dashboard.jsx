@@ -4,126 +4,71 @@ import '../assets/css/dash-style.css'
 import '../assets/css/style.css'
 import CardPesquisa from "../components/dashboard-components/card-pesquisa-component/CardPesquisa";
 import Menu from "../components/menu-conponents/NavbarMenu";
-
+import api from '../api'
 import PieChart from "../components/dashboard-components/pie-chart-component/PieChart";
+import { useState } from "react";
+import { useEffect } from "react";
 
-//import { Pie } from 'react-chartjs-2';
+class PesquisaResumida{
+    constructor(id, selecionado, nome, qtdPerguntas, qtdRespostas, qtdPessoas, ativa, interna, exploratoria){
+        this.id           = id;
+        this.selecionado  = selecionado;
+        this.nome         = nome;
+        this.qtdPerguntas = qtdPerguntas;
+        this.qtdRespostas = qtdRespostas;
+        this.qtdPessoas   = qtdPessoas;
+        this.ativa        = ativa;
+        this.interna      = interna;
+        this.exploratoria = exploratoria;
+    }
+}
 
 function Dashboard() {
 
-    const pesquisasResumidas = [
-        {
-            id: 1,
-            isSelecionado: true,
-            tipo: "Pesquisa interna",
-            titulo: "Avaliação de liderança - Financeiro",
-            qtdPerguntas: 3,
-            qtdPessoas: 280,
-            qtdRespostas: 840,
-            status: "Em andamento"
-        },
-        {
-            id: 2,
-            isSelecionado: false,
-            tipo: "Pesquisa interna",
-            titulo: "Avaliação de liderança - Tecnologia da informação",
-            qtdPerguntas: 2,
-            qtdPessoas: 180,
-            qtdRespostas: 360,
-            status: "Em andamento"
-        },
-        {
-            id: 3,
-            isSelecionado: false,
-            tipo: "Pesquisa interna",
-            titulo: "Avaliação de Vendas - Telemarketing",
-            qtdPerguntas: 2,
-            qtdPessoas: 85,
-            qtdRespostas: 170,
-            status: "Em andamento"
-        },
-        {
-            id: 4,
-            isSelecionado: false,
-            tipo: "Pesquisa interna",
-            titulo: "Avaliação de liderança - Recursos Humanos",
-            qtdPerguntas: 1,
-            qtdPessoas: 180,
-            qtdRespostas: 180,
-            status: "Em andamento"
-        },
-        {
-            id: 5,
-            tipo: "Pesquisa interna",
-            isSelecionado: false,
-            titulo: "Avaliação de Pagamentos - Setor de cobranças",
-            qtdPerguntas: 2,
-            qtdPessoas: 85,
-            qtdRespostas: 170,
-            status: "Em andamento"
+    var userID = sessionStorage.getItem("id");
+
+    const [isPesquisasVazia,   setIsPesquisaVazia]    = useState(false)
+    const [pesquisasResumidas, setPesquisasResumidas] = useState(["", ""]);
+
+    useEffect(function(){
+        api.get(`/pesquisas/pesquisas-simples?idEmpresa=${userID}`
+        ).then(function(pesquisasResumidasAPI){
+        setPesquisasResumidas(pesquisasResumidasAPI.data);
+        }).catch((error) => {
+        console.log(error);
+        })
+
+        if(!pesquisasResumidas){
+            setIsPesquisaVazia(true);
         }
-    ]
+        else{
+            setIsPesquisaVazia(false);
+        }
+    }, [])
 
-    //var respostasPesquisas = [
-    //    {
-    //        id: 1,
-    //        perguntas: [
-    //            {titulo: "Qual a capital de São Paulo ?",
-    //                componente: {
-    //                    nomeComponente: "alternativa",
-    //                    multiEsc: false
-    //                },
-    //                respostas:[
-    //                    {
-    //                        label: "São Paulo",
-    //                        qtdRespostas: 200
-    //                    },
-    //                    {
-    //                        label: "Diadema",
-    //                        qtdRespostas: 80
-    //                    }
-    //                ]
-    //            },
-    //            {
-    //                id: 2,
-    //                titulo: "Você compra criptomoedas ?",
-    //                componente: {
-    //                    nomeComponente: "alternativa",
-    //                    multiEsc: false
-    //                },
-    //                respostas:[
-    //                    {
-    //                        label: "Sim",
-    //                        qtdRespostas: 80
-    //                    },
-    //                    {
-    //                        label: "Não",
-    //                        qtdRespostas: 200
-    //                    }
-    //                ]
-    //            },
-    //            {
-    //                id: 3,
-    //                titulo: "Você está desempregado ?",
-    //                componente: {
-    //                    nomeComponente: "alternativa",
-    //                    multiEsc: false
-    //                },
-    //                respostas:[
-    //                    {
-    //                        label: "Sim",
-    //                        qtdRespostas: 95
-    //                    },
-    //                    {
-    //                        label: "Não",
-    //                        qtdRespostas: 95
-    //                    }
-    //                ]
-    //            },
-    //        ]
-    //    }
-    //];
-
+    console.log(JSON.stringify(pesquisasResumidas));  
+    // const pesquisasResumidasAux = [
+    //     {
+    //         id: 1,
+    //         isSelecionado: true,
+    //         tipo: "Pesquisa interna",
+    //         titulo: "Avaliação de liderança - Financeiro",
+    //         qtdPerguntas: 3,
+    //         qtdPessoas: 280,
+    //         qtdRespostas: 840,
+    //         status: "Em andamento"
+    //     },
+    //     {
+    //         id: 2,
+    //         isSelecionado: false,
+    //         tipo: "Pesquisa interna",
+    //         titulo: "Avaliação de liderança - Tecnologia da informação",
+    //         qtdPerguntas: 2,
+    //         qtdPessoas: 180,
+    //         qtdRespostas: 360,
+    //         status: "Em andamento"
+    //     }
+    // ]
     return (
         <>
             <div className="navbar-menu-dashboard">
@@ -137,24 +82,25 @@ function Dashboard() {
                         </div>
                         <div className="scroll-card-box">
                             {
+                                !isPesquisasVazia ? 
                                 pesquisasResumidas.map((pesquisa, index) => {
                                     return (
-                                        <>
-                                            <div key={pesquisa.id}>
+                                        <>                                           
+                                            <div key={index}>
                                                 <CardPesquisa
-                                                    isSelecionado={pesquisasResumidas[0] === pesquisa ? true : false}
+                                                    isSelecionado={pesquisasResumidas[0] === pesquisa ? true : pesquisa.selecionado}
                                                     id={pesquisa.id}
-                                                    tipo={pesquisa.tipo}
-                                                    titulo={pesquisa.titulo}
+                                                    tipo={pesquisa.interna === true ? "Pesquisa Interna" : "Pesquisa Externa"}
+                                                    titulo={pesquisa.nome}
                                                     qtdPerguntas={pesquisa.qtdPerguntas}
                                                     qtdPessoas={pesquisa.qtdPessoas}
                                                     qtdRespostas={pesquisa.qtdRespostas}
-                                                    status={pesquisa.status}
+                                                    status={pesquisa.ativa === true ? "Em andamento..." : "Encerrada."}
                                                 />
                                             </div>
                                         </>
-                                    );
-                                })
+                                    ); 
+                                }) : (<><div></div></>)
                             }
                         </div>
 

@@ -16,15 +16,22 @@ class Pesquisa {
         this.nome = nome;
         this.desc = desc;
         this.participantesAlvo = participantesAlvo;
-        this.empresa = empresa;
+        this.empresa = {"id": parseInt(empresa)};
         this.interna = interna;
         this.perguntas = perguntas;
     }
 }
 class Pergunta {
-    constructor (descricao, respostas) {
-        this.descricao = descricao || "";
-        this.respostas = respostas || [];
+    constructor (desc, respostas) {
+        this.desc = desc || "";
+        this.componente = 1;
+        this.respostas = respostas || [{}];
+    }
+}
+
+class Resposta {
+    constructor (desc) {
+        this.desc = desc
     }
 }
 
@@ -44,8 +51,9 @@ function CriarPesquisa(){
     //=====================================================================
     useEffect(() => {
         setPerguntas([{
-            descricao: "",
-            respostas: ["",""]
+            desc: "",
+            componente: 1,
+            respostas: [{"desc" : ""},{"desc" : ""}]
         }]);
         console.log(pesquisa);
         var id = sessionStorage.getItem("id");
@@ -70,21 +78,27 @@ function CriarPesquisa(){
     //=====================================================================
     function salvarPesquisa(event){
         event.preventDefault();
+        
+        console.log("STATE PESQUISA: " + JSON.stringify(pesquisa));
 
+        if(event.submiter === <button class="ui icon button button-limiter"><i aria-hidden="true" class="add center icon"></i></button>){
+            console.log("AEEEEE CARALHOOOOOOO");
+        }
+        console.log(event);
         var perguntasAux = [...perguntas]
         console.log(JSON.stringify(perguntasAux));
         for (let i = 0; i < perguntasAux.length; i++){
-            if(perguntasAux[i].descricao === ""){
+            if(perguntasAux[i].desc === ""){
                 setIsPesquisaValida(false);
                 break;
             }
             else{
                 setIsPesquisaValida(true);
-                console.log(perguntasAux.respostas);
+                console.log(perguntasAux[i].respostas);
                 var respostasAux = [...perguntasAux[i].respostas];
                 console.log(perguntasAux);
                 for (let j = 0; j < respostasAux.length; j++) {
-                    if(respostasAux[i].descricao === ""){
+                    if(respostasAux[i].desc === ""){
                         setIsPesquisaValida(false);
                         break;
                     }
@@ -113,7 +127,7 @@ function CriarPesquisa(){
                 console.log(error);
                 Toastify({
                     text: "Erro ao tentar cadastrar pesquisa...",
-                    duration: 3000,
+                    duration: 10000,
                     close: true,
                     gravity: "top", // `top` or `bottom`
                     position: "right", // `left`, `center` or `right`
@@ -125,7 +139,7 @@ function CriarPesquisa(){
         else{
             Toastify({
                 text: "Sua pesquisa não está formatada corretamente! Verifique todos os campos",
-                duration: 3000,
+                duration: 10000,
                 close: true,
                 gravity: "top", // `top` or `bottom`
                 position: "right", // `left`, `center` or `right`
@@ -147,7 +161,7 @@ function CriarPesquisa(){
     }
 
     function incrementarPergunta(){
-        var arrayPerguntasAtualizadoAuxiliar = [...perguntas, new Pergunta()]
+        var arrayPerguntasAtualizadoAuxiliar = [...perguntas, new Pergunta("", [{"desc" : ""}, {"desc" : ""}])]
         setPerguntas(arrayPerguntasAtualizadoAuxiliar)
         setQtdPerguntas(qtdPerguntas + 1);       
     }

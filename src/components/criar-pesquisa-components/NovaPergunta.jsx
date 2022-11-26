@@ -11,7 +11,7 @@ function NovaPergunta(props){
     // === ESTADOS ========================================================
     //=====================================================================
     const [descricao,    setDescricao]    = useState("");
-    const [respostas,    setRespostas]    = useState(["", ""]);
+    const [respostas,    setRespostas]    = useState([{"desc" : ""}, {"desc" : ""}]);
     const [qtdRespostas, setQtdRespostas] = useState(2);
 
     //=====================================================================
@@ -19,7 +19,8 @@ function NovaPergunta(props){
     //=====================================================================
     useEffect(() => {
         var objPerguntaAuxiliar = {
-            descricao,
+            desc : descricao,
+            componente : {"id" : 1},
             respostas
         }
         props.atualizar(objPerguntaAuxiliar, props.id);
@@ -42,7 +43,7 @@ function NovaPergunta(props){
         }
         else{
             var arrayRespostasAtualizadoAuxiliar = [...respostas];
-            arrayRespostasAtualizadoAuxiliar.push("");
+            arrayRespostasAtualizadoAuxiliar.push({"desc" : ""});
             setRespostas(arrayRespostasAtualizadoAuxiliar);
             setQtdRespostas(qtdRespostas + 1)
         }
@@ -75,7 +76,7 @@ function NovaPergunta(props){
 
     function atualizarResp (param, key) {
         var arrayRespostasAtualizadoAuxiliar = [...respostas];
-        arrayRespostasAtualizadoAuxiliar[key] = param;
+        arrayRespostasAtualizadoAuxiliar[key] = {"desc" : param};
         setRespostas(arrayRespostasAtualizadoAuxiliar);
     }
 
