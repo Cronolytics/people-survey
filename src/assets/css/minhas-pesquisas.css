@@ -2,18 +2,29 @@
  /* direita:  margem de 3px  */
 /* inferior: margem de 30px */
 /* esquerda: margem de 5px  */
+.tela-toda{
+    width: 100vw;
+    display: flex;
+    min-height: 100vh;
+}
+
+.conteudo{
+    background-color: #D9D9D9;
+}
 
 .container-minhas-pesquisas {
-    height: 100vh;
-    background-color: #D9D9D9;
     overflow-y: auto;
+}
+
+.menu{
+    max-height: 100vh;
 }
 
 .navbar-menu {
     background-color: #488FBD;
-    height: 80px;
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-between;
+    padding: 48px 42px;
     align-items: center;
 }
 
@@ -26,7 +37,7 @@
 
 .pesquisas-box {
     padding-top: 50px;
-    padding-left: 400px;
+    padding-left: 50px;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;

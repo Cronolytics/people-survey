@@ -80,9 +80,6 @@ function CriarPesquisa(){
         
         console.log("STATE PESQUISA: " + JSON.stringify(pesquisa));
 
-        if(event.submiter === <button class="ui icon button button-limiter"><i aria-hidden="true" class="add center icon"></i></button>){
-            console.log("AEEEEE CARALHOOOOOOO");
-        }
         console.log(event);
         var perguntasAux = [...perguntas]
         console.log(JSON.stringify(perguntasAux));
@@ -197,9 +194,9 @@ function CriarPesquisa(){
                             <div className="page-titulo">
                                 <h1>Criar uma nova pesquisa</h1>
                                 <div className="ui button-or-limiter">
-                                    <button className="ui button">Cancel</button>
+                                    <button type="button" className="ui button">Cancel</button>
                                     <div className="or"></div>
-                                    <button className="ui positive button">Save</button>
+                                    <button type="submit" className="ui positive button">Save</button>
                                 </div>
                             </div>
                         
@@ -229,9 +226,9 @@ function CriarPesquisa(){
                             <div className="respostas-area">
                                 <div className="field-resposta">Perguntas:</div>
                                 <div className="contador-area">
-                                    <button onClick={decrementarPergunta} className="ui icon button button-limiter"><i aria-hidden="true" className="minus icon"></i></button>
+                                    <button type="button" onClick={decrementarPergunta} className="ui icon button button-limiter"><i aria-hidden="true" className="minus icon"></i></button>
                                     <div className='contador'>{perguntas.length}</div>
-                                    <button onClick={incrementarPergunta} className="ui icon button button-limiter"><i aria-hidden="true" className="add center icon"></i></button>
+                                    <button type="button" onClick={incrementarPergunta} className="ui icon button button-limiter"><i aria-hidden="true" className="add center icon"></i></button>
                                 </div> 
                             </div>                          
                             <div className="area-content">

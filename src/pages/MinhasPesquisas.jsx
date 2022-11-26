@@ -112,56 +112,61 @@ function MinhasPesquisas() {
 
   return (
     <>
+      <div className='tela-toda'>
+        <div className="menu">
+          <Menu />
+        </div>
 
-      <div className="navbar-menu">
-      <Menu />
-        <div className="content-minhas-pesquisas">
-          <div className="titlle-nav">
-            <h1>Minhas pesquisas</h1>
-          </div>
-
-          <div className="input-box">
-            <div className="border"></div>
-            <div className=""> <i aria-hidden="true" />
-              <Form>
-                <Form.Group widths='equal'>
-                  <Form.Field className='from-fied' label='Tipo:' control='select'>
-                    <option value=''>Todos</option>
-                    <option value='peTodos-interna'>Pesquisa Interna</option>
-                    <option value='pesquisa-externa'>Pesquisa Externa</option>
-                  </Form.Field>
-
-                  <Form.Field label='Período:' control='input' type="date" />
-                  <Form.Field label='Pesquisar:' control='input' placeholder="Pesquisar..." />
-                </Form.Group>
-              </Form>
+        <div className='conteudo'>
+          <div className='navbar-menu'>
+            <div className="titlle-nav">
+              <h1>Minhas pesquisas</h1>
+            </div>
+            <div className="input-box">
+              <div className="border"></div>
+              <div> 
+                <i aria-hidden="true" />
+                <Form>
+                  <Form.Group widths='equal'>
+                    <Form.Field className='from-fied' label='Tipo:' control='select'>
+                      <option value=''>Todos</option>
+                      <option value='peTodos-interna'>Pesquisa Interna</option>
+                      <option value='pesquisa-externa'>Pesquisa Externa</option>
+                    </Form.Field>
+                    <Form.Field label='Período:' control='input' type="date" />
+                    <Form.Field label='Pesquisar:' control='input' placeholder="Pesquisar..." />
+                  </Form.Group>
+                </Form>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
-
-      <div className="container-minhas-pesquisas">
-        <div className="pesquisas-box">
-          {
-            minhasPesquisasResumidas.map((pesquisa, index) => {
-              return (
-                <>
-                  <div key={pesquisa.id}>
-                    <CardPesquisa                    
-                      isSelecionado={minhasPesquisasResumidas[0] === pesquisa ? true : false}
-                      id={pesquisa.id}
-                      tipo={pesquisa.tipo}
-                      titulo={pesquisa.titulo}
-                      qtdPerguntas={pesquisa.qtdPerguntas}
-                      qtdPessoas={pesquisa.qtdPessoas}
-                      qtdRespostas={pesquisa.qtdRespostas}
-                      status={pesquisa.status}
-                    />
-                  </div>                 
-                </>
-              );
-            })
-          }
+          <div className="content-minhas-pesquisas">
+            
+          </div>         
+          <div className="container-minhas-pesquisas">
+            <div className="pesquisas-box">
+              {
+                minhasPesquisasResumidas.map((pesquisa, index) => {
+                  return (
+                    <>
+                      <div key={pesquisa.id}>
+                        <CardPesquisa                    
+                          isSelecionado={minhasPesquisasResumidas[0] === pesquisa ? true : false}
+                          id={pesquisa.id}
+                          tipo={pesquisa.tipo}
+                          titulo={pesquisa.titulo}
+                          qtdPerguntas={pesquisa.qtdPerguntas}
+                          qtdPessoas={pesquisa.qtdPessoas}
+                          qtdRespostas={pesquisa.qtdRespostas}
+                          status={pesquisa.status}
+                        />
+                      </div>                 
+                    </>
+                  );
+                })
+              }
+            </div>
+          </div>
         </div>
       </div>
     </>

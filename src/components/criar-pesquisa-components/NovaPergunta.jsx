@@ -92,9 +92,9 @@ function NovaPergunta(props){
                     <div className='respostas-area'>
                         <div className="field-resposta">Respostas:</div>
                         <div className="respostas-area">
-                            <button onClick={decrementarResposta} className="ui icon button button-limiter"><i aria-hidden="true" className="minus icon"></i></button>
+                            <button type="button" onClick={decrementarResposta} className="ui icon button button-limiter"><i aria-hidden="true" className="minus icon"></i></button>
                             <div className='contador'>{qtdRespostas}</div>
-                            <button onClick={incrementarResposta} className="ui icon button button-limiter"><i aria-hidden="true" className="add center icon"></i></button>
+                            <button type="button" onClick={incrementarResposta} className="ui icon button button-limiter"><i aria-hidden="true" className="add center icon"></i></button>
                         </div>                        
                     </div>
                     <div className="field w-100">   
