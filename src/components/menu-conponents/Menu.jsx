@@ -11,7 +11,9 @@ function Menu() {
     <>
           <div className='menu-items'>
             <ul>
-              <img src={LogoSurvey} onClick={() => navigate('/')} className='logo-menu' alt=''/>
+              <div className='logo-menu'>
+                <img src={LogoSurvey} onClick={() => navigate('/')} alt=''/>
+              </div>
             <div className="opt-box">
                 <div className="txt-opt" onClick={() => navigate('/dashboard')}>
                   <div className='opt-menu'>Dashboard</div> 
