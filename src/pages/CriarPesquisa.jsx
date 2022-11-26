@@ -6,6 +6,7 @@ import Toastify from 'toastify-js'
 import "toastify-js/src/toastify.css"
 import api from '../api'
 import { useNavigate } from "react-router-dom";
+import Menu from '../components/menu-conponents/Menu'
 
 //=====================================================================
 // === CLASSES ========================================================
@@ -182,72 +183,78 @@ function CriarPesquisa(){
     }
 
     return(
-        <>
-            <div className="navbar-menu-dashboard">
-               
-            </div>         
+        <>  
+            <div className="tela-toda">
+                <div className="menu">
+                    <Menu />
+                </div>         
 
-            <div className="gray-background">
-                <div className="container">
-                    <div className="card-conteudo">
-                        <Form onSubmit={(event) => salvarPesquisa(event)}>
-                            <div className="page-titulo">
-                                <h1>Criar uma nova pesquisa</h1>
-                                <div className="ui button-or-limiter">
-                                    <button type="button" className="ui button">Cancel</button>
-                                    <div className="or"></div>
-                                    <button type="submit" className="ui positive button">Save</button>
-                                </div>
-                            </div>
-                        
-                            <div className="pesquisa-config">
-                                <div className="area-titulo">
-                                    <div className="titulo-box">
-                                        Título:
-                                    </div>
-                                        <div className="ui transparent input input-titulo-size">
-                                            <input onChange={(e) => setNomePesquisa(e.target.value)} type="text"  placeholder="Digite o título da pesquisa."/>
-                                        </div>
-                                    </div>
-                                <div className="area-tipo-pesquisa">
-                                    <div className="area-tipo-item">
-                                        Esta pesquisa será:
-                                    </div>
-                                    <div className="area-tipo-item">
-                                        <Form.Field control='select' className="select-limiter">
-                                            <option value='01'>Pesquisa Interna</option>
-                                            <option value='02'>Pesquisa Externa</option>
-                                        </Form.Field>
-                                    </div>                               
-                                </div>
-                            </div>
-                            
-
-                            <div className="respostas-area">
-                                <div className="field-resposta">Perguntas:</div>
-                                <div className="contador-area">
-                                    <button type="button" onClick={decrementarPergunta} className="ui icon button button-limiter"><i aria-hidden="true" className="minus icon"></i></button>
-                                    <div className='contador'>{perguntas.length}</div>
-                                    <button type="button" onClick={incrementarPergunta} className="ui icon button button-limiter"><i aria-hidden="true" className="add center icon"></i></button>
-                                </div> 
-                            </div>                          
-                            <div className="area-content">
-                                <div className="area-tipo-item">
-                                {
-                                    perguntas.map((pergunta, index) => {
-                                        return (
-                                            <div key={index} className="pergunta-box">
-                                                <NovaPergunta atualizar={atualizarPergunta} pergunta={pergunta} id={index} />
-                                            </div>
-                                        );
-                                        })
-                                    }  
-                                </div>
-                            </div>
-                        </Form>                        
-                    </div>
+                <div className="gray-background">
+                <div className='navbar-menu'>
+                    
                 </div>
-            </div>           
+                    <div className="container">
+                        <div className="card-conteudo">
+                            <Form onSubmit={(event) => salvarPesquisa(event)}>
+                                <div className="page-titulo">
+                                    <h1>Criar uma nova pesquisa</h1>
+                                    <div className="ui button-or-limiter">
+                                        <button type="button" className="ui button">Cancel</button>
+                                        <div className="or"></div>
+                                        <button type="submit" className="ui positive button">Save</button>
+                                    </div>
+                                </div>
+
+                                <div className="pesquisa-config">
+                                    <div className="area-titulo">
+                                        <div className="titulo-box">
+                                            Título:
+                                        </div>
+                                            <div className="ui transparent input input-titulo-size">
+                                                <input onChange={(e) => setNomePesquisa(e.target.value)} type="text"  placeholder="Digite o título da pesquisa."/>
+                                            </div>
+                                        </div>
+                                    <div className="area-tipo-pesquisa">
+                                        <div className="area-tipo-item">
+                                            Esta pesquisa será:
+                                        </div>
+                                        <div className="area-tipo-item">
+                                            <Form.Field control='select' className="select-limiter">
+                                                <option value='01'>Pesquisa Interna</option>
+                                                <option value='02'>Pesquisa Externa</option>
+                                            </Form.Field>
+                                        </div>                               
+                                    </div>
+                                </div>
+
+
+                                <div className="respostas-area">
+                                    <div className="field-resposta">Perguntas:</div>
+                                    <div className="contador-area">
+                                        <button type="button" onClick={decrementarPergunta} className="ui icon button button-limiter"><i aria-hidden="true" className="minus icon"></i></button>
+                                        <div className='contador'>{perguntas.length}</div>
+                                        <button type="button" onClick={incrementarPergunta} className="ui icon button button-limiter"><i aria-hidden="true" className="add center icon"></i></button>
+                                    </div> 
+                                </div>                          
+                                <div className="area-content">
+                                    <div className="area-tipo-item">
+                                    {
+                                        perguntas.map((pergunta, index) => {
+                                            return (
+                                                <div key={index} className="pergunta-box">
+                                                    <NovaPergunta atualizar={atualizarPergunta} pergunta={pergunta} id={index} />
+                                                </div>
+                                            );
+                                            })
+                                        }  
+                                    </div>
+                                </div>
+                            </Form>                        
+                        </div>
+                    </div>
+                </div>           
+            </div>
+            
         </>
     )
 }

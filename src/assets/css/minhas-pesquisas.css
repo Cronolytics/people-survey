@@ -25,6 +25,7 @@
 
 .navbar-menu {
     background-color: #488FBD;
+    width: 100%;
     display: flex;
     justify-content: space-between;
     padding: 48px 42px;

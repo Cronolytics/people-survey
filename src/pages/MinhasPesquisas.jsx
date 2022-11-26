@@ -140,9 +140,6 @@ function MinhasPesquisas() {
               </div>
             </div>
           </div>
-          <div className="content-minhas-pesquisas">
-            
-          </div>         
           <div className="container-minhas-pesquisas">
             <div className="pesquisas-box">
               {
