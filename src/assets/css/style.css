@@ -3,8 +3,6 @@
 html{
     font-family: 'Montserrat' !important;
 }
-
-
 .flex-centralization{
     display: flex;
     align-items: center;
@@ -111,10 +109,6 @@ html{
     font-size: 32px;
     font-weight: 400;
     margin: 5px;
-}
-
-.banner-title{
-
 }
 
 .banner-options{

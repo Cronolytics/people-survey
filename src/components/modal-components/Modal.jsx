@@ -1,4 +1,6 @@
 import React from 'react'
+import AccordionModal from '../accordion-component/Accordion';
+import AccordionDemo from '../accordion-component/Accordion';
 import '../modal-components/modal.css'
 
 function Modal(props) {
@@ -14,6 +16,7 @@ function Modal(props) {
                     </div>
                     <div className="modal-body">
                         Este é o corpo do modal
+                        <AccordionModal />
                     </div>
                     <div className="modal-footer">
                         <button
