@@ -5,6 +5,7 @@ import "../assets/css/responder-pesquisa-style.css";
 import api from '../api'
 import { useState } from 'react';
 import LogoSurvey from '../assets/images/logo-survey.png'
+import PerguntaResponder from '../components/responder-pesquisa-componets/PerguntaResponder';
 
 function ResponderResquisa(){
 
@@ -13,23 +14,21 @@ function ResponderResquisa(){
 
     const [isConfigurada, setIsConfigurada] = useState(false);
     const [pesquisaDaVez, setPesquisaDaVez] = useState();
+    const [perguntas,     setPerguntas    ] = useState([]);
 
-    var perguntas = [];
     console.log(idFormat);
 
-    // useEffect(() => {
-    //     buscarPesquisa();
-    // }, [])
-
-    // useEffect(() => {
-    //     setarPerguntas();
-    // }, [pesquisaDaVez])
+    useEffect(() => {buscarPesquisa()}, [])
 
     function buscarPesquisa(){
         api.get(`/pesquisas?idPesquisa=${idFormat}`
             ).then(function(pesquisaAPI){
                 console.log("Requisição de pesquisa sendo feita...");
-                if(pesquisaAPI.status === 200){
+                if(pesquisaAPI.status === 404){
+                    alert("Pesquisa não existe.")
+                }
+                else{
+                    console.log(pesquisaAPI.status);
                     setPesquisaDaVez(pesquisaAPI.data);
                     console.log(JSON.stringify(pesquisaDaVez, null, 4));
                 }
@@ -39,8 +38,9 @@ function ResponderResquisa(){
     }
 
     function setarPerguntas(){
-        perguntas = [...pesquisaDaVez.perguntas];
+        setPerguntas([...pesquisaDaVez.perguntas]);
         setIsConfigurada(true);
+        console.log("isConfigurada: " + isConfigurada);
         console.log(perguntas);
     }
 
@@ -58,9 +58,40 @@ function ResponderResquisa(){
                                 </div>                              
                             </div>
                             <div className='card-pesquisa'>
-                                {isConfigurada ? pesquisaDaVez.nome : "Título"}
+                                <div className='titulo-pesquisa'>
+                                    {isConfigurada ? pesquisaDaVez.nome : "Título"}
+                                </div>
+                                <div className='nome-empresa'>
+                                    {isConfigurada ? pesquisaDaVez.empresa.nome : "Empresa"}
+                                </div>
+                                
                                 <div className='pesquisa-area'>
-
+                                    {
+                                        isConfigurada ? perguntas.map((pergunta, i) => {
+                                            return(
+                                                <>  
+                                                    <form className="ui form" key={i}>
+                                                        <PerguntaResponder pergunta={pergunta} respostas={perguntas[i].respostas}/>
+                                                    </form>                   
+                                                </>
+                                            )
+                                        }) : 
+                                        <form class="ui form">
+                                            <div class="field">Selected value: <b></b></div>
+                                            <div class="field">
+                                                <div class="ui radio checkbox">
+                                                    <input type="radio" name="radioGroup"  tabindex="0" value="this"/>
+                                                    <label>Choose this</label>
+                                                </div>
+                                            </div>
+                                            <div class="field">
+                                                <div class="ui radio checkbox">
+                                                    <input type="radio" name="radioGroup"  tabindex="0" value="that"/>
+                                                    <label>Or that</label>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    }
                                 </div>
                             </div>
                         </div>

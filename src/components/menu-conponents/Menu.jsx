@@ -27,7 +27,7 @@ function Menu() {
                   <div className='opt-menu'>Minhas Pesquisas</div>
                 </div>
 
-                <div className="txt-opt" onClick={() => navigate('/responder-pesquisa/id=:15')}>
+                <div className="txt-opt" onClick={() => navigate('/responder-pesquisa/id=:16')}>
                   <div className='opt-menu'>Responder Pesquisa</div>
                 </div>
             </div>

@@ -30,6 +30,23 @@
     border-radius: 10px;
 }
 
+.titulo-pesquisa{
+    display: flex;
+    padding-top: 16px;
+    justify-content: center;
+    align-items: center;
+    font-size: 32px;
+    font-weight: 700;
+}
+
+.nome-empresa{
+    display: flex;
+    padding-top: 16px;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+}
+
 .pesquisa-area{
 
 }
