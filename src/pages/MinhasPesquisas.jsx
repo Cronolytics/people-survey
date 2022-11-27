@@ -4,9 +4,13 @@ import '../assets/css/minhas-pesquisas.css'
 import CardPesquisa from '../components/dashboard-components/card-pesquisa-component/CardPesquisa'
 import { Form } from 'semantic-ui-react'
 import Menu from '../components/menu-conponents/Menu'
+import Modal from '../components/modal-components/Modal'
+import { useState } from 'react'
+
 
 function MinhasPesquisas() {
 
+  const [show, setShow] = useState(false)
   const minhasPesquisasResumidas = [
     {
       id: 1,
@@ -124,7 +128,7 @@ function MinhasPesquisas() {
             </div>
             <div className="input-box">
               <div className="border"></div>
-              <div> 
+              <div>
                 <i aria-hidden="true" />
                 <Form>
                   <Form.Group widths='equal'>
@@ -140,14 +144,14 @@ function MinhasPesquisas() {
               </div>
             </div>
           </div>
-          <div className="container-minhas-pesquisas">
+          <div className="container-minhas-pesquisas" onClick={() => setShow(true)}>
             <div className="pesquisas-box">
               {
                 minhasPesquisasResumidas.map((pesquisa, index) => {
                   return (
                     <>
                       <div key={pesquisa.id}>
-                        <CardPesquisa                    
+                        <CardPesquisa
                           isSelecionado={minhasPesquisasResumidas[0] === pesquisa ? true : false}
                           id={pesquisa.id}
                           tipo={pesquisa.tipo}
@@ -157,13 +161,14 @@ function MinhasPesquisas() {
                           qtdRespostas={pesquisa.qtdRespostas}
                           status={pesquisa.status}
                         />
-                      </div>                 
+                      </div>
                     </>
                   );
                 })
               }
             </div>
           </div>
+          <Modal onClose={() => setShow(false)} show={show} />
         </div>
       </div>
     </>
