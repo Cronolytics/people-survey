@@ -29,12 +29,6 @@ class Pergunta {
     }
 }
 
-class Resposta {
-    constructor (desc) {
-        this.desc = desc
-    }
-}
-
 function CriarPesquisa(){
     const navigate = useNavigate();
     //=====================================================================
@@ -190,9 +184,9 @@ function CriarPesquisa(){
                 </div>         
 
                 <div className="gray-background">
-                <div className='navbar-menu'>
-                    
-                </div>
+                    <div className='navbar-menu'>
+                        
+                    </div>
                     <div className="container">
                         <div className="card-conteudo">
                             <Form onSubmit={(event) => salvarPesquisa(event)}>

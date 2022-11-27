@@ -1,6 +1,5 @@
 import "../assets/css/reset.css";
 import "../assets/css/login-cadastro.css";
-
 import logo_survey from "../assets/images/logo-survey.png";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";

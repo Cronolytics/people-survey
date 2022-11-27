@@ -25,7 +25,7 @@ function App() {
                 <Route path='/dashboard' element={<Dashboard />}/>
                 <Route path='/minhas-pesquisas' element={<MinhasPesquisas />}/>
                 <Route path='/criar-pesquisa' element={<CriarPesquisa />}/>
-                <Route path='responder-pesquisa/id' element={<ResponderResquisa />}/>
+                <Route path='/responder-pesquisa/id=:idPesquisa' element={<ResponderResquisa />}/>
           </Routes>
         </Router>
     </>
