@@ -72,12 +72,11 @@ function CriarPesquisa(){
     //=====================================================================
     function salvarPesquisa(event){
         event.preventDefault();
-        
         console.log("STATE PESQUISA: " + JSON.stringify(pesquisa));
 
-        console.log(event);
         var perguntasAux = [...perguntas]
         console.log(JSON.stringify(perguntasAux));
+        
         for (let i = 0; i < perguntasAux.length; i++){
             if(perguntasAux[i].desc === ""){
                 setIsPesquisaValida(false);

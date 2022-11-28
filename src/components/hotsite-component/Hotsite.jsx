@@ -56,7 +56,7 @@ function HotsitePage(){
                         </div>
                         <form className="ui form">
                             <div className='curriculoForms'>
-                            <label>Nome Completo</label>
+                                <label>Nome Completo</label>
                                 <div className="ui left icon input inputCurriculo"><i aria-hidden="true" className="user plus icon"/><input type="text" placeholder="Nome Completo"/></div>
 
                                 <label>CPF</label>
