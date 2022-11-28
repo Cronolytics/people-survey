@@ -251,19 +251,17 @@ function ResponderResquisa(){
                                         perguntas.map((pergunta, i) => {
                                             arrayGabaritosAux.push(new RespostaGabarito(pergunta.id, ""));
                                             return(
-                                                <>  
-                                                    <form className="ui form" key={pergunta}>
-                                                        <div className='pergunta-box-rp'>
-                                                            <PerguntaResponder 
-                                                                id={pergunta.id}  
-                                                                contador={i}
-                                                                pergunta={pergunta} 
-                                                                respostas={perguntas[i].respostas}
-                                                                atualizarGabarito={atualizarGabarito}
-                                                            />
-                                                        </div>
-                                                    </form>                   
-                                                </>
+                                                <form key={i} className="ui form">
+                                                    <div className='pergunta-box-rp'>
+                                                        <PerguntaResponder 
+                                                            id={pergunta.id}  
+                                                            contador={i}
+                                                            pergunta={pergunta} 
+                                                            respostas={perguntas[i].respostas}
+                                                            atualizarGabarito={atualizarGabarito}
+                                                        />
+                                                    </div>
+                                                </form>                   
                                             ) 
                                         }) : 
                                         <div>

@@ -67,21 +67,19 @@ function MinhasPesquisas() {
               {
                 isPesquisasVazia ? <><div></div></> :
                   pesquisasResumidas.map((pesquisa, index) => {
-                    return (
-                      <>
-                        <div key={pesquisa.id}>
-                          <CardPesquisa
-                            isSelecionado={[0] === pesquisa ? true : false}
-                            id={pesquisa.id}
-                            tipo={pesquisa.tipo}
-                            titulo={pesquisa.titulo}
-                            qtdPerguntas={pesquisa.qtdPerguntas}
-                            qtdPessoas={pesquisa.qtdPessoas}
-                            qtdRespostas={pesquisa.qtdRespostas}
-                            status={pesquisa.status}
-                          />
-                        </div>
-                      </>
+                    return (                      
+                      <div key={index}>
+                        <CardPesquisa
+                          isSelecionado={[0] === pesquisa ? true : false}
+                          id={pesquisa.id}
+                          tipo={pesquisa.tipo}
+                          titulo={pesquisa.titulo}
+                          qtdPerguntas={pesquisa.qtdPerguntas}
+                          qtdPessoas={pesquisa.qtdPessoas}
+                          qtdRespostas={pesquisa.qtdRespostas}
+                          status={pesquisa.status}
+                        />
+                      </div>
                     );
                   })
               }

@@ -101,18 +101,16 @@ function NovaPergunta(props){
                         {
                             respostas.map((resposta, index) => {
                                 return (
-                                    <>
-                                        <div key={index} className='resposta-box'>
-                                            <div className='contador-box'>
-                                                {index + 1}
-                                            </div>
-                                            <div className="ui fluid icon input">
-                                                <div className="ui transparent input">
-                                                    <input onChange={(e) => atualizarResp(e.target.value, index)} type="text" placeholder="Digite uma opção de resposta."/>
-                                                </div>
-                                            </div>                           
+                                    <div key={index} className='resposta-box'>
+                                        <div className='contador-box'>
+                                            {index + 1}
                                         </div>
-                                    </>
+                                        <div className="ui fluid icon input">
+                                            <div className="ui transparent input">
+                                                <input onChange={(e) => atualizarResp(e.target.value, index)} type="text" placeholder="Digite uma opção de resposta."/>
+                                            </div>
+                                        </div>                           
+                                    </div>
                                 );
                             })
                         }                                        
