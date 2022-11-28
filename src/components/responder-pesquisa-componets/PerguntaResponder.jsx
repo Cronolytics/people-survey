@@ -14,7 +14,7 @@ function PerguntaResponder(props){
     return(
         <>
             <div className="field">
-                {props.contador+1} - {props.pergunta.desc}
+                <b>{props.contador+1} - {props.pergunta.desc}</b>
             </div>
             {props.respostas.map((resposta, j) => {
                 return(

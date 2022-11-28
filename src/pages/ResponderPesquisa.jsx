@@ -1,13 +1,15 @@
 import React from 'react'
-import { useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
 import "../assets/css/responder-pesquisa-style.css";
 import api from '../api'
-import { useState } from 'react';
+import Toastify from 'toastify-js'
 import LogoSurvey from '../assets/images/logo-survey.png'
 import PerguntaResponder from '../components/responder-pesquisa-componets/PerguntaResponder';
 
 function ResponderResquisa(){
+
+    const navigate = useNavigate();
 
     const {idPesquisa} = useParams();
     var idFormat = idPesquisa.replace(':', '');
@@ -15,7 +17,7 @@ function ResponderResquisa(){
     class PayloadGabarito {
         constructor(convidado, respostasGabarito){
             this.convidado = convidado;
-            this.pesquisa = idFormat;
+            this.pesquisa = { "id" : parseInt(idFormat)};
             this.respostasGabarito = respostasGabarito;
         }
     }
@@ -34,24 +36,26 @@ function ResponderResquisa(){
         }
     }
 
-    const [classCloseModal,   setClassCloseModal  ] = useState("")
-    const [isConfigurada,     setIsConfigurada    ] = useState(false);
-    
-    const [nomeConvidado,     setNomeConvidado    ] = useState("");
-    const [emailConvidado,    setEmailConvidado   ] = useState("");
-    const [convidado,         setConvidado        ] = useState();
-    const [isConvidadoValido, setIsConvidadoValido] = useState(false);
+    const [classCloseModal,        setClassCloseModal       ] = useState("")
+    const [isConfigurada,          setIsConfigurada         ] = useState(false);
 
-    const [pesquisaDaVez,     setPesquisaDaVez    ] = useState();
-    const [perguntas,         setPerguntas        ] = useState([]);
+    const [nomeConvidado,          setNomeConvidado         ] = useState("");
+    const [emailConvidado,         setEmailConvidado        ] = useState("");
+    const [convidado,              setConvidado             ] = useState();
+    const [isConvidadoValido,      setIsConvidadoValido     ] = useState(false);
 
-    const [payloadGabarito,   setPayloadGabarito  ] = useState();
-    const [respostasGabarito, setRespostasGabarito] = useState([]);
-    const [isRespGabConfig,   setIsResGabConfig   ] = useState(false);
+    const [pesquisaDaVez,          setPesquisaDaVez         ] = useState();
+    const [perguntas,              setPerguntas             ] = useState([]);
+
+    const [payloadGabarito,        setPayloadGabarito       ] = useState(new PayloadGabarito());
+    const [respostasGabarito,      setRespostasGabarito     ] = useState([new RespostaGabarito()]);
+    const [isRespGabConfig,        setIsResGabConfig        ] = useState(false);
+    const [isRespostasRespondidas, setIsRespostasRespondidas] = useState(false);
 
     var arrayGabaritosAux = [];
 
     console.log("CONVIDADO: ", convidado);
+    console.log("PAYLOAD: ", payloadGabarito);
 
     useEffect(() => {buscarPesquisa()}, [])
 
@@ -63,6 +67,27 @@ function ResponderResquisa(){
             setIsConvidadoValido(false);
         }
     }, [nomeConvidado, emailConvidado])
+
+    useEffect(function(){
+        var copiaPayload = {...payloadGabarito};
+        copiaPayload.convidado = convidado;
+        copiaPayload.respostasGabarito = respostasGabarito;
+        setPayloadGabarito(copiaPayload);
+    }, [convidado, respostasGabarito])
+
+    useEffect(function(){
+        for (let i = 0; i < respostasGabarito.length; i++) {
+            var isValidAux = false
+            if(respostasGabarito[i].resposta.id === ''){
+                isValidAux = false
+                break;
+            }
+            else{
+                isValidAux = true
+            }
+        }
+        setIsRespostasRespondidas(isValidAux);
+    },[respostasGabarito])
 
     function verificarConvidado(){
         var novoConvidado = new Convidado(nomeConvidado, emailConvidado);
@@ -115,9 +140,50 @@ function ResponderResquisa(){
             console.log("arrayAuxiliar: ", arrayGabaritosAux);
             setIsResGabConfig(true)
         }
-
-        
     }
+
+    function responderPesquisa(){
+        if(isRespostasRespondidas){
+            api.post("/pesquisas/responder", payloadGabarito
+            ).then(function(){
+                console.log("Pesquisa respondida com sucesso!")
+                Toastify({
+                    text: "Pesquisa respondida com sucesso!",
+                    duration: 3000,
+                    close: true,
+                    gravity: "top", // `top` or `bottom`
+                    position: "right", // `left`, `center` or `right`
+                    stopOnFocus: true, // Prevents dismissing of toast on hover
+                    style: { background: "linear-gradient(to right, #00b09b, #96c93d)" }
+                }).showToast();
+                navigate('/finalizacao-responder-pesquisa');         
+            }).catch((error) => {
+                console.log(error)
+                Toastify({
+                    text: "Erro ao tentar responder pesquisa.",
+                    duration: 3000,
+                    close: true,
+                    gravity: "top", // `top` or `bottom`
+                    position: "right", // `left`, `center` or `right`
+                    stopOnFocus: true, // Prevents dismissing of toast on hover
+                    style: { background: "linear-gradient(to right, #a8323c, #e00d1f)" }
+                }).showToast();
+            }
+            );
+        }       
+        else{
+            Toastify({
+                text: "Responda todas as perguntas!",
+                duration: 3000,
+                close: true,
+                gravity: "top", // `top` or `bottom`
+                position: "right", // `left`, `center` or `right`
+                stopOnFocus: true, // Prevents dismissing of toast on hover
+                style: { background: "linear-gradient(to right, #a8323c, #e00d1f)" }
+            }).showToast();
+        }
+}
+        
     
     return(
         <>
@@ -206,6 +272,17 @@ function ResponderResquisa(){
                                             </div>
                                         </div>
                                     }
+                                </div>
+                            </div>
+                        </div>
+                        <div className={isConfigurada ? "save-bar" : "save-bar-hiden"}>
+                            <div className='container'>
+                                <div className='save-button-area'>
+                                    <button onClick={() => responderPesquisa()} size="big" className={`ui ${isRespostasRespondidas ? "teal" : "disabled"} animated button button-save`}>
+                                            <div className="visible content">Responder pesquisa</div>
+                                            <div className="hidden content"><i aria-hidden="true" className="arrow right icon"></i>
+                                            </div>
+                                    </button>
                                 </div>
                             </div>
                         </div>
