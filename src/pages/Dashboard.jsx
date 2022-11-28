@@ -63,21 +63,19 @@ function Dashboard() {
                                 {
                                     isPesquisasVazia ? <><div></div></> : 
                                     pesquisasResumidas.map((pesquisa, index) => {
-                                        return (
-                                            <>                                           
-                                                <div onClick={() => selecionarPesquisa()} key={index.toString} className={classSelecionado}>
-                                                    <CardPesquisa
-                                                        atualizarSelecionado={atualizarSelecionado}
-                                                        id={pesquisa.id}
-                                                        tipo={pesquisa.interna === true ? "Pesquisa Interna" : "Pesquisa Externa"}
-                                                        titulo={pesquisa.nome}
-                                                        qtdPerguntas={pesquisa.qtdPerguntas}
-                                                        qtdPessoas={pesquisa.qtdPessoas}
-                                                        qtdRespostas={pesquisa.qtdRespostas}
-                                                        status={pesquisa.ativa === true ? "Em andamento..." : "Encerrada."}
-                                                    />
-                                                </div>
-                                            </>
+                                        return (                                          
+                                            <div key={index} onClick={() => selecionarPesquisa()} className={classSelecionado}>
+                                                <CardPesquisa
+                                                    atualizarSelecionado={atualizarSelecionado}
+                                                    id={pesquisa.id}
+                                                    tipo={pesquisa.interna === true ? "Pesquisa Interna" : "Pesquisa Externa"}
+                                                    titulo={pesquisa.nome}
+                                                    qtdPerguntas={pesquisa.qtdPerguntas}
+                                                    qtdPessoas={pesquisa.qtdPessoas}
+                                                    qtdRespostas={pesquisa.qtdRespostas}
+                                                    status={pesquisa.ativa === true ? "Em andamento..." : "Encerrada."}
+                                                />
+                                            </div>
                                         )
                                     })
                                 }
