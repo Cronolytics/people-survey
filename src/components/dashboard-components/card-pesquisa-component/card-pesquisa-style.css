@@ -10,10 +10,7 @@
 }
 
 .selecionado{
-    margin-right: 56px;
-    margin-top: 46px;
     padding: 4px;
-    /* width: 200px; */
     min-width: 290px;
     max-width: 220px;
     cursor: pointer;
@@ -21,10 +18,7 @@
 }
 
 .outside{
-    margin-right: 56px;
-    margin-top: 46px;
     padding: 4px;
-    /* width: 200px; */
     min-width: 290px;
     max-width: 220px;
     cursor: pointer;

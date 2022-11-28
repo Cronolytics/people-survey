@@ -11,8 +11,9 @@ import { useEffect } from "react";
 
 function Dashboard() {
 
-    const [isPesquisasVazia,   setIsPesquisaVazia]    = useState(false)
-    const [pesquisasResumidas, setPesquisasResumidas] = useState(["", ""]);
+    const [isPesquisasVazia,    setIsPesquisaVazia    ] = useState(false)
+    const [pesquisasResumidas,  setPesquisasResumidas ] = useState(["", ""]);
+    const [pesquisaSelecionada, setPesquisaSelecionada] = useState(6)
 
     useEffect(function(){
         var userID = sessionStorage.getItem("id");
@@ -21,6 +22,7 @@ function Dashboard() {
         setPesquisasResumidas(pesquisasResumidasAPI.data);
         if(pesquisasResumidasAPI.status === 204){
             setIsPesquisaVazia(true);
+            setPesquisaSelecionada(pesquisasResumidas[0].perguntas.id)
         }
         else{
             setIsPesquisaVazia(false);
@@ -30,7 +32,12 @@ function Dashboard() {
         })
     }, [])
 
-    console.log(JSON.stringify(pesquisasResumidas));  
+    //console.log(JSON.stringify(pesquisasResumidas));
+    console.log(pesquisaSelecionada);
+
+    function atualizarSelecionado(idPesquisa){
+        setPesquisaSelecionada(idPesquisa);
+    }
     
     return (
         <>
@@ -38,7 +45,6 @@ function Dashboard() {
                 <div className="menu">
                     <Menu />
                 </div>
-
                 <div className="conteudo gray-background">
                     <div className='navbar-menu'>
                     
@@ -54,9 +60,10 @@ function Dashboard() {
                                     pesquisasResumidas.map((pesquisa, index) => {
                                         return (
                                             <>                                           
-                                                <div key={index}>
+                                                <div key={index} className="oi-oi-oi">
                                                     <CardPesquisa
-                                                        isSelecionado={pesquisasResumidas[0] === pesquisa ? true : pesquisa.selecionado}
+                                                        pesquisaSelecionada={pesquisaSelecionada}
+                                                        atualizarSelecionado={atualizarSelecionado}
                                                         id={pesquisa.id}
                                                         tipo={pesquisa.interna === true ? "Pesquisa Interna" : "Pesquisa Externa"}
                                                         titulo={pesquisa.nome}
