@@ -4,20 +4,6 @@ import './card-pesquisa-style.css'
 
 function CardPesquisa(props){
 
-    const [idSelecionado,    setIdSelecionado   ] = useState(props.pesquisaSelecionada);
-    const [classSelecionado, setClassSelecionado] = useState("outside");
-
-    useEffect(function(){
-        if(idSelecionado === props.id){
-            setClassSelecionado("selecionado");
-        }
-        else{
-            setClassSelecionado("outside");
-        }
-    },[idSelecionado])
-
-    console.log(`Pesquisa ${props.id} - idSelecionado: ` , idSelecionado);
-
     function selecionarPesquisa(){
         props.atualizarSelecionado(props.id);
     }
@@ -25,7 +11,7 @@ function CardPesquisa(props){
 
     return(
         <>  
-            <div onClick={() => {selecionarPesquisa()}} className={classSelecionado}> 
+            <div onClick={() => {selecionarPesquisa()}}> 
                 <div className="card">
                     <div className="card-survey-type-area">
                         <div className="card-survey-type-box">

@@ -14,6 +14,11 @@ function Dashboard() {
     const [isPesquisasVazia,    setIsPesquisaVazia    ] = useState(false)
     const [pesquisasResumidas,  setPesquisasResumidas ] = useState(["", ""]);
     const [pesquisaSelecionada, setPesquisaSelecionada] = useState(6)
+    const [classSelecionado,    setClassSelecionado   ] = useState("outside");
+
+    function selecionarPesquisa(){
+        
+    }
 
     useEffect(function(){
         var userID = sessionStorage.getItem("id");
@@ -60,9 +65,8 @@ function Dashboard() {
                                     pesquisasResumidas.map((pesquisa, index) => {
                                         return (
                                             <>                                           
-                                                <div key={index} className="oi-oi-oi">
+                                                <div onClick={() => selecionarPesquisa()} key={index.toString} className={classSelecionado}>
                                                     <CardPesquisa
-                                                        pesquisaSelecionada={pesquisaSelecionada}
                                                         atualizarSelecionado={atualizarSelecionado}
                                                         id={pesquisa.id}
                                                         tipo={pesquisa.interna === true ? "Pesquisa Interna" : "Pesquisa Externa"}
