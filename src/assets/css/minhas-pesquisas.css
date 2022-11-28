@@ -3,7 +3,12 @@
     display: flex;
     min-height: 100vh;
 }
-
+.background-gray{
+    width: 100vw;
+    max-height: 100vh;
+    background-color: #D9D9D9;
+    font-family: 'Montserrat' !important;
+}
 .conteudo{
     background-color: #D9D9D9;
     padding-bottom: 32px;
