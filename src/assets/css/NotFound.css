@@ -1,0 +1,51 @@
+.tela-toda-agradecimento{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.header-tela{
+    font-size: 48px;
+    font-weight: 700;
+    color: #181818;
+    padding: 10%;
+}
+
+.gradient-circle-not-found{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 400px;
+    height: 400px;
+    background-color: #181818;
+    border-radius: 100%;
+    transition: 1s;
+}
+
+.gradient-circle-not-found:hover{
+    background-color: #bf3939;
+    
+}
+
+.black-circle{
+    width: 300px;
+    height: 300px;
+    background-color: #FFFFFF;
+    border-radius: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo-img{
+    height: 100px;
+    cursor: pointer;
+    transition: 1s;
+}
+
+.logo-img:hover{
+    height: 160px;
+}

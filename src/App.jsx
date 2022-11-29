@@ -1,5 +1,4 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-
 import './assets/css/reset.css';
 import Home from './pages/Home.jsx'
 import Cadastro from './pages/Cadastro'
@@ -11,6 +10,7 @@ import CriarPesquisa from './pages/CriarPesquisa';
 import ResponderResquisa from './pages/ResponderPesquisa';
 import AgradecimentoResposta from './pages/AgradecimentoResposta';
 import Dashboard from './pages/Dashboard';
+import NotFound from './pages/NotFound'
 
 
 
@@ -30,6 +30,7 @@ function App() {
                 <Route path='/criar-pesquisa' element={<CriarPesquisa />}/>
                 <Route path='/responder-pesquisa/id=:idPesquisa' element={<ResponderResquisa />}/>
                 <Route path='/finalizacao-responder-pesquisa' element={<AgradecimentoResposta />}/>
+                <Route path='*' element={<NotFound />}/>
           </Routes>
         </Router>
     </>
