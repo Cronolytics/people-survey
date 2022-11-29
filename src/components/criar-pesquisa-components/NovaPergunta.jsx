@@ -10,25 +10,28 @@ function NovaPergunta(props){
     //=====================================================================
     // === ESTADOS ========================================================
     //=====================================================================
-    const [descricao,    setDescricao]    = useState("");
-    const [respostas,    setRespostas]    = useState([{"desc" : ""}, {"desc" : ""}]);
+    const [descricao,    setDescricao   ] = useState("");
+    const [respostas,    setRespostas   ] = useState([{"desc" : ""}, {"desc" : ""}]);
     const [qtdRespostas, setQtdRespostas] = useState(2);
+    const id = props.id;
 
     //=====================================================================
     //=== USE EFFECT'S ====================================================
     //=====================================================================
+    
     useEffect(() => {
         var objPerguntaAuxiliar = {
-            desc : descricao,
-            componente : {"id" : 1},
-            respostas
+            "desc" : descricao,
+            "componente" : {"id" : 1},
+            "respostas" : respostas
         }
-        props.atualizar(objPerguntaAuxiliar, props.id);
-    }, [descricao, respostas])
+        props.atualizar(objPerguntaAuxiliar, id);
+    }, [descricao, respostas, id])
 
     //=====================================================================
     //=== FUNCTIONS =======================================================
     //=====================================================================
+
     function incrementarResposta(){
         if(respostas.length === 10){
             Toastify({

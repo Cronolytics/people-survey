@@ -1,5 +1,69 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
 
+.hide{
+    display: none;
+}
+
+.shadow-background-inicio{
+    font-family: 'Montserrat' !important;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    background-color: rgba(0,0,0,0.1);
+}
+
+.fecharModal{
+    width: 100%;
+    height: 20px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.button-circle{
+    border: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    font-size: 10px;
+    font-weight: 700;
+}
+
+.card-modal-inicio{
+    width: 40%;
+    height: 200px;
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    border-radius: 15px;
+}
+
+.card-header-inicio{
+    width: 100%;
+    height: 30px;
+    padding: 16px;
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+    font-weight: 700;
+    color: #FFFFFF;
+    align-items: center;
+    background: linear-gradient(#6762BC,#39ADBF);
+    border-radius: 10px 10px 0px 0px;
+}
+
+.box-link-pesquisa{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-input-limiter{
+    width: 90%;
+}
+
 .navbar-menu-dashboard{
     background-color: #488FBD;
     height: 80px;
@@ -74,60 +138,14 @@
     margin-top: 32px;
 }
 
-.card-responses-charts-box{
+.options-area{
     width: 100%;
-    height: 100%;
-    background-image: linear-gradient(#488FBD, #2C546F);
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    overflow-x: auto;
-    padding: 16px;
-    border-radius: 10px;
-}
-
-.responses-area{
-    width: 50%;
-    min-height: 300px;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: flex-start;
-    border-right: 2px solid #FFFFFF;
-}
-
-.responses-box{
-    width: 100%;
+    margin-top: 32px;
     display: flex;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: flex-end;
 }
 
-.charts-box{
-    width: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.card-responses-charts-box .title{
-    color: #FFFFFF;
-}
-
-.seletor-perguntas-box{
-    width: 40%;
-    display: flex;
-    justify-content: space-between;
-}
-
-.square{
-    width: 38px;
-    height: 38px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.contador-pergunta{
-    padding: 16px;
+.button-limiter-inicio{
+    width: 150px;
 }

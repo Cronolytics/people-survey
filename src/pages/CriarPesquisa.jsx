@@ -37,39 +37,28 @@ function CriarPesquisa(){
     const [isPesquisaValida, setIsPesquisaValida] = useState(false);
     const [pesquisa,         setPesquisa        ] = useState();
     const [nomePesquisa,     setNomePesquisa    ] = useState([]);
-    const [perguntas,        setPerguntas       ] = useState([]);
+    const [perguntas,        setPerguntas       ] = useState([{desc: "", componente: {"id": 1}, respostas: [{"desc" : ""},{"desc" : ""}]}]);
     const [qtdPerguntas,     setQtdPerguntas    ] = useState(1);
+
+    var id = sessionStorage.getItem("id");
+    console.log("USER ID: " + id)
+    console.log("Pesquisa: ",JSON.stringify(pesquisa, null, 4));
 
     //=====================================================================
     //=== USE EFFECT'S ====================================================
     //=====================================================================
-    useEffect(() => {
-        setPerguntas([{
-            desc: "",
-            componente: 1,
-            respostas: [{"desc" : ""},{"desc" : ""}]
-        }]);
-        console.log(pesquisa);
-        var id = sessionStorage.getItem("id");
-        console.log("USER ID: " + id)
-        }       
-    , [])
-
-    useEffect(() => {
-        var userID = sessionStorage.getItem("id");
-        new Pesquisa("", "teste", 5, userID, false, perguntas);
-    }, [])
 
     useEffect(() => {
         var userID = sessionStorage.getItem("id");
         var pesquisaAux = new Pesquisa(nomePesquisa, "teste", 5, userID, true, perguntas);
-        setPesquisa(pesquisaAux); 
-        console.log(JSON.stringify(pesquisa, null, 4));
-    }, [nomePesquisa,perguntas])
+        console.log("Pesquisa AUX: ", pesquisaAux)
+        setPesquisa(pesquisaAux);
+    }, [nomePesquisa, perguntas])
 
     //=====================================================================
     //=== FUNCTIONS =======================================================
     //=====================================================================
+
     function salvarPesquisa(event){
         event.preventDefault();
         console.log("STATE PESQUISA: " + JSON.stringify(pesquisa));
@@ -112,7 +101,7 @@ function CriarPesquisa(){
                     stopOnFocus: true, // Prevents dismissing of toast on hover
                     style: { background: "linear-gradient(to right, #00b09b, #96c93d)" }
                 }).showToast();
-                navigate('/dashboard');
+                navigate('/inicio');
             }).catch((error) => {
                 console.log(error);
                 Toastify({
@@ -235,11 +224,11 @@ function CriarPesquisa(){
                                         perguntas.map((pergunta, index) => {
                                             return (
                                                 <div key={index} className="pergunta-box">
-                                                    <NovaPergunta atualizar={atualizarPergunta} pergunta={pergunta} id={index} />
+                                                    <NovaPergunta atualizar={atualizarPergunta} id={index} />
                                                 </div>
                                             );
                                             })
-                                        }  
+                                        }
                                     </div>
                                 </div>
                             </Form>                        

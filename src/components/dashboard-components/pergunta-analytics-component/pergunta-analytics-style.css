@@ -1,0 +1,64 @@
+.card-responses-charts-box{
+    width: 100%;
+    height: 350px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 16px;
+    border-bottom: 1px solid #2F2D54;
+    margin-bottom: 32px;
+}
+
+.responses-area{
+    width: 50%;
+    min-height: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+.titulo-pergunta{
+    width: 95%;
+    margin-bottom: 8px;
+    color: #181818;
+}
+
+.responses-box{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.charts-box{
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.seletor-perguntas-box{
+    width: 40%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.contador-pergunta{
+    padding: 16px 0px;
+}
+
+.title-pergunta{
+    font-size: 24px;
+    color: #181818;
+    padding: 16px 0px 16px 0px;
+}
+
+.box-alternativas{
+    width: 95%;
+    min-height: 200px;
+    padding: 8px;
+    color: #FFFFFF;
+    border-radius: 10px;
+    background-color: #2F2D54;
+}

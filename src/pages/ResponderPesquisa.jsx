@@ -57,7 +57,22 @@ function ResponderResquisa(){
     console.log("CONVIDADO: ", convidado);
     console.log("PAYLOAD: ", payloadGabarito);
 
-    useEffect(() => {buscarPesquisa()}, [])
+    useEffect(() => {
+        api.get(`/pesquisas?idPesquisa=${idFormat}`
+            ).then(function(pesquisaAPI){
+                console.log("Requisição de pesquisa sendo feita...");
+                if(pesquisaAPI.status === 404){
+                    alert("Pesquisa não existe.")
+                }
+                else{
+                    console.log(pesquisaAPI.status);
+                    setPesquisaDaVez(pesquisaAPI.data);
+                    //console.log(JSON.stringify(pesquisaDaVez, null, 4));
+                }
+            }).catch((error) => {
+                console.log(error);
+            })
+    }, [idFormat])
 
     useEffect(function(){
         if(nomeConvidado.length > 5 && (emailConvidado.endsWith(".com") || emailConvidado.endsWith(".com.br"))){
@@ -69,11 +84,16 @@ function ResponderResquisa(){
     }, [nomeConvidado, emailConvidado])
 
     useEffect(function(){
-        var copiaPayload = {...payloadGabarito};
+        var copiaPayload = {
+            "convidado" : convidado,
+            "pesquisa" : { "id" : parseInt(idFormat)},
+            "respostasGabarito" : respostasGabarito
+        };
         copiaPayload.convidado = convidado;
         copiaPayload.respostasGabarito = respostasGabarito;
         setPayloadGabarito(copiaPayload);
-    }, [convidado, respostasGabarito])
+        //console.log(payloadGabarito)
+    }, [convidado, respostasGabarito, idFormat])
 
     useEffect(function(){
         for (let i = 0; i < respostasGabarito.length; i++) {
@@ -92,27 +112,9 @@ function ResponderResquisa(){
     function verificarConvidado(){
         var novoConvidado = new Convidado(nomeConvidado, emailConvidado);
         setConvidado(novoConvidado);
-        buscarPesquisa();
         setarPerguntas();
         setClassCloseModal("close");
         console.log("CONVIDADO: ", convidado);
-    }
-
-    function buscarPesquisa(){
-        api.get(`/pesquisas?idPesquisa=${idFormat}`
-            ).then(function(pesquisaAPI){
-                console.log("Requisição de pesquisa sendo feita...");
-                if(pesquisaAPI.status === 404){
-                    alert("Pesquisa não existe.")
-                }
-                else{
-                    console.log(pesquisaAPI.status);
-                    setPesquisaDaVez(pesquisaAPI.data);
-                    console.log(JSON.stringify(pesquisaDaVez, null, 4));
-                }
-            }).catch((error) => {
-                console.log(error);
-            })
     }
 
     function setarPerguntas(){
