@@ -10,6 +10,7 @@ import MinhasPesquisas from './pages/MinhasPesquisas';
 import CriarPesquisa from './pages/CriarPesquisa';
 import ResponderResquisa from './pages/ResponderPesquisa';
 import AgradecimentoResposta from './pages/AgradecimentoResposta';
+import NotFound from './pages/NotFound'
 
 
 
@@ -28,6 +29,7 @@ function App() {
                 <Route path='/criar-pesquisa' element={<CriarPesquisa />}/>
                 <Route path='/responder-pesquisa/id=:idPesquisa' element={<ResponderResquisa />}/>
                 <Route path='/finalizacao-responder-pesquisa' element={<AgradecimentoResposta />}/>
+                <Route path='/404' element={<NotFound />}/>
           </Routes>
         </Router>
     </>
