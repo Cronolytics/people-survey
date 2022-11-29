@@ -7,7 +7,6 @@ import Menu from '../components/menu-conponents/Menu'
 import Modal from '../components/modal-components/Modal'
 import { useState } from 'react'
 import { useEffect } from "react"
-import { Form } from 'semantic-ui-react';
 
 
 function MinhasPesquisas() {
@@ -45,20 +44,8 @@ function MinhasPesquisas() {
                 <h1>Minhas pesquisas</h1>
               </div>
               <div className="input-box">
-                <div className="border"></div>
                 <div>
                   <i aria-hidden="true" />
-                  <Form>
-                    <Form.Group widths='equal'>
-                      <Form.Field className='from-fied' label='Tipo:' control='select'>
-                        <option value=''>Todos</option>
-                        <option value='peTodos-interna'>Pesquisa Interna</option>
-                        <option value='pesquisa-externa'>Pesquisa Externa</option>
-                      </Form.Field>
-                      <Form.Field label='Período:' control='input' type="date" />
-                      <Form.Field label='Pesquisar:' control='input' placeholder="Pesquisar..." />
-                    </Form.Group>
-                  </Form>
                 </div>
               </div>
             </div>
@@ -73,12 +60,12 @@ function MinhasPesquisas() {
                             <CardPesquisa
                               isSelecionado={[0] === pesquisa ? true : false}
                               id={pesquisa.id}
-                              tipo={pesquisa.tipo}
-                              titulo={pesquisa.titulo}
+                              tipo={pesquisa.interna ? "Pesquisa Interna" : "Pesquisa Externa"}
+                              titulo={pesquisa.nome}
                               qtdPerguntas={pesquisa.qtdPerguntas}
                               qtdPessoas={pesquisa.qtdPessoas}
                               qtdRespostas={pesquisa.qtdRespostas}
-                              status={pesquisa.status}
+                              status={pesquisa.ativa ? "Em andamento..." : "Encerrada"}
                             />
                           </div>
                           <Modal onClose={() => setShow(false)} show={show} />
@@ -88,7 +75,6 @@ function MinhasPesquisas() {
                 }
               </div>
             </div>
-
           </div>
         </div>
       </div>

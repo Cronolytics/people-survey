@@ -6,7 +6,6 @@ function CardPesquisa(props){
     function selecionarPesquisa(){
         props.atualizarSelecionado(props.id);
     }
-    
 
     return(
         <>  

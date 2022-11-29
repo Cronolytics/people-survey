@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import '../assets/css/NotFound.css'
+import '../assets/css/not-found-style.css'
 import peopleSurveyWhiteLogo from '../assets/images/simbolo.png'
 
 function NotFound() {

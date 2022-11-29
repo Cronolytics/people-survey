@@ -33,7 +33,9 @@ function Dashboard(){
             </div>
             <div className="conteudo gray-background">
                 <div className='navbar-menu'>
-                
+                    <div className="titlle-nav">
+                        <h1>Dashboard</h1>
+                    </div>
                 </div>
                 <div className="container">
                     <div className="card-content">

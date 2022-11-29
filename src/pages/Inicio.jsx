@@ -53,7 +53,9 @@ function Inicio() {
             </div>
             <div className="conteudo gray-background">
                 <div className='navbar-menu'>
-                
+                    <div className="titlle-nav">
+                        <h1>Menu Inicial</h1>
+                    </div>
                 </div>
                 <div className={isModalOpen ? "shadow-background-inicio" : "hide"}>
                     <div className='card-modal-inicio'>

@@ -173,7 +173,9 @@ function CriarPesquisa(){
 
                 <div className="gray-background">
                     <div className='navbar-menu'>
-                        
+                        <div className="titlle-nav">
+                            <h1>Nova Pesquisa</h1>
+                        </div>
                     </div>
                     <div className="container">
                         <div className="card-conteudo">
@@ -181,9 +183,9 @@ function CriarPesquisa(){
                                 <div className="page-titulo">
                                     <h1>Criar uma nova pesquisa</h1>
                                     <div className="ui button-or-limiter">
-                                        <button type="button" className="ui button">Cancel</button>
+                                        <button onClick={() => {window.location.reload(true);}} type="button" className="ui button">Limpar</button>
                                         <div className="or"></div>
-                                        <button type="submit" className="ui positive button">Save</button>
+                                        <button type="submit" className="ui positive button">Salvar</button>
                                     </div>
                                 </div>
 
