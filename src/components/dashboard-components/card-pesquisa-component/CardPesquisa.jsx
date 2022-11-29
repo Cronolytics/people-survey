@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import { useEffect } from "react";
+import React from "react";
 import './card-pesquisa-style.css'
 
 function CardPesquisa(props){

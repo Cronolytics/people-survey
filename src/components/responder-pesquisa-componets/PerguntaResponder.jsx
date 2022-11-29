@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React from 'react'
 import { useEffect } from 'react';
 import { useState } from 'react';
@@ -7,7 +8,8 @@ function PerguntaResponder(props){
     const [selecionado, setSelecionado] = useState();
 
     useEffect(function(){
-        console.log("Pergunta " + (props.contador + 1) + " (ID : " + props.id + ") " + " - Resposta selecionada: " + selecionado);
+        //console.log("Pergunta " + (props.contador + 1) + " (ID : " + props.id + ") " + " - Resposta selecionada: " + selecionado);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
         props.atualizarGabarito(selecionado, props.id);
     }, [selecionado])
 

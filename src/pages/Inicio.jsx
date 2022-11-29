@@ -17,7 +17,6 @@ function Inicio() {
     const [pesquisasResumidas,    setPesquisasResumidas   ] = useState([]);
 
     const [pesquisaSelecionada,   setPesquisaSelecionada  ] = useState();
-    const [classSelecionado,      setClassSelecionado     ] = useState("outside");
 
     const navigate = useNavigate()
 
@@ -39,10 +38,7 @@ function Inicio() {
                 console.log(error);
             })
     },[])
-
-    function selecionarPesquisa(){
-        
-    }
+    
     //console.log(JSON.stringify(pesquisasResumidas));
     console.log(pesquisaSelecionada);
 
@@ -91,7 +87,7 @@ function Inicio() {
                                 isPesquisasVazia ? <><div></div></> : 
                                 pesquisasResumidas.map((pesquisa, index) => {
                                     return (                                          
-                                        <div key={index} onClick={() => selecionarPesquisa()} className={classSelecionado}>
+                                        <div key={index} className={pesquisa.id === pesquisaSelecionada ? "selecionado" : "outside"}>
                                             <CardPesquisa
                                                 atualizarSelecionado={atualizarSelecionado}
                                                 id={pesquisa.id}
