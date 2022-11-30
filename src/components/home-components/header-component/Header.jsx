@@ -5,12 +5,10 @@ import '../../../assets/css/reset.css';
 
 import PeopleSurveyLogotipo from '../../../assets/images/home/peopleSurveyLogotipo.png'
 import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
 
 function Header() {
 
     const navigate = useNavigate();
-    const [pesquisaInput, setPesquisaInput] = useState()
 
     return (
         <div className='englobadora'>
