@@ -44,6 +44,7 @@ html{
     border: none;
     border-radius: 6px;
     padding: 3px 8px;
+    margin-left: 4px;
     background-color: #181818;
     font-family: 'Montserrat';  
 }
