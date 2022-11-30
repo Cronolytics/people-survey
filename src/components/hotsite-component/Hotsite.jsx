@@ -23,7 +23,10 @@ function HotsitePage(){
 
     const navigate = useNavigate();
 
-    function salvarGerarTXT(){
+    function salvarGerarCSV(e){
+
+        e.preventDefault();
+
         let payload = {
             nome,
             cpf,
@@ -35,8 +38,9 @@ function HotsitePage(){
             linkedin,
             descricao
         }
-        api.post("/candidatos", payload
-        ).then(function(){
+
+        api.post("/candidatos", payload)
+        .then(function(){
             Toastify({
                 text: "Novo talento cadastrado no banco de talentos!",
                 duration: 3000,
@@ -46,15 +50,53 @@ function HotsitePage(){
                 stopOnFocus: true, // Prevents dismissing of toast on hover
                 style: { background: "linear-gradient(to right, #00b09b, #96c93d)" }
             }).showToast();
-            api.get("candidatos/csv"
-            ).then(function(){
-                
-            }).catch((error) => {
-                console.log(error)
+            api.get("candidatos/csv")
+            .then((response) => response.blob())
+            .then((blob) => {
+                const url = window.URL.createObjectURL(new Blob([blob]));
+                const link = document.createElement("a");
+                link.href = url;
+                link.setAttribute("download", "banco-de-talentos.csv");
+                document.body.appendChild(link);
+                link.click();
+                Toastify({
+                    text: "Relatório disponível para download!",
+                    duration: 3000,
+                    close: true,
+                    gravity: "top", // `top` or `bottom`
+                    position: "right", // `left`, `center` or `right`
+                    stopOnFocus: true, // Prevents dismissing of toast on hover
+                    style: { background: "linear-gradient(to right, #00b09b, #96c93d)"}
+                });
             })
-        }).catch((error) => {
-            console.log(error)
+            .catch((error) => {
+            console.log(error);
+            Toastify({
+                text: "Ops! Erro ao buscar relatório csv...",
+                duration: 3000,
+                close: true,
+                gravity: "top", // `top` or `bottom`
+                position: "right", // `left`, `center` or `right`
+                stopOnFocus: true, // Prevents dismissing of toast on hover
+                style: { background: "linear-gradient(to right, #a8323c, #e00d1f)" }
+            })
+            })
+            
         })
+        .catch((error) => {
+            console.log(error)
+            Toastify({
+                text: "Ops! Erro ao cadastrar novo currículo...",
+                duration: 3000,
+                close: true,
+                gravity: "top", // `top` or `bottom`
+                position: "right", // `left`, `center` or `right`
+                stopOnFocus: true, // Prevents dismissing of toast on hover
+                style: { background: "linear-gradient(to right, #a8323c, #e00d1f)" }
+                })
+        })
+
+        window.location.href="https://peoplesurvey.azurewebsites.net/candidatos/csv";
     }
 
     return(
@@ -148,8 +190,7 @@ function HotsitePage(){
                                 </div>
 
                                 <div className="buttonArea">
-                                    <button type='submit' onClick={() => salvarGerarTXT()} className="ui button">Salvar e gerar relatório CSV.</button>
-                                    <button type='submit' className="ui button">Salvar e gerar relatório TXT.</button>
+                                    <button type='submit' onClick={(e) => salvarGerarCSV(e)} className="ui button">Salvar e gerar relatório CSV.</button>
                                 </div>
                             </div>                              
                         </form>
