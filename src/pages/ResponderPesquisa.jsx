@@ -217,7 +217,7 @@ function ResponderResquisa(){
                                     <input onChange={(e) => setEmailConvidado(e.target.value)} type="text" placeholder="Email"/>
                                 </div>
                                 <div className='msg-valid'>
-                                    <span>Nome deve conter no mínimo 5 caracteres.</span>
+                                    <span>Nome deve conter no mínimo 6 caracteres.</span>
                                     <span>O e-mail deve ser válido.</span>
                                 </div>
                             </div>
