@@ -19,10 +19,7 @@ import NotFound from "./pages/NotFound";
 
 function App() {
   return (
-    <>
       <BrowserRouter basename={process.env.PUBLIC_URL}>
-        <Router>
-          <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/cadastro" element={<Cadastro />} />
             <Route path="/login" element={<Login />} />
@@ -40,10 +37,7 @@ function App() {
               element={<AgradecimentoResposta />}
             />
             <Route path="*" element={<NotFound />} />
-          </Routes>
-        </Router>
       </BrowserRouter>
-    </>
   );
 }
 
