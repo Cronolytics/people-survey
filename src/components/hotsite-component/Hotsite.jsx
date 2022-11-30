@@ -5,18 +5,9 @@ import './hotsite-style.css'
 import 'semantic-ui-css/semantic.min.css'
 import PeopleSurveyLogotipo from '../../assets/images/hotsite/people-survey-white-logo.png'
 import { useState } from 'react';
-
-// {
-//     "nome": "Majal",
-//     "cpf": "583.927.483-29",
-//     "email": "majal@gmail.com",
-//     "dataNascimento": "1999-01-01",
-//     "telefone": "(11) 94893-8291",
-//     "cep": "05847382",
-//     "estadoCivil": "CASADO",
-//     "linkedin": "@majalzin",
-//     "descricao": "so brocha"
-// }
+import api from '../../api'
+import Toastify from 'toastify-js'
+import "toastify-js/src/toastify.css"
 
 function HotsitePage(){
 
@@ -44,7 +35,26 @@ function HotsitePage(){
             linkedin,
             descricao
         }
-        alert(payload)
+        api.post("/candidatos", payload
+        ).then(function(){
+            Toastify({
+                text: "Novo talento cadastrado no banco de talentos!",
+                duration: 3000,
+                close: true,
+                gravity: "top", // `top` or `bottom`
+                position: "right", // `left`, `center` or `right`
+                stopOnFocus: true, // Prevents dismissing of toast on hover
+                style: { background: "linear-gradient(to right, #00b09b, #96c93d)" }
+            }).showToast();
+            api.get("candidatos/csv"
+            ).then(function(){
+                
+            }).catch((error) => {
+                console.log(error)
+            })
+        }).catch((error) => {
+            console.log(error)
+        })
     }
 
     return(

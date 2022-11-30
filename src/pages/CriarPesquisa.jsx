@@ -43,6 +43,7 @@ function CriarPesquisa(){
     var id = sessionStorage.getItem("id");
     console.log("USER ID: " + id)
     console.log("Pesquisa: ",JSON.stringify(pesquisa, null, 4));
+    console.log("Válida ?: " , isPesquisaValida);
 
     //=====================================================================
     //=== USE EFFECT'S ====================================================
@@ -59,35 +60,34 @@ function CriarPesquisa(){
     //=== FUNCTIONS =======================================================
     //=====================================================================
 
-    function salvarPesquisa(event){
-        event.preventDefault();
-        console.log("STATE PESQUISA: " + JSON.stringify(pesquisa));
-
-        var perguntasAux = [...perguntas]
-        console.log(JSON.stringify(perguntasAux));
-        
-        for (let i = 0; i < perguntasAux.length; i++){
-            if(perguntasAux[i].desc === ""){
-                setIsPesquisaValida(false);
+    useEffect(()=>{
+        let validaAux = false;
+        for (let i = 0; i < perguntas.length; i++){
+            if(perguntas[i].desc === ""){
+                validaAux = false;
                 break;
             }
             else{
-                setIsPesquisaValida(true);
-                console.log(perguntasAux[i].respostas);
-                var respostasAux = [...perguntasAux[i].respostas];
-                console.log(perguntasAux);
-                for (let j = 0; j < respostasAux.length; j++) {
-                    if(respostasAux[i].desc === ""){
-                        setIsPesquisaValida(false);
+                var respostas = [...perguntas[i].respostas];
+                for (let j = 0; j < respostas.length; j++) {
+                    if(respostas[i].desc === ""){
+                        validaAux = false;
                         break;
                     }
                     else{
-                        setIsPesquisaValida(true);
+                        validaAux = true;
                     }
                 }
                 break;
             }                 
-        }           
+        }
+        setIsPesquisaValida(validaAux)
+    },[perguntas])
+
+    function salvarPesquisa(event){
+        event.preventDefault();
+        console.log("STATE PESQUISA: " + JSON.stringify(pesquisa));
+
         if(isPesquisaValida){
             api.post("/pesquisas/gravar", pesquisa
             ).then(function(){
@@ -185,7 +185,7 @@ function CriarPesquisa(){
                                     <div className="ui button-or-limiter">
                                         <button onClick={() => {window.location.reload(true);}} type="button" className="ui button">Limpar</button>
                                         <div className="or"></div>
-                                        <button type="submit" className="ui positive button">Salvar</button>
+                                        <button type="submit" className={`ui ${isPesquisaValida ? "" : "disabled "} positive button`}>Salvar</button>
                                     </div>
                                 </div>
 
@@ -205,7 +205,6 @@ function CriarPesquisa(){
                                         <div className="area-tipo-item">
                                             <Form.Field control='select' className="select-limiter">
                                                 <option value='01'>Pesquisa Interna</option>
-                                                <option value='02'>Pesquisa Externa</option>
                                             </Form.Field>
                                         </div>                               
                                     </div>
