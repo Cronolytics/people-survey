@@ -12,8 +12,6 @@ import AgradecimentoResposta from './pages/AgradecimentoResposta';
 import Dashboard from './pages/Dashboard';
 import NotFound from './pages/NotFound'
 
-
-
 function App() {
   
   return (

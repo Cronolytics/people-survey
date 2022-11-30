@@ -68,7 +68,6 @@ function MinhasPesquisas() {
                               status={pesquisa.ativa ? "Em andamento..." : "Encerrada"}
                             />
                           </div>
-                          <Modal onClose={() => setShow(false)} show={show} />
                         </>
                       );
                     })
@@ -78,6 +77,7 @@ function MinhasPesquisas() {
           </div>
         </div>
       </div>
+      <Modal onClose={() => setShow(false)} show={show} />
     </>
 
   )
