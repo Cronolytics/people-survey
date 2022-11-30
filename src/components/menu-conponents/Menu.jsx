@@ -23,8 +23,8 @@ function Menu() {
                     <div className='opt-menu'>Criar pesquisa</div> 
                   </div>
     
-                  <div className="txt-opt" onClick={() => navigate('/minhas-pesquisas')}>
-                    <div className='opt-menu'>Minhas Pesquisas</div>
+                  <div className="txt-opt" onClick={() => navigate('/relatorios')}>
+                    <div className='opt-menu'>Relatórios</div>
                   </div>
               </div>
             </ul>

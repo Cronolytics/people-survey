@@ -1,6 +1,4 @@
 import '../assets/css/login-cadastro.css'
-//import CampoTexto from "../components/component-login-cadastro/input-login-component/input-login";
-//import Botao from "../components/component-login-cadastro/login-button-component/button-login";
 import logo_survey from '../assets/images/logo-survey.png'
 import { useNavigate } from 'react-router-dom';
 import api from '../api'

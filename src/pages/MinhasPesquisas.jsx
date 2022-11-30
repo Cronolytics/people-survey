@@ -8,12 +8,18 @@ import Modal from '../components/modal-components/Modal'
 import { useState } from 'react'
 import { useEffect } from "react"
 
-
 function MinhasPesquisas() {
 
-  const [show, setShow] = useState(false)
-  const [isPesquisasVazia, setIsPesquisaVazia] = useState(false)
-  const [pesquisasResumidas, setPesquisasResumidas] = useState(["", ""]);
+  const [show,                     setShow                    ] = useState(false)
+
+  const [isPesquisasVazia,         setIsPesquisaVazia         ] = useState(false)
+  const [pesquisasResumidas,       setPesquisasResumidas      ] = useState(["", ""]);
+
+  const [idPesquisaSelecionada,    setIdPesquisaSelecionada   ] = useState();
+  const [tituloSelecionado,        setTituloSelecionado       ] = useState();
+  const [respondentesSelecionados, setRespondentesSelecionados] = useState();
+
+  console.log(idPesquisaSelecionada);
 
   useEffect(function () {
     var userID = sessionStorage.getItem("id");
@@ -31,6 +37,13 @@ function MinhasPesquisas() {
     })
   }, [])
 
+  function abrirModal(id, titulo, totalRespondentes){
+    setShow(true);
+    setIdPesquisaSelecionada(id);
+    setTituloSelecionado(titulo);
+    setRespondentesSelecionados(totalRespondentes);
+  }
+
   return (
     <>
       <div className='tela-toda'>
@@ -41,7 +54,7 @@ function MinhasPesquisas() {
           <div className='conteudo'>
             <div className='navbar-menu'>
               <div className="titlle-nav">
-                <h1>Minhas pesquisas</h1>
+                <h1>Relatórios</h1>
               </div>
               <div className="input-box">
                 <div>
@@ -55,20 +68,18 @@ function MinhasPesquisas() {
                   isPesquisasVazia ? <><div></div></> :
                     pesquisasResumidas.map((pesquisa, index) => {
                       return (
-                        <>
-                          <div key={pesquisa.id} className="card-minhas-pesquisas" onClick={() => setShow(true)}>
-                            <CardPesquisa
-                              isSelecionado={[0] === pesquisa ? true : false}
-                              id={pesquisa.id}
-                              tipo={pesquisa.interna ? "Pesquisa Interna" : "Pesquisa Externa"}
-                              titulo={pesquisa.nome}
-                              qtdPerguntas={pesquisa.qtdPerguntas}
-                              qtdPessoas={pesquisa.qtdPessoas}
-                              qtdRespostas={pesquisa.qtdRespostas}
-                              status={pesquisa.ativa ? "Em andamento..." : "Encerrada"}
-                            />
-                          </div>
-                        </>
+                        <div key={index} className="card-minhas-pesquisas" onClick={() => abrirModal(pesquisa.id, pesquisa.nome, pesquisa.qtdPessoas) }>
+                          <CardPesquisa
+                            isSelecionado={[0] === pesquisa ? true : false}
+                            id={pesquisa.id}
+                            tipo={pesquisa.interna ? "Pesquisa Interna" : "Pesquisa Externa"}
+                            titulo={pesquisa.nome}
+                            qtdPerguntas={pesquisa.qtdPerguntas}
+                            qtdPessoas={pesquisa.qtdPessoas}
+                            qtdRespostas={pesquisa.qtdRespostas}
+                            status={pesquisa.ativa ? "Em andamento..." : "Encerrada"}
+                          />
+                        </div>
                       );
                     })
                 }
@@ -77,10 +88,10 @@ function MinhasPesquisas() {
           </div>
         </div>
       </div>
-      <Modal onClose={() => setShow(false)} show={show} />
+      <Modal qtdRespondentes={respondentesSelecionados} titulo={tituloSelecionado} idPesquisa={idPesquisaSelecionada} onClose={() => setShow(false)} show={show} />
     </>
-
   )
 }
+
 
 export default MinhasPesquisas

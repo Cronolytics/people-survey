@@ -41,10 +41,6 @@ function Inicio() {
     
     //console.log(JSON.stringify(pesquisasResumidas));
     console.log(pesquisaSelecionada);
-
-    function atualizarSelecionado(idPesquisa){
-        setPesquisaSelecionada(idPesquisa);
-    }
     
     return (
         <div className="tela-toda">
@@ -89,9 +85,8 @@ function Inicio() {
                                 isPesquisasVazia ? <><div></div></> : 
                                 pesquisasResumidas.map((pesquisa, index) => {
                                     return (                                          
-                                        <div key={index} className={pesquisa.id === pesquisaSelecionada ? "selecionado" : "outside"}>
+                                        <div key={index} onClick={()=> setPesquisaSelecionada(pesquisa.id)} className={pesquisa.id === pesquisaSelecionada ? "selecionado" : "outside"}>
                                             <CardPesquisa
-                                                atualizarSelecionado={atualizarSelecionado}
                                                 id={pesquisa.id}
                                                 tipo={pesquisa.interna === true ? "Pesquisa Interna" : "Pesquisa Externa"}
                                                 titulo={pesquisa.nome}

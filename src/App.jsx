@@ -24,7 +24,7 @@ function App() {
                 <Route path='/hotsite' element={<Hotsite />}/>
                 <Route path='/inicio' element={<Inicio />}/>
                 <Route path='/dashboard/id=:idPesquisa' element={<Dashboard />}/>
-                <Route path='/minhas-pesquisas' element={<MinhasPesquisas />}/>
+                <Route path='/relatorios' element={<MinhasPesquisas />}/>
                 <Route path='/criar-pesquisa' element={<CriarPesquisa />}/>
                 <Route path='/responder-pesquisa/id=:idPesquisa' element={<ResponderResquisa />}/>
                 <Route path='/finalizacao-responder-pesquisa' element={<AgradecimentoResposta />}/>

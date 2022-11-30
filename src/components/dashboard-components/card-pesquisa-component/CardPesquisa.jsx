@@ -3,13 +3,9 @@ import './card-pesquisa-style.css'
 
 function CardPesquisa(props){
 
-    function selecionarPesquisa(){
-        props.atualizarSelecionado(props.id);
-    }
-
     return(
         <>  
-            <div onClick={() => {selecionarPesquisa()}}> 
+            <div> 
                 <div className="card">
                     <div className="card-survey-type-area">
                         <div className="card-survey-type-box">
