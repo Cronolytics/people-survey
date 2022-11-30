@@ -18,7 +18,7 @@ function Header() {
                 <div className="container">
                     <div className="nav-content">
                         <img src={PeopleSurveyLogotipo} alt={"People Survey Logotipo"} style={{ height: '40px' }} />
-                        <div className="nav-final-itens">
+                        <div className="nav-final-itens-header">
                                 <button onClick={() => navigate("/hotsite")} className="button-login"> Hotsite </button>
                                 <button onClick={() => navigate("/login")} className="button-login"> Login </button>
                                 <button onClick={() => navigate("/cadastro")} className="button-cadastro"> Testar grátis </button>
@@ -30,7 +30,7 @@ function Header() {
                 <div className="container-nav">
                     <div className='nav-secundaria-conteudo'>
                         <div className='pergunta-navbar'>
-                            {`Insira o link de pesquisa ao lado =>`}
+                            {`Insira um link de pesquisa para responder`}
                         </div>
                         <div className='search-pesquisa-area'>
                             <input onChange={(e) => {setPesquisaInput(e.target.value)}} className='input-pesquisa' type="input" />

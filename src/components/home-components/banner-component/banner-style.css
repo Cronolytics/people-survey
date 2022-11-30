@@ -64,6 +64,7 @@
     color: #FFFFFF;
     background-color: #464375;
     transition-duration: 0.8s;
+    margin-bottom: 8px;
 }
 
 .normal:hover{

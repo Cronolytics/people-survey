@@ -13,8 +13,8 @@
     justify-content: space-between;
 }
 
-.nav-final-itens{
-    width: 200px;
+.nav-final-itens-header{
+    width: 300px;
     display: flex;
     justify-content: space-between;
 }
@@ -24,7 +24,7 @@
     font-size: 16px;
     color: #FFFFFF;
     border: none;
-    border-radius: 5%;
+    border-radius: 6px;
     padding: 3px 8px;
     background-color: #181818;
     font-family: 'Montserrat';  

@@ -35,13 +35,14 @@ html{
     display: flex;
     justify-content: flex-start;
     align-items: center;
-  }
+}
+
 .button-login{
     width: fit-content;
     font-size: 16px;
     color: #FFFFFF;
     border: none;
-    border-radius: 5%;
+    border-radius: 6px;
     padding: 3px 8px;
     background-color: #181818;
     font-family: 'Montserrat';  
@@ -52,7 +53,7 @@ html{
     font-size: 16px;
     color: #FFFFFF;
     border: none;
-    border-radius: 5%;
+    border-radius: 6px;
     padding: 3px 8px;
     background-color: #488FBD;
     font-family: 'Montserrat';  
@@ -208,12 +209,15 @@ html{
     width: 160px;
     height: 160px;
     border-radius: 15%;
-    background-image: linear-gradient( to right, #01FFC3, #6762BC);
     display: flex;
     justify-content: center;
     align-items: center;
     color: #FFFFFF;
     font-weight: 700;
+}
+
+.partner-logo img{
+    width: 200px;
 }
 
 .services{

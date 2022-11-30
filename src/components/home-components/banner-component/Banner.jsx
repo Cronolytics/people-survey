@@ -2,8 +2,8 @@ import './banner-style.css'
 import '../../../assets/css/home-style.css'
 import '../../../assets/css/reset.css';
 
-import BannerGreenBaloon from '../../../assets/images/home/banner-green-baloon.png'
-import BannerPurpleBaloon from '../../../assets/images/home/banner-purple-baloon.png'
+// import BannerGreenBaloon from '../../../assets/images/home/banner-green-baloon.png'
+// import BannerPurpleBaloon from '../../../assets/images/home/banner-purple-baloon.png'
 
 function Banner(){
     return(
@@ -26,7 +26,7 @@ function Banner(){
                         </div>              
                     </div> 
                 </div>
-                <div className="card-banner">
+                {/* <div className="card-banner">
                     <div className="card-baloons">
                         <img className="baloon" src={BannerGreenBaloon}  alt="O que o público está querendo ?"/>
                         <img className="baloon" src={BannerPurpleBaloon} alt="O que as pessoas estão dizendo ?"/>
@@ -35,7 +35,7 @@ function Banner(){
                     <div className="card-message">
                         <p>A <strong>People Survey</strong> te diz.</p>
                     </div>
-                </div>
+                </div> */}
             </div>
         </>
     )
