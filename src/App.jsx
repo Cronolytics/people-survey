@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, BrowserRouter } from 'react-router-dom';
 import './assets/css/reset.css';
 import Home from './pages/Home.jsx'
 import Cadastro from './pages/Cadastro'
@@ -17,6 +17,7 @@ function App() {
   return (
     <>
         <Router>
+          <BrowserRouter basename={process.env.PUBLIC_URL}>
           <Routes>
                 <Route path='/' element={<Home />}/>
                 <Route path='/cadastro' element={<Cadastro />}/>
@@ -30,6 +31,7 @@ function App() {
                 <Route path='/finalizacao-responder-pesquisa' element={<AgradecimentoResposta />}/>
                 <Route path='*' element={<NotFound />}/>
           </Routes>
+          </BrowserRouter>
         </Router>
     </>
   );
