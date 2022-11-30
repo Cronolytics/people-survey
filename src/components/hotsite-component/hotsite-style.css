@@ -38,14 +38,6 @@ html{
     margin: 32px 0px;;
 }
 
-.vagas{
-    width: 100%;
-    background-color: #FFFFFF;
-    padding-bottom: 32px;
-    border-top-left-radius:15px;
-    border-top-right-radius:15px;
-}
-
 .vagasDescricao{
     background-color: #488FBD;
     color: #FFFFFF;

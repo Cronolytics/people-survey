@@ -72,7 +72,7 @@ function Modal(props) {
                         </div>
                     </div>
                     <div className="modal-footer">
-                        <button onClick={props.onClose} className="modal-button"> Encerrar </button>
+                        <button onClick={props.onClose} className="modal-button"> Voltar </button>
                     </div>
                 </div>
             </div>

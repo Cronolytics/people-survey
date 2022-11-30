@@ -5,15 +5,16 @@ import '../../../assets/css/reset.css';
 
 import PeopleSurveyLogotipo from '../../../assets/images/home/peopleSurveyLogotipo.png'
 import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 
 function Header() {
 
     const navigate = useNavigate();
+    const [pesquisaInput, setPesquisaInput] = useState()
 
     return (
-        <>
-
-            <nav className="navbar principal flex-centralization">
+        <div className='englobadora'>
+            <nav className="navbar-principal flex-centralization">
                 <div className="container">
                     <div className="nav-content">
                         <img src={PeopleSurveyLogotipo} alt={"People Survey Logotipo"} style={{ height: '40px' }} />
@@ -25,13 +26,20 @@ function Header() {
                     </div>
                 </div>
             </nav>
-
-            <nav className="navbar secundaria flex-centralization">
-                <div className="container">
-                    Que tal descobrir algo novo ?
+            <nav className="navbar-secundaria">
+                <div className="container-nav">
+                    <div className='nav-secundaria-conteudo'>
+                        <div className='pergunta-navbar'>
+                            {`Insira o link de pesquisa ao lado =>`}
+                        </div>
+                        <div className='search-pesquisa-area'>
+                            <input onChange={(e) => {setPesquisaInput(e.target.value)}} className='input-pesquisa' type="input" />
+                            <button onClick={() => { pesquisaInput === "" ? alert("insira um link.") : navigate(pesquisaInput)}} className='button-pesquisa'> Responder </button>
+                        </div>
+                    </div>
                 </div>
             </nav>
-        </>
+        </div>
     )
 }
 

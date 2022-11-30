@@ -50,7 +50,7 @@ function CriarPesquisa(){
 
     useEffect(() => {
         var userID = sessionStorage.getItem("id");
-        var pesquisaAux = new Pesquisa(nomePesquisa, "teste", 5, userID, true, perguntas);
+        var pesquisaAux = new Pesquisa(nomePesquisa, "teste", 500, userID, true, perguntas);
         console.log("Pesquisa AUX: ", pesquisaAux)
         setPesquisa(pesquisaAux);
     }, [nomePesquisa, perguntas])
