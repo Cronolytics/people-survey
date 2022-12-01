@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React from 'react'
 import { useNavigate } from 'react-router-dom';
 import '../../assets/css/reset.css'
@@ -8,6 +9,7 @@ import { useState } from 'react';
 import api from '../../api'
 import Toastify from 'toastify-js'
 import "toastify-js/src/toastify.css"
+import Swal from 'sweetalert2';
 
 function HotsitePage(){
 
@@ -21,7 +23,23 @@ function HotsitePage(){
     const[linkedin ,       setLinkedin      ] = useState();
     const[descricao ,      setDescricao     ] = useState();
 
+    const[arquivoCSV,      setArquivoCSV    ] = useState();
+
+    
+console.log(arquivoCSV);
     const navigate = useNavigate();
+
+    async function testando() {
+        const {value: testing} = await Swal.fire({
+            title: 'Importar CSV',
+            input: 'file',
+            inputAttributes: { 'accept': 'text/*' }
+        })
+        var formData = new FormData();
+        formData.append("file", testing)
+        
+        var result = await  api.post('/candidatos/csv', formData)
+    }
 
     function salvarGerarCSV(e){
 
@@ -202,12 +220,9 @@ function HotsitePage(){
                             <div className="boxImportacao centralization vertical">
                                 <div className="importacaoTitulo">
                                     Selecione um arquivo
-                                </div>
-                                <div className="inputFileBox">
-                                    <div className="ui left icon input inputCurriculo"><i aria-hidden="true" className="file outline icon"/><input type="file" placeholder="Arquivo de importação"/></div>
                                 </div>   
                                 <div className="buttonBoxImportação">
-                                    <button className="ui button">Salvar</button>
+                                    <button onClick={() => testando()} className="ui button">Selecionar Arquivo</button>
                                 </div>                                                   
                             </div>
                         </div>
