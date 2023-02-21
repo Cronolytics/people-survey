@@ -5,6 +5,7 @@ import api from '../api'
 import { useState } from 'react';
 import Toastify from 'toastify-js'
 import "toastify-js/src/toastify.css"
+import loader_img from '../assets/images/loader_gif.gif'
 
 const Login = () => {
 
@@ -12,38 +13,47 @@ const Login = () => {
 
     const [email, setEmail] = useState("");
     const [senha, setSenha] = useState("");
+    const [isLoading, setLoading] = useState(false);
+
+    const fetchData = () => {
+        setLoading(true);
+        setTimeout(() => {
+            setLoading(false);
+        }, 3000)
+    }
+
 
     async function verifyCredentials() {
-            api.post('/empresa/login', {
-                email,
-                senha
-            }).then(function (user){
-                console.log("USER DATA: " + JSON.stringify(user.data));
-                sessionStorage.clear();
-                sessionStorage.setItem("usuarioLogado", JSON.stringify(user.data));
-                sessionStorage.setItem("id", user.data.id);
-                Toastify({
-                    text: "Login bem sucedido!",
-                    duration: 3000,
-                    close: true,
-                    gravity: "top", // `top` or `bottom`
-                    position: "right", // `left`, `center` or `right`
-                    stopOnFocus: true, // Prevents dismissing of toast on hover
-                    style: { background: "linear-gradient(to right, #00b09b, #96c93d)" }
-                }).showToast();
-                navigate('/inicio');
-            }).catch((error) => {
-                console.log(error);
-                Toastify({
-                    text: "Ops! E-mail ou senha inválidos...",
-                    duration: 3000,
-                    close: true,
-                    gravity: "top", // `top` or `bottom`
-                    position: "right", // `left`, `center` or `right`
-                    stopOnFocus: true, // Prevents dismissing of toast on hover
-                    style: { background: "linear-gradient(to right, #a8323c, #e00d1f)" }
-                }).showToast();
-            });      
+        api.post('/empresa/login', {
+            email,
+            senha
+        }).then(function (user) {
+            console.log("USER DATA: " + JSON.stringify(user.data));
+            sessionStorage.clear();
+            sessionStorage.setItem("usuarioLogado", JSON.stringify(user.data));
+            sessionStorage.setItem("id", user.data.id);
+            Toastify({
+                text: "Login bem sucedido!",
+                duration: 3000,
+                close: true,
+                gravity: "top", // `top` or `bottom`
+                position: "right", // `left`, `center` or `right`
+                stopOnFocus: true, // Prevents dismissing of toast on hover
+                style: { background: "linear-gradient(to right, #00b09b, #96c93d)" }
+            }).showToast();
+            navigate('/inicio');
+        }).catch((error) => {
+            console.log(error);
+            Toastify({
+                text: "Ops! E-mail ou senha inválidos...",
+                duration: 3000,
+                close: true,
+                gravity: "top", // `top` or `bottom`
+                position: "right", // `left`, `center` or `right`
+                stopOnFocus: true, // Prevents dismissing of toast on hover
+                style: { background: "linear-gradient(to right, #a8323c, #e00d1f)" }
+            }).showToast();
+        });
     }
 
     return (
@@ -69,16 +79,21 @@ const Login = () => {
                         <u>Esqueci minha senha</u>
                     </div>
 
-                    <div>
+                    <div onClick={fetchData}>
                         <button onClick={() => verifyCredentials()} className="botao-login">Entrar</button>
                     </div>
 
                 </div>
             </div>
 
-            <div className='div-cadastro'>
-                Ainda não possui conta? <u onClick={() => navigate("/cadastro")}>Faça o cadastro!</u>
+            <div className='div-cadastro' onClick={() => navigate("/cadastro")}>
+                Ainda não possui conta? <u onClick={fetchData}>Faça o cadastro!</u>
             </div>
+
+            <div className="div-gif">
+            {isLoading ? <img src={loader_img} className='loading-gif-login' alt="" /> : ''}
+            </div>
+
         </>
     );
 }

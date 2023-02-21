@@ -6,6 +6,7 @@ import { useState } from "react";
 import api from "../api";
 import Toastify from "toastify-js";
 import "toastify-js/src/toastify";
+import loader_img from '../assets/images/loader_gif.gif'
 
 function Cadastro(){
     const navigate = useNavigate();
@@ -16,6 +17,14 @@ function Cadastro(){
     const [telefone, setTelefone] = useState("");
     const [cep, setCep] = useState("");
     const [cnpj, setCnpj] = useState("");
+    const [isLoading, setLoading] = useState(false);
+
+    const fetchData = () => {
+        setLoading(true);
+        setTimeout(() => {
+            setLoading(false);
+        }, 3000)
+    }
 
     async function cadastrarEmpresa(event) {
         event.preventDefault();
@@ -155,13 +164,17 @@ function Cadastro(){
                             </div>
                         </div>
 
-                        <div>
+                        <div onClick={fetchData}>
                             <button className="botao-cadastro">
                                 Cadastrar
                             </button>
                         </div>
                     </div>
                 </form>
+            </div>
+
+            <div className="div-gif-cadastro">
+            {isLoading ? <img src={loader_img} className='loading-gif-cadastro' alt="" /> : ''}
             </div>
         </>
     )
