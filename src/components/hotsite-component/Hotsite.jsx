@@ -22,7 +22,6 @@ function HotsitePage(){
     const[estadoCivil ,    setEstadoCivil   ] = useState();
     const[linkedin ,       setLinkedin      ] = useState();
     const[descricao ,      setDescricao     ] = useState();
-
     const[arquivoCSV,      setArquivoCSV    ] = useState();
 
     
@@ -114,7 +113,7 @@ console.log(arquivoCSV);
                 })
         })
 
-        window.location.href="https://peoplesurvey.azurewebsites.net/candidatos/csv";
+        window.location.href="https://http://3.221.54.108:8080/candidatos/csv";
     }
 
     return(
