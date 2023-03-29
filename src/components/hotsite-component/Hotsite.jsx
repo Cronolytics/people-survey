@@ -113,7 +113,7 @@ console.log(arquivoCSV);
                 })
         })
 
-        window.location.href="https://http://3.221.54.108:8080/candidatos/csv";
+        window.location.href="http://3.221.54.108:8080/candidatos/csv";
     }
 
     return(
