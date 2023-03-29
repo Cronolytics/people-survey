@@ -174,3 +174,24 @@
   font-weight: bold;
   transition: 1s;
 }
+
+.div-gif{
+  display: flex;
+  justify-content: center;
+  
+}
+
+.loading-gif-login{
+  width: 150px;
+}
+
+.div-gif-cadastro{
+  display: flex;
+  justify-content: center;
+  
+}
+
+.loading-gif-cadastro{
+  margin-top: 30px;
+  width: 150px;
+}
