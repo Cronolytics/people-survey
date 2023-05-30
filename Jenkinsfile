@@ -8,6 +8,7 @@ pipeline {
         }
         stage("Estágio 2 - Deploy") {
             steps {
+                sh "wait"
                 sh "/tmp/jenkins/script.sh"
             }
         }
