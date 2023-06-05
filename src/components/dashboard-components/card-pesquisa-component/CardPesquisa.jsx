@@ -2,13 +2,14 @@ import React from "react";
 import './card-pesquisa-style.css'
 
 function CardPesquisa(props){
+    const surveyTypeBoxClassName = `card-survey-type-box ${props.tipo === "Pesquisa Interna" ? "" : "external-background"}`;
 
     return(
         <>  
             <div> 
                 <div className="card">
                     <div className="card-survey-type-area">
-                        <div className="card-survey-type-box">
+                        <div className={surveyTypeBoxClassName}>
                             {props.tipo}
                         </div>
                     </div>

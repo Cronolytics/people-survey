@@ -12,38 +12,40 @@ import Menu from '../components/menu-conponents/Menu'
 // === CLASSES ========================================================
 //=====================================================================
 class Pesquisa {
-    constructor (nome, desc, participantesAlvo, empresa, interna, perguntas) {
+    constructor(nome, desc, participantesAlvo, empresa, interna, perguntas) {
         this.nome = nome;
         this.desc = desc;
         this.participantesAlvo = participantesAlvo;
-        this.empresa = {"id": parseInt(empresa)};
+        this.empresa = { "id": parseInt(empresa) };
         this.interna = interna;
         this.perguntas = perguntas;
     }
 }
 class Pergunta {
-    constructor (desc, respostas) {
+    constructor(desc, respostas) {
         this.desc = desc || "";
         this.componente = 1;
         this.respostas = respostas || [{}];
     }
 }
 
-function CriarPesquisa(){
+function CriarPesquisa() {
     const navigate = useNavigate();
     //=====================================================================
     // === ESTADOS ========================================================
     //=====================================================================
     const [isPesquisaValida, setIsPesquisaValida] = useState(false);
-    const [pesquisa,         setPesquisa        ] = useState();
-    const [nomePesquisa,     setNomePesquisa    ] = useState([]);
-    const [perguntas,        setPerguntas       ] = useState([{desc: "", componente: {"id": 1}, respostas: [{"desc" : ""},{"desc" : ""}]}]);
-    const [qtdPerguntas,     setQtdPerguntas    ] = useState(1);
+    const [pesquisa, setPesquisa] = useState();
+    const [nomePesquisa, setNomePesquisa] = useState([]);
+    const [perguntas, setPerguntas] = useState([{ desc: "", componente: { "id": 1 }, respostas: [{ "desc": "" }, { "desc": "" }] }]);
+    const [qtdPerguntas, setQtdPerguntas] = useState(1);
+    const [tipoPesquisa, setTipoPesquisa] = useState("");
+    const [limiteRespostas, setLimiteRespostas] = useState(0);
 
     var id = sessionStorage.getItem("id");
     console.log("USER ID: " + id)
-    console.log("Pesquisa: ",JSON.stringify(pesquisa, null, 4));
-    console.log("Válida ?: " , isPesquisaValida);
+    console.log("Pesquisa: ", JSON.stringify(pesquisa, null, 4));
+    console.log("Válida ?: ", isPesquisaValida);
 
     //=====================================================================
     //=== USE EFFECT'S ====================================================
@@ -51,46 +53,46 @@ function CriarPesquisa(){
 
     useEffect(() => {
         var userID = sessionStorage.getItem("id");
-        var pesquisaAux = new Pesquisa(nomePesquisa, "teste", 500, userID, true, perguntas);
+        var pesquisaAux = new Pesquisa(nomePesquisa, "teste", limiteRespostas, userID, tipoPesquisa, perguntas);
         console.log("Pesquisa AUX: ", pesquisaAux)
         setPesquisa(pesquisaAux);
-    }, [nomePesquisa, perguntas])
+    }, [nomePesquisa, perguntas, tipoPesquisa, limiteRespostas])
 
     //=====================================================================
     //=== FUNCTIONS =======================================================
     //=====================================================================
 
-    useEffect(()=>{
+    useEffect(() => {
         let validaAux = false;
-        for (let i = 0; i < perguntas.length; i++){
-            if(perguntas[i].desc === ""){
+        for (let i = 0; i < perguntas.length; i++) {
+            if (perguntas[i].desc === "") {
                 validaAux = false;
                 break;
             }
-            else{
+            else {
                 var respostas = [...perguntas[i].respostas];
                 for (let j = 0; j < respostas.length; j++) {
-                    if(respostas[i].desc === ""){
+                    if (respostas[i].desc === "") {
                         validaAux = false;
                         break;
                     }
-                    else{
+                    else {
                         validaAux = true;
                     }
                 }
                 break;
-            }                 
+            }
         }
         setIsPesquisaValida(validaAux)
-    },[perguntas])
+    }, [perguntas])
 
-    function salvarPesquisa(event){
+    function salvarPesquisa(event) {
         event.preventDefault();
         console.log("STATE PESQUISA: " + JSON.stringify(pesquisa));
 
-        if(isPesquisaValida){
+        if (isPesquisaValida) {
             api.post("/pesquisas/gravar", pesquisa
-            ).then(function(){
+            ).then(function () {
                 console.log("Cadastro de pesquisa requisitado...")
                 Toastify({
                     text: "Nova pesquisa cadastrada!",
@@ -115,7 +117,7 @@ function CriarPesquisa(){
                 }).showToast();
             })
         }
-        else{
+        else {
             Toastify({
                 text: "Sua pesquisa não está formatada corretamente! Verifique todos os campos",
                 duration: 10000,
@@ -133,20 +135,20 @@ function CriarPesquisa(){
         novasPerguntas = novasPerguntas.map((el, i) => {
             if (i === index) {
                 el = valor;
-            }           
+            }
             return el;
         })
-        setPerguntas(novasPerguntas);       
+        setPerguntas(novasPerguntas);
     }
 
-    function incrementarPergunta(){
-        var arrayPerguntasAtualizadoAuxiliar = [...perguntas, new Pergunta("", [{"desc" : ""}, {"desc" : ""}])]
+    function incrementarPergunta() {
+        var arrayPerguntasAtualizadoAuxiliar = [...perguntas, new Pergunta("", [{ "desc": "" }, { "desc": "" }])]
         setPerguntas(arrayPerguntasAtualizadoAuxiliar)
-        setQtdPerguntas(qtdPerguntas + 1);       
+        setQtdPerguntas(qtdPerguntas + 1);
     }
 
     function decrementarPergunta() {
-        if(perguntas.length === 1){
+        if (perguntas.length === 1) {
             Toastify({
                 text: "Não é possível ter menos de 1 Pergunta!",
                 duration: 3000,
@@ -157,19 +159,19 @@ function CriarPesquisa(){
                 style: { background: "linear-gradient(to right, #a8323c, #e00d1f)" }
             }).showToast();
         }
-        else{
+        else {
             var arrayPerguntasAtualizadoAuxiliar = [...perguntas];
-            arrayPerguntasAtualizadoAuxiliar.pop();   
+            arrayPerguntasAtualizadoAuxiliar.pop();
             setPerguntas(arrayPerguntasAtualizadoAuxiliar);
         }
     }
 
-    return(
-        <>  
+    return (
+        <>
             <div className="tela-toda">
                 <div className="menu">
                     <Menu />
-                </div>         
+                </div>
 
                 <div className="gray-background">
                     <div className='navbar-menu'>
@@ -183,7 +185,7 @@ function CriarPesquisa(){
                                 <div className="page-titulo">
                                     <h1>Criar uma nova pesquisa</h1>
                                     <div className="ui button-or-limiter">
-                                        <button onClick={() => {window.location.reload(true);}} type="button" className="ui button">Limpar</button>
+                                        <button onClick={() => { window.location.reload(true); }} type="button" className="ui button">Limpar</button>
                                         <div className="or"></div>
                                         <button type="submit" className={`ui ${isPesquisaValida ? "" : "disabled "} positive button`}>Salvar</button>
                                     </div>
@@ -194,19 +196,28 @@ function CriarPesquisa(){
                                         <div className="titulo-box">
                                             Título:
                                         </div>
-                                            <div className="ui transparent input input-titulo-size">
-                                                <input onChange={(e) => setNomePesquisa(e.target.value)} type="text"  placeholder="Digite o título da pesquisa."/>
-                                            </div>
+                                        <div className="ui transparent input input-titulo-size">
+                                            <input onChange={(e) => setNomePesquisa(e.target.value)} type="text" placeholder="Digite o título da pesquisa." />
                                         </div>
+                                    </div>
                                     <div className="area-tipo-pesquisa">
                                         <div className="area-tipo-item">
                                             Esta pesquisa será:
                                         </div>
                                         <div className="area-tipo-item">
-                                            <Form.Field control='select' className="select-limiter">
-                                                <option value='01'>Pesquisa Interna</option>
+                                            <Form.Field control='select' className="select-limiter" onChange={(e) => setTipoPesquisa(e.target.value)}>
+                                                <option value='interna'>Pesquisa Interna</option>
+                                                <option value='externa'>Pesquisa Externa</option>
                                             </Form.Field>
-                                        </div>                               
+                                        </div>
+                                    </div>
+                                    <div className="area-qtd-respostas">
+                                        <div className="area-qtd-respostas-item">
+                                            Quantidade de respostas:
+                                        </div>
+                                        <div className="area-qtd-respostas-item">
+                                            <input type="number" onChange={(e) => setLimiteRespostas(parseInt(e.target.value))} placeholder="Digite o limite de respostas" />
+                                        </div>
                                     </div>
                                 </div>
 
@@ -217,27 +228,27 @@ function CriarPesquisa(){
                                         <button type="button" onClick={decrementarPergunta} className="ui icon button button-limiter"><i aria-hidden="true" className="minus icon"></i></button>
                                         <div className='contador'>{perguntas.length}</div>
                                         <button type="button" onClick={incrementarPergunta} className="ui icon button button-limiter"><i aria-hidden="true" className="add center icon"></i></button>
-                                    </div> 
-                                </div>                          
+                                    </div>
+                                </div>
                                 <div className="area-content">
                                     <div className="area-tipo-item">
-                                    {
-                                        perguntas.map((pergunta, index) => {
-                                            return (
-                                                <div key={index} className="pergunta-box">
-                                                    <NovaPergunta atualizar={atualizarPergunta} id={index} />
-                                                </div>
-                                            );
+                                        {
+                                            perguntas.map((pergunta, index) => {
+                                                return (
+                                                    <div key={index} className="pergunta-box">
+                                                        <NovaPergunta atualizar={atualizarPergunta} id={index} />
+                                                    </div>
+                                                );
                                             })
                                         }
                                     </div>
                                 </div>
-                            </Form>                        
+                            </Form>
                         </div>
                     </div>
-                </div>           
+                </div>
             </div>
-            
+
         </>
     )
 }
