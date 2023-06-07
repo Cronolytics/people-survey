@@ -113,7 +113,7 @@ console.log(arquivoCSV);
                 })
         })
 
-        window.location.href="https://peoplesurvey.azurewebsites.net//candidatos/csv";
+        window.location.href="http://3.92.171.109:8080/candidatos/csv";
     }
 
     return(
