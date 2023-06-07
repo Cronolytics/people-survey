@@ -69,7 +69,7 @@ function Inicio() {
                             <div className="modal-input-limiter">
                                 <div className="ui fluid labeled input">
                                     <div className="ui label label">http://</div>
-                                    <input readOnly type="text" value={`http://52.45.125.93/responder-pesquisa/id=:${pesquisaSelecionada}`}/>
+                                    <input readOnly type="text" value={`https://peoplesurvey.azurewebsites.net/responder-pesquisa/id=:${pesquisaSelecionada}`}/>
                                 </div>
                             </div>
                         </div>
