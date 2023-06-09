@@ -21,6 +21,7 @@ class Pesquisa {
         this.perguntas = perguntas;
     }
 }
+
 class Pergunta {
     constructor(desc, respostas) {
         this.desc = desc || "";
@@ -53,7 +54,7 @@ function CriarPesquisa() {
 
     useEffect(() => {
         var userID = sessionStorage.getItem("id");
-        var pesquisaAux = new Pesquisa(nomePesquisa, "teste", participantesAlvo, userID, tipoPesquisa, perguntas);
+        var pesquisaAux = new Pesquisa(nomePesquisa, "teste", participantesAlvo, userID, tipoPesquisa === 'interna', perguntas);
         console.log("Pesquisa AUX: ", pesquisaAux)
         setPesquisa(pesquisaAux);
     }, [nomePesquisa, perguntas, tipoPesquisa, participantesAlvo])
@@ -68,23 +69,21 @@ function CriarPesquisa() {
             if (perguntas[i].desc === "") {
                 validaAux = false;
                 break;
-            }
-            else {
+            } else {
                 var respostas = [...perguntas[i].respostas];
                 for (let j = 0; j < respostas.length; j++) {
                     if (respostas[i].desc === "") {
                         validaAux = false;
                         break;
-                    }
-                    else {
+                    } else {
                         validaAux = true;
                     }
                 }
                 break;
             }
         }
-        setIsPesquisaValida(validaAux)
-    }, [perguntas])
+        setIsPesquisaValida(validaAux);
+    }, [perguntas]);
 
     function salvarPesquisa(event) {
         event.preventDefault();
@@ -116,8 +115,7 @@ function CriarPesquisa() {
                     style: { background: "linear-gradient(to right, #a8323c, #e00d1f)" }
                 }).showToast();
             })
-        }
-        else {
+        } else {
             Toastify({
                 text: "Sua pesquisa não está formatada corretamente! Verifique todos os campos",
                 duration: 10000,
@@ -137,13 +135,13 @@ function CriarPesquisa() {
                 el = valor;
             }
             return el;
-        })
+        });
         setPerguntas(novasPerguntas);
     }
 
     function incrementarPergunta() {
-        var arrayPerguntasAtualizadoAuxiliar = [...perguntas, new Pergunta("", [{ "desc": "" }, { "desc": "" }])]
-        setPerguntas(arrayPerguntasAtualizadoAuxiliar)
+        var arrayPerguntasAtualizadoAuxiliar = [...perguntas, new Pergunta("", [{ "desc": "" }, { "desc": "" }])];
+        setPerguntas(arrayPerguntasAtualizadoAuxiliar);
         setQtdPerguntas(qtdPerguntas + 1);
     }
 
@@ -158,8 +156,7 @@ function CriarPesquisa() {
                 stopOnFocus: true, // Prevents dismissing of toast on hover
                 style: { background: "linear-gradient(to right, #a8323c, #e00d1f)" }
             }).showToast();
-        }
-        else {
+        } else {
             var arrayPerguntasAtualizadoAuxiliar = [...perguntas];
             arrayPerguntasAtualizadoAuxiliar.pop();
             setPerguntas(arrayPerguntasAtualizadoAuxiliar);
@@ -193,17 +190,13 @@ function CriarPesquisa() {
 
                                 <div className="pesquisa-config">
                                     <div className="area-titulo">
-                                        <div className="titulo-box">
-                                            Título:
-                                        </div>
+                                        <div className="titulo-box">Título:</div>
                                         <div className="ui transparent input input-titulo-size">
                                             <input onChange={(e) => setNomePesquisa(e.target.value)} type="text" placeholder="Digite o título da pesquisa." />
                                         </div>
                                     </div>
                                     <div className="area-tipo-pesquisa">
-                                        <div className="area-tipo-item">
-                                            Esta pesquisa será:
-                                        </div>
+                                        <div className="area-tipo-item">Esta pesquisa será:</div>
                                         <div className="area-tipo-item">
                                             <Form.Field control='select' className="select-limiter" onChange={(e) => setTipoPesquisa(e.target.value)}>
                                                 <option value='interna'>Pesquisa Interna</option>
@@ -212,15 +205,12 @@ function CriarPesquisa() {
                                         </div>
                                     </div>
                                     <div className="area-qtd-respostas">
-                                        <div className="area-qtd-respostas-item">
-                                            Participantes Alvo:
-                                        </div>
+                                        <div className="area-qtd-respostas-item">Participantes Alvo:</div>
                                         <div className="area-qtd-respostas-item">
                                             <input type="number" onChange={(e) => setParticipantesAlvo(parseInt(e.target.value))} placeholder="Digite o número de participantes alvo" />
                                         </div>
                                     </div>
                                 </div>
-
 
                                 <div className="respostas-area">
                                     <div className="field-resposta">Perguntas:</div>
@@ -232,15 +222,13 @@ function CriarPesquisa() {
                                 </div>
                                 <div className="area-content">
                                     <div className="area-tipo-item">
-                                        {
-                                            perguntas.map((pergunta, index) => {
-                                                return (
-                                                    <div key={index} className="pergunta-box">
-                                                        <NovaPergunta atualizar={atualizarPergunta} id={index} />
-                                                    </div>
-                                                );
-                                            })
-                                        }
+                                        {perguntas.map((pergunta, index) => {
+                                            return (
+                                                <div key={index} className="pergunta-box">
+                                                    <NovaPergunta atualizar={atualizarPergunta} id={index} />
+                                                </div>
+                                            );
+                                        })}
                                     </div>
                                 </div>
                             </Form>
@@ -248,9 +236,8 @@ function CriarPesquisa() {
                     </div>
                 </div>
             </div>
-
         </>
-    )
+    );
 }
 
 export default CriarPesquisa;
