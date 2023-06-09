@@ -40,7 +40,7 @@ function CriarPesquisa() {
     const [perguntas, setPerguntas] = useState([{ desc: "", componente: { "id": 1 }, respostas: [{ "desc": "" }, { "desc": "" }] }]);
     const [qtdPerguntas, setQtdPerguntas] = useState(1);
     const [tipoPesquisa, setTipoPesquisa] = useState("");
-    const [limiteRespostas, setLimiteRespostas] = useState(0);
+    const [participantesAlvo, setParticipantesAlvo] = useState(0);
 
     var id = sessionStorage.getItem("id");
     console.log("USER ID: " + id)
@@ -53,10 +53,10 @@ function CriarPesquisa() {
 
     useEffect(() => {
         var userID = sessionStorage.getItem("id");
-        var pesquisaAux = new Pesquisa(nomePesquisa, "teste", limiteRespostas, userID, tipoPesquisa, perguntas);
+        var pesquisaAux = new Pesquisa(nomePesquisa, "teste", participantesAlvo, userID, tipoPesquisa, perguntas);
         console.log("Pesquisa AUX: ", pesquisaAux)
         setPesquisa(pesquisaAux);
-    }, [nomePesquisa, perguntas, tipoPesquisa, limiteRespostas])
+    }, [nomePesquisa, perguntas, tipoPesquisa, participantesAlvo])
 
     //=====================================================================
     //=== FUNCTIONS =======================================================
@@ -213,10 +213,10 @@ function CriarPesquisa() {
                                     </div>
                                     <div className="area-qtd-respostas">
                                         <div className="area-qtd-respostas-item">
-                                            Quantidade de respostas:
+                                            Participantes Alvo:
                                         </div>
                                         <div className="area-qtd-respostas-item">
-                                            <input type="number" onChange={(e) => setLimiteRespostas(parseInt(e.target.value))} placeholder="Digite o limite de respostas" />
+                                            <input type="number" onChange={(e) => setParticipantesAlvo(parseInt(e.target.value))} placeholder="Digite o número de participantes alvo" />
                                         </div>
                                     </div>
                                 </div>
