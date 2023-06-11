@@ -7,20 +7,23 @@ import "toastify-js/src/toastify.css"
 import api from '../api'
 import { useNavigate } from "react-router-dom";
 import Menu from '../components/menu-conponents/Menu'
+import moment from 'moment';
 
 //=====================================================================
 // === CLASSES ========================================================
 //=====================================================================
 class Pesquisa {
-    constructor(nome, desc, participantesAlvo, empresa, interna, perguntas) {
+    constructor(nome, desc, participantesAlvo, criadaEm, empresa, interna, perguntas) {
         this.nome = nome;
         this.desc = desc;
         this.participantesAlvo = participantesAlvo;
+        this.criadaEm = criadaEm;
         this.empresa = { "id": parseInt(empresa) };
         this.interna = interna;
         this.perguntas = perguntas;
     }
 }
+
 
 class Pergunta {
     constructor(desc, respostas) {
@@ -35,6 +38,7 @@ function CriarPesquisa() {
     //=====================================================================
     // === ESTADOS ========================================================
     //=====================================================================
+    const criadaEm = moment().format('YYYY-MM-DD');
     const [isPesquisaValida, setIsPesquisaValida] = useState(false);
     const [pesquisa, setPesquisa] = useState();
     const [nomePesquisa, setNomePesquisa] = useState([]);
@@ -54,7 +58,8 @@ function CriarPesquisa() {
 
     useEffect(() => {
         var userID = sessionStorage.getItem("id");
-        var pesquisaAux = new Pesquisa(nomePesquisa, "teste", participantesAlvo, userID, tipoPesquisa === 'interna', perguntas);
+        const pesquisaAux = new Pesquisa(nomePesquisa, "teste", participantesAlvo, criadaEm, userID, tipoPesquisa === 'interna', perguntas);
+
         console.log("Pesquisa AUX: ", pesquisaAux)
         setPesquisa(pesquisaAux);
     }, [nomePesquisa, perguntas, tipoPesquisa, participantesAlvo])
