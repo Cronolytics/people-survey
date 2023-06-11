@@ -83,7 +83,7 @@ function CriarPesquisa() {
 
     console.log("Pesquisa AUX: ", pesquisaAux);
     setPesquisa(pesquisaAux);
-  }, [nomePesquisa, perguntas, tipoPesquisa, participantesAlvo]);
+  }, [nomePesquisa, perguntas, tipoPesquisa, participantesAlvo, criadaEm]);
 
   //=====================================================================
   //=== FUNCTIONS =======================================================
