@@ -44,6 +44,9 @@ function CardPesquisa(props){
                                     </div>
                                     <div className="info-value">
                                         <strong>{props.qtdRespostas}</strong>
+                                        {props.participantesAlvo && props.qtdRespostas < props.participantesAlvo &&
+                                            <span className="resposta-limite">-{props.participantesAlvo - props.qtdRespostas}</span>
+                                        }
                                     </div>
                                 </div>                     
                         </div>
