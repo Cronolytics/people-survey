@@ -48,7 +48,6 @@ function CardPesquisa(props) {
                                 }
                             </div>
                         </div>
-                        {props.participantesAlvo && (
                             <div className="card-info-line">
                                 <div className="info-key">
                                     Limite de Respostas
@@ -57,7 +56,6 @@ function CardPesquisa(props) {
                                     {props.participantesAlvo}
                                 </div>
                             </div>
-                        )}
                     </div>
                 </div>
                 <div className="card-status-area">
