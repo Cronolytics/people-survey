@@ -48,7 +48,7 @@ function CriarPesquisa() {
   const criadaEm = moment().format("YYYY-MM-DD");
   const [isPesquisaValida, setIsPesquisaValida] = useState(false);
   const [pesquisa, setPesquisa] = useState();
-  const [nomePesquisa, setNomePesquisa] = useState([]);
+  const [nomePesquisa, setNomePesquisa] = useState("");
   const [perguntas, setPerguntas] = useState([
     {
       desc: "",
@@ -57,7 +57,7 @@ function CriarPesquisa() {
     },
   ]);
   const [qtdPerguntas, setQtdPerguntas] = useState(1);
-  const [tipoPesquisa, setTipoPesquisa] = useState("");
+  const [tipoPesquisa, setTipoPesquisa] = useState("interna");
   const [participantesAlvo, setParticipantesAlvo] = useState(0);
 
   var id = sessionStorage.getItem("id");
@@ -98,7 +98,7 @@ function CriarPesquisa() {
       } else {
         var respostas = [...perguntas[i].respostas];
         for (let j = 0; j < respostas.length; j++) {
-          if (respostas[i].desc === "") {
+          if (respostas[j].desc === "") {
             validaAux = false;
             break;
           } else {
@@ -149,7 +149,8 @@ function CriarPesquisa() {
         });
     } else {
       Toastify({
-        text: "Sua pesquisa não está formatada corretamente! Verifique todos os campos",
+        text:
+          "Sua pesquisa não está formatada corretamente! Verifique todos os campos",
         duration: 10000,
         close: true,
         gravity: "top", // `top` or `bottom`
@@ -161,23 +162,17 @@ function CriarPesquisa() {
   }
 
   function atualizarPergunta(valor, index) {
-    var novasPerguntas = perguntas;
-    novasPerguntas = novasPerguntas.map((el, i) => {
-      if (i === index) {
-        el = valor;
-      }
-      return el;
-    });
+    var novasPerguntas = [...perguntas];
+    novasPerguntas[index] = valor;
     setPerguntas(novasPerguntas);
   }
 
   function incrementarPergunta() {
-    var arrayPerguntasAtualizadoAuxiliar = [
+    setQtdPerguntas(qtdPerguntas + 1);
+    setPerguntas([
       ...perguntas,
       new Pergunta("", [{ desc: "" }, { desc: "" }]),
-    ];
-    setPerguntas(arrayPerguntasAtualizadoAuxiliar);
-    setQtdPerguntas(qtdPerguntas + 1);
+    ]);
   }
 
   function decrementarPergunta() {
@@ -192,9 +187,8 @@ function CriarPesquisa() {
         style: { background: "linear-gradient(to right, #a8323c, #e00d1f)" },
       }).showToast();
     } else {
-      var arrayPerguntasAtualizadoAuxiliar = [...perguntas];
-      arrayPerguntasAtualizadoAuxiliar.pop();
-      setPerguntas(arrayPerguntasAtualizadoAuxiliar);
+      setQtdPerguntas(qtdPerguntas - 1);
+      setPerguntas(perguntas.slice(0, -1));
     }
   }
 
@@ -213,7 +207,7 @@ function CriarPesquisa() {
           </div>
           <div className="container">
             <div className="card-conteudo">
-              <Form onSubmit={(event) => salvarPesquisa(event)}>
+              <Form onSubmit={salvarPesquisa}>
                 <div className="page-titulo">
                   <h1>Criar uma nova pesquisa</h1>
                   <div className="ui button-or-limiter">
@@ -288,7 +282,7 @@ function CriarPesquisa() {
                     >
                       <i aria-hidden="true" className="minus icon"></i>
                     </button>
-                    <div className="contador">{perguntas.length}</div>
+                    <div className="contador">{qtdPerguntas}</div>
                     <button
                       type="button"
                       onClick={incrementarPergunta}
