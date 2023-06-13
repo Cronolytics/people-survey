@@ -13,6 +13,7 @@ function Inicio() {
   const [isPesquisasVazia, setIsPesquisaVazia] = useState(false);
   const [pesquisasResumidas, setPesquisasResumidas] = useState([]);
   const [pesquisaSelecionada, setPesquisaSelecionada] = useState();
+  const [isBotaoGerarLinkBloqueado, setIsBotaoGerarLinkBloqueado] = useState(true);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -27,12 +28,18 @@ function Inicio() {
         } else {
           setPesquisaSelecionada(pesquisasResumidasAPI.data[0].id);
           setIsPesquisaVazia(false);
+          setIsBotaoGerarLinkBloqueado(pesquisasResumidasAPI.data[0].interna !== true);
         }
       })
       .catch((error) => {
         console.log(error);
       });
   }, []);
+
+  const handlePesquisaSelecionada = (pesquisaId, isInterna) => {
+    setPesquisaSelecionada(pesquisaId);
+    setIsBotaoGerarLinkBloqueado(!isInterna);
+  };
 
   console.log(pesquisaSelecionada);
 
@@ -83,15 +90,15 @@ function Inicio() {
             <div className="title">Pesquisas em andamento</div>
             <div className="scroll-card-box">
               {isPesquisasVazia ? (
-                <div>
-                  Nenhuma pesquisa criada ainda.
-                </div>
+                <div>Nenhuma pesquisa criada ainda.</div>
               ) : (
                 pesquisasResumidas.map((pesquisa, index) => {
                   return (
                     <div
                       key={index}
-                      onClick={() => setPesquisaSelecionada(pesquisa.id)}
+                      onClick={() =>
+                        handlePesquisaSelecionada(pesquisa.id, pesquisa.interna)
+                      }
                       className={
                         pesquisa.id === pesquisaSelecionada
                           ? "selecionado"
@@ -125,7 +132,9 @@ function Inicio() {
               <div className="button-box-inicio">
                 <button
                   className="ui animated button button-limiter-inicio"
-                  onClick={() => navigate(`/dashboard/id=${pesquisaSelecionada}`)}
+                  onClick={() =>
+                    navigate(`/dashboard/id=${pesquisaSelecionada}`)
+                  }
                 >
                   <div className="hidden content">Dashboard</div>
                   <div className="visible content">
@@ -133,22 +142,22 @@ function Inicio() {
                   </div>
                 </button>
               </div>
-              {!isPesquisasVazia && pesquisasResumidas.find(
-                (pesquisa) => pesquisa.interna === true
-              ) && (
+              {!isPesquisasVazia && (
                 <div className="button-box-inicio">
-                  <button
-                    onClick={() => setIsModalOpen(true)}
-                    className="button-limiter-inicio ui animated button"
-                  >
-                    <div className="hidden content">Gerar Link</div>
-                    <div className="visible content">
-                      <i
-                        aria-hidden="true"
-                        className="share alternate icon"
-                      ></i>
-                    </div>
-                  </button>
+                  {!isBotaoGerarLinkBloqueado && (
+                    <button
+                      onClick={() => setIsModalOpen(true)}
+                      className="button-limiter-inicio ui animated button"
+                    >
+                      <div className="hidden content">Gerar Link</div>
+                      <div className="visible content">
+                        <i
+                          aria-hidden="true"
+                          className="share alternate icon"
+                        ></i>
+                      </div>
+                    </button>
+                  )}
                 </div>
               )}
             </div>
