@@ -133,24 +133,22 @@ function Inicio() {
                   </div>
                 </button>
               </div>
-              {!isPesquisasVazia && (
+              {!isPesquisasVazia && pesquisasResumidas.find(
+                (pesquisa) => pesquisa.interna === true
+              ) && (
                 <div className="button-box-inicio">
-                  {!pesquisasResumidas.find(
-                    (pesquisa) => pesquisa.interna === false
-                  ) && (
-                    <button
-                      onClick={() => setIsModalOpen(true)}
-                      className="button-limiter-inicio ui animated button"
-                    >
-                      <div className="hidden content">Gerar Link</div>
-                      <div className="visible content">
-                        <i
-                          aria-hidden="true"
-                          className="share alternate icon"
-                        ></i>
-                      </div>
-                    </button>
-                  )}
+                  <button
+                    onClick={() => setIsModalOpen(true)}
+                    className="button-limiter-inicio ui animated button"
+                  >
+                    <div className="hidden content">Gerar Link</div>
+                    <div className="visible content">
+                      <i
+                        aria-hidden="true"
+                        className="share alternate icon"
+                      ></i>
+                    </div>
+                  </button>
                 </div>
               )}
             </div>
